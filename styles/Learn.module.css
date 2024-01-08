@@ -1,0 +1,30 @@
+.learnlight {
+    display: flex;
+}
+  
+.learndark {
+    display: flex;
+}
+
+.learncontlight {
+    width: 75%;
+    max-height: 600px;
+    overflow-y: auto;
+}
+  
+  
+.learncontdark {
+    width: 75%;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+@media screen and (max-width: 991px) {
+  
+    .learncontlight,.learncontdark {
+      width: 100%;
+    }
+
+  }
+
+  

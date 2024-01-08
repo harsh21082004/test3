@@ -1,0 +1,102 @@
+/* CourseVideos */
+
+.videoplaycont {
+    display: flex;
+    margin: auto;
+  }
+  
+  .youtubeplaylist {
+    height: 500px;
+    margin: auto;
+    width: 49%;
+    background-color: #ffffff;
+    align-items: center;
+    border-radius: 10px; /* Add border radius */
+    box-shadow: 0 0 10px grey;
+  }
+  
+  .youtubeplayer {
+    height: 500px;
+    width: 49%;
+    margin: 0 auto;
+    border-radius: 10px; /* Add border radius */
+    overflow: hidden; /* Ensure rounded corners are applied */
+    box-shadow: 0 0 10px grey;
+  }
+  
+  .youtubeplaylist ul {
+    list-style: none;
+    padding: 0;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    height: 100%; /* Make sure the ul takes the full height of the playlist */
+    overflow-y: auto;
+  }
+  
+  .youtubeplaylist ul link{
+    text-decoration: none;
+  }
+  
+  .youtubeplaylist ul li {
+    width: 90%;
+    padding: 10px 0;
+    margin: 10px auto;
+    border-radius: 8px; /* Add border radius to list items */
+    color: #ffffff; /* Text color */
+    box-shadow: 0px 5px 5px grey;
+    cursor: pointer;
+  }
+  
+  .youtubeplaylist ul li:hover{
+    background-color: #000000 !important;
+  }
+  
+  
+  .nextprev {
+    display: flex;
+    justify-content: space-between;
+    margin : 10px; /* Add space between playlist and navigation buttons */
+  }
+  
+  .prev, .next {
+    padding: 10px;
+    background-color: #f11946;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 5px 0;
+    font-size: 1.2rem;
+  }
+  
+  .prev:hover, .next:hover {
+    background-color: #000000; /* Darken the background on hover */
+    text-decoration: none;
+    color: white;
+  }
+  
+  .videosLink{
+    background-color: #f11946;
+  }
+  
+  
+  @media screen and (max-width: 991px) {
+    .videoplaycont {
+      display: flex;
+      margin: auto;
+      flex-direction: column;
+    }
+  
+    .youtubeplaylist{
+      width: 90%;
+    }
+  
+    .youtubeplayer{
+      width: 90%;
+    }
+  }
+  
+  
+  /* CourseVideos */
+  

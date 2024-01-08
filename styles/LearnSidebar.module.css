@@ -1,0 +1,79 @@
+.sidebardark {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    max-height: 600px;
+    overflow-y: auto;
+    background-color: rgb(21, 32, 43);
+    box-shadow: 0 0 5px #D9EEE1;
+}
+
+.sidebarlight {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    max-height: 600px;
+    overflow-y: auto;
+    background-color: #D9EEE1;
+    box-shadow: 0 0 5px rgb(21, 32, 43);
+}
+
+.sidebardark h3 {
+    color: white;
+    padding-left: 32px;
+    margin-top: 15px;
+}
+
+.sidebarlight h3 {
+    padding-left: 32px;
+    margin-top: 15px;
+}
+
+.sidebardark a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    /* font-size: 15px; */
+    margin-left: 15px;
+    padding: 2px 15px 1px 16px;
+}
+
+.sidebarlight a {
+    text-decoration: none;
+    color: black;
+    /* font-size: 15px; */
+    margin-left: 15px;
+    padding: 2px 15px 1px 16px;
+}
+
+
+.sidebardark a:hover {
+    background-color: rgb(232, 232, 232);
+    color: black;
+}
+
+.sidebarlight a:hover {
+    background-color: rgb(75, 75, 75);
+    color: white;
+}
+
+@media screen and (max-width: 991px) {
+    .sidebarlight {
+        position: absolute;
+        /* width: 250px; */
+        width: 0;
+        transition: 0.2s;
+    }
+
+    .sidebardark {
+        position: absolute;
+        /* width: 250px; */
+        width: 0;
+        transition: 0.2s;
+    }
+
+    .sideopen {
+        position: absolute;
+        width: 300px;
+        transition: 0.2s;
+    }
+}

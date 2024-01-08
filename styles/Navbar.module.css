@@ -1,0 +1,212 @@
+.menu{
+  display: flex;
+}
+
+
+.navItem a {
+    margin: 0 6px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    /* Remove the default underline */
+    position: relative;
+  }
+  
+  .navItem a:hover {
+    text-decoration: none;
+  }
+  
+  
+  .navItem a::before {
+    content: "";
+    /* Create an empty pseudo-element before the text */
+    position: absolute;
+    bottom: 0;
+    /* Position it at the bottom of the anchor element */
+    left: 0;
+    /* Align it with the text */
+    width: 100%;
+    /* Make it as wide as the text */
+    height: 2px;
+    /* Set the height of the underline */
+    background-color: #f11946;
+    /* Color of the underline */
+    transform: translateY(-4px);
+    /* Push the text upwards by adjusting the translateY value */
+    opacity: 0;
+    /* Hide the underline by default */
+    transition: opacity 0.3s, transform 0.3s;
+    /* Add a smooth transition effect */
+  }
+  
+  .navItem a:hover::before {
+    opacity: 1;
+    /* Show the underline on hover */
+    transform: translateY(-8px);
+    /* Adjust the translateY value to push the text upwards more */
+  }
+  
+  .serBtn {
+    background-color: #f11946;
+    color: white;
+  }
+  
+  .serBtn:hover {
+    background-color: rgb(0, 0, 0);
+    color: white;
+  
+  }
+  
+  .navbar {
+    box-shadow: 0 0 10px black;
+    background-color: rgb(220, 220, 220) ;
+  }
+  
+  .navdark{
+    background-color: rgb(21,32,43);
+  }
+
+  .fontBold {
+    font-size: 1.25rem;
+  }
+  
+  .containerFluid {
+    text-decoration: none;
+  }
+  
+  .containerFluid:hover {
+    text-decoration: none;
+  }
+
+  .imgMode {
+    cursor: pointer;
+  }
+  
+  .imgdark{
+    filter: invert(1);
+  }
+
+  .scrollmenudark {
+    background-color: #000000;
+    overflow: auto;
+    white-space: nowrap;
+  }
+  
+  .scrollmenulight {
+    background-color: rgb(21,32,43);
+    overflow: auto;
+    white-space: nowrap;
+  }
+  
+  .scrollmenulight::-webkit-scrollbar,.sidebarlight::-webkit-scrollbar,.learncontlight::-webkit-scrollbar {
+    width: 12px;               /* width of the entire scrollbar */
+  }
+  .scrollmenulight::-webkit-scrollbar-track,.sidebarlight::-webkit-scrollbar-track,.learncontlight::-webkit-scrollbar-track {
+    background: rgb(255, 255, 255);        /* color of the tracking area */
+  }
+  .scrollmenulight::-webkit-scrollbar-thumb,.sidebarlight::-webkit-scrollbar-thumb,.learncontlight::-webkit-scrollbar-thumb {
+    background-color: rgb(195, 195, 195);    /* color of the scroll thumb */
+    border-radius: 20px;       
+  }
+  
+  .scrollmenulight::-webkit-scrollbar-thumb:hover,.sidebarlight::-webkit-scrollbar-thumb:hover,.learncontlight::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(95, 95, 95);      
+  }
+  
+  .scrollmenudark::-webkit-scrollbar-thumb:hover,.sidebardark::-webkit-scrollbar-thumb:hover,.learncontdark::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(227, 227, 227);      
+  }
+  
+  .scrollmenudark::-webkit-scrollbar,.sidebardark::-webkit-scrollbar,.learncontdark::-webkit-scrollbar {
+    width: 12px;
+  }
+  .scrollmenudark::-webkit-scrollbar-track,.sidebardark::-webkit-scrollbar-track,.learncontdark::-webkit-scrollbar-track {
+    background: rgb(130, 130, 130);        /* color of the tracking area */
+  }
+  .scrollmenudark::-webkit-scrollbar-thumb,.sidebardark::-webkit-scrollbar-thumb,.learncontdark::-webkit-scrollbar-thumb {
+    background-color: rgb(57, 57, 57);    /* color of the scroll thumb */
+    border-radius: 20px;       
+  }
+  
+  .scrollmenudark a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 5px 20px;
+    text-decoration: none;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+  
+  .scrollmenulight a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 5px 20px;
+    text-decoration: none;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+  
+  .scrollmenudark a:hover {
+    background-color: #777;
+  
+  }
+  
+  .scrollmenulight a:hover {
+    background-color: #777;
+  
+  }
+
+  /* HamburgerMenu.css */
+
+.hamburger {
+  display: none;
+}
+
+.hamburgerMenu {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  /* position: absolute; */
+  top: 56px;
+  left: 0;
+  padding: 3.4px 8px;
+  background-color: rgb(52, 52, 52);
+}
+
+.hamburgerMenu1dark,.hamburgerMenu1light{
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  /* position: absolute; */
+  top: 56px;
+  left: 0;
+  padding: 3.4px 8px;
+}
+
+
+.bar {
+  width: 30px;
+  height: 3.5px;
+  margin: 3px 0;
+  background-color: #f11946;
+  transition: 0.4s;
+  border-radius: 10px;
+}
+
+.open .bar:nth-child(1) {
+  transform: rotate(-45deg) translate(-6.7px, 6.7px);
+}
+
+.open .bar:nth-child(2) {
+  /* transform: translateX(-5); */
+  opacity: 0;
+}
+
+.open .bar:nth-child(3) {
+  transform: rotate(45deg) translate(-6.7px, -6.7px);
+}
+
+@media screen and (max-width: 991px) {
+  .hamburger {
+    display: block;
+  }
+}
