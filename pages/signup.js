@@ -1,4 +1,4 @@
-import React, { useContext,useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Footer from './footer'
 import styles from '@/styles/Signup.module.css'
 import Link from 'next/link'
@@ -6,14 +6,30 @@ import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ThemeContext } from './context/themeContext';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import router from 'next/router';
 
 const Signup = () => {
+
+    const [textType, setTextType] = useState("password");
+
+    const [visible, setVisible] = useState(true);
 
     const { theme, handleOnClick } = useContext(ThemeContext)
 
     const [name, setName] = useState();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+
+    const handleTextType = () =>{
+        setVisible(!visible)
+        if(visible){
+            setTextType('text')
+        }
+        else{
+            setTextType('password')
+        }
+    }
 
     const handleChange = (e) => {
         if (e.target.name === 'name') {
@@ -42,16 +58,47 @@ const Signup = () => {
         setEmail('');
         setName('');
         setPassword('');
-        toast('Account created successfully', {
-            position: "bottom-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
+        if (response.error) {
+            toast.error(response.error, {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
             });
+
+        }
+        else if (response.success) {
+            toast.success(response.success, {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            setTimeout(() => {
+                router.push('http://localhost:3000/login')
+            }, 3000)
+        }
+        else {
+            toast.error("error", {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }
+
     }
 
     return (
@@ -75,15 +122,20 @@ const Signup = () => {
                 <form className={`${styles.form} container `} onSubmit={handleSubmit} method='POST' >
                     <div className="form-group">
                         <label htmlFor="name" className={`text-${theme === "light" ? 'white' : 'black'} mx-1 `}>Name</label>
-                        <input onChange={handleChange} type="text" className={`${styles.input} border-dark form-control m-1`} name='name' id="name" value={name} aria-describedby="emailHelp" placeholder="Enter name" required />
+                        <input onChange={handleChange} type="text" className={`${styles.input2} border-secondary form-control m-1`} name='name' id="name" value={name} aria-describedby="emailHelp" placeholder="Enter name" required />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="email" className={`text-${theme === "light" ? 'white' : 'black'} mx-1`}>Email address</label>
-                        <input onChange={handleChange} value={email} type="email" className={`${styles.input} border-dark form-control m-1`} name='email' id="email" aria-describedby="emailHelp" placeholder="Enter email" required />
+                        <label htmlFor="email" className={`text-${theme === "light" ? 'white' : 'black'}  mx-1`}>Email address</label>
+                        <input onChange={handleChange} value={email} type="email" className={`${styles.input1} border-secondary form-control m-1`} name='email' id="email" aria-describedby="emailHelp" placeholder="Enter email" required />
                     </div>
                     <div className="form-group">
                         <label htmlFor="password" className={`text-${theme === "light" ? 'white' : 'black'} mx-1`}>Password</label>
-                        <input onChange={handleChange} value={password} type="password" className={`${styles.input} border-dark form-control m-1`} name='password' id="password" placeholder="Password" required />
+                        <div className={`${styles.eyeinput}`}>
+                        <input onChange={handleChange} value={password} type={textType} className={`${styles.input} border-secondary form-control m-1`} name='password' id="password" placeholder="Password" required />
+                        <i onClick={handleTextType} className={`${theme === "light" ? styles.eyelight : styles.eyedark}`}>
+                            {visible ? <FaEye /> : <FaEyeSlash />}
+                        </i>
+                        </div>
                     </div>
                     {/* <div className="form-group form-check m-1">
                         <input type="checkbox" className="form-check-input" id="exampleCheck1" />

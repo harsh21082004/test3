@@ -6,5 +6,5 @@ const UserSchema = new mongoose.Schema({
     password:{type: String,required:true}
 },{timestamps:true});
 
-export default mongoose.models.user || mongoose.model("user",UserSchema);
+export default mongoose.models.User || mongoose.model("User",UserSchema);
 // export default mongoose.model("user",UserSchema);

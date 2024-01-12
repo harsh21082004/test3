@@ -1,19 +1,21 @@
 .sidebardark {
-    width: 25%;
-    display: flex;
-    flex-direction: column;
-    max-height: 600px;
-    overflow-y: auto;
     background-color: rgb(21, 32, 43);
     box-shadow: 0 0 5px #D9EEE1;
 }
 
-.sidebarlight {
-    width: 25%;
+.sidebardark,.sidebarlight{
+    margin-top: -10px;
+    padding-top: 18px;
     display: flex;
     flex-direction: column;
-    max-height: 600px;
-    overflow-y: auto;
+    height: 100%;
+    width: 350px;
+    position: fixed!important;
+    z-index: 1;
+    overflow: auto;
+}
+
+.sidebarlight {
     background-color: #D9EEE1;
     box-shadow: 0 0 5px rgb(21, 32, 43);
 }
@@ -58,14 +60,14 @@
 
 @media screen and (max-width: 991px) {
     .sidebarlight {
-        position: absolute;
+        position: sticky;
         /* width: 250px; */
         width: 0;
         transition: 0.2s;
     }
 
     .sidebardark {
-        position: absolute;
+        position: sticky;
         /* width: 250px; */
         width: 0;
         transition: 0.2s;
@@ -73,7 +75,8 @@
 
     .sideopen {
         position: absolute;
-        width: 300px;
+        width: 200px;
         transition: 0.2s;
     }
+    
 }

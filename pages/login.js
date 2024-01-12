@@ -1,4 +1,4 @@
-import React, { useContext,useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Footer from './footer'
 import styles from '@/styles/Signup.module.css'
 import Link from 'next/link'
@@ -6,19 +6,32 @@ import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ThemeContext } from './context/themeContext';
+import router from 'next/router';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Signup = () => {
+
+    const [textType, setTextType] = useState("password");
+
+    const [visible, setVisible] = useState(true);
 
     const { theme, handleOnClick } = useContext(ThemeContext)
 
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
-    const handleChange = (e) => {
-        if (e.target.name === 'name') {
-            setName(e.target.value)
+    const handleTextType = () =>{
+        setVisible(!visible)
+        if(visible){
+            setTextType('text')
         }
-        else if (e.target.name === 'email') {
+        else{
+            setTextType('password')
+        }
+    }
+
+    const handleChange = (e) => {
+        if (e.target.name === 'email') {
             setEmail(e.target.value)
         }
         else if (e.target.name === 'password') {
@@ -28,8 +41,8 @@ const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const data = { name, email, password }
-        let res = await fetch('http://localhost:3000/api/signup', {
+        const data = { email, password }
+        let res = await fetch('http://localhost:3000/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -39,25 +52,55 @@ const Signup = () => {
         let response = await res.json();
         console.log(response)
         setEmail('');
-        setName('');
         setPassword('');
-        toast('Account created successfully', {
-            position: "bottom-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
+        if (response.error) {
+            toast.error(response.error, {
+                position: "bottom-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
             });
+
+        }
+        else if (response.success) {
+            localStorage.setItem('token', response.token)
+            toast.success(response.success, {
+                position: "bottom-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            setTimeout(() => {
+                router.push('http://localhost:3000')
+            }, 3000)
+        }
+        else {
+            toast.error("error", {
+                position: "bottom-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }
     }
 
     return (
         <>
             <ToastContainer
                 position="bottom-center"
-                autoClose={5000}
+                autoClose={3000}
                 hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick
@@ -73,12 +116,17 @@ const Signup = () => {
                 </div>
                 <form className={`${styles.form} container `} onSubmit={handleSubmit} method='POST' >
                     <div className="form-group">
-                        <label htmlFor="email" className={`text-${theme === "light" ? 'white' : 'black'} mx-1`}>Email address</label>
-                        <input onChange={handleChange} value={email} type="email" className="border-dark form-control m-1" name='email' id="email" aria-describedby="emailHelp" placeholder="Enter email" required />
+                        <label htmlFor="email" className={`text-${theme === "light" ? 'white' : 'black'}  mx-1`}>Email address</label>
+                        <input onChange={handleChange} value={email} type="email" className={`${styles.input1} border-secondary form-control m-1`} name='email' id="email" aria-describedby="emailHelp" placeholder="Enter email" required />
                     </div>
                     <div className="form-group">
                         <label htmlFor="password" className={`text-${theme === "light" ? 'white' : 'black'} mx-1`}>Password</label>
-                        <input onChange={handleChange} value={password} type="password" className="border-dark form-control m-1" name='password' id="password" placeholder="Password" required />
+                        <div className={`${styles.eyeinput}`}>
+                            <input onChange={handleChange} value={password} type={textType} className={`${styles.input} border-secondary form-control m-1`} name='password' id="password" placeholder="Password" required />
+                            <i onClick={handleTextType} className={`${theme === "light" ? styles.eyelight : styles.eyedark}`}>
+                                {visible ? <FaEye /> : <FaEyeSlash />}
+                            </i>
+                        </div>
                     </div>
                     <div className="form-group form-check m-1">
                         <input type="checkbox" className="form-check-input" id="exampleCheck1" />

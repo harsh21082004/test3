@@ -6,23 +6,17 @@
     display: flex;
 }
 
-.learncontlight {
-    width: 75%;
-    max-height: 600px;
-    overflow-y: auto;
-}
-  
-  
-.learncontdark {
-    width: 75%;
-    max-height: 600px;
-    overflow-y: auto;
+.learncontdark,.learncontlight{
+    /* padding-top: 120px; */
+    width: 100%;
+    margin-left: 350px;
 }
 
 @media screen and (max-width: 991px) {
   
-    .learncontlight,.learncontdark {
-      width: 100%;
+    .learncontdark,.learncontlight{
+        width: 100%;
+        margin-left: 0px;
     }
 
   }
