@@ -211,12 +211,16 @@
     padding-bottom: 5px 
 }
 
-.account1{
+.account1light,.account1dark{
   display: none;
 }
 
-.account,.account1{
+.accountlight,.account1dark,.accountdark,.account1light{
   font-size: 2.5rem;
+}
+
+.accountdark,.account1dark{
+  color: white;
 }
 
 .account:hover,.account1:hover{
@@ -279,14 +283,14 @@
     z-index: 1;
   }
 
-  .account1{
+  .account1light,.account1dark{
     position: absolute;
     top: 11px;
     left: 5px;
     display: block;
   }
 
-  .account{
+  .accountlight,.accountdark{
     display: none;
   }
 

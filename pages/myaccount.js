@@ -10,8 +10,15 @@ const Myaccount = () => {
   const [email, setEmail] = useState('');
   const { data: session } = useSession();
 
+
   useEffect(() => {
-    if (session) {
+    const token = localStorage.getItem('token');
+    if(token){
+    const decoded = jwtDecode(token);
+    setName(decoded.name);
+      setEmail(decoded.email);
+    }
+    else if (session) {
       setName(session.user.name);
       setEmail(session.user.email);
     } else {

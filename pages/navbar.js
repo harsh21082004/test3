@@ -8,11 +8,13 @@ import { MdAccountCircle } from "react-icons/md";
 import { useSession, signIn, signOut } from "next-auth/react"
 
 
-const Navbar = ({user,logout}) => {
+const Navbar = ({ user, logout }) => {
 
-  
 
-  const [isLoggedIN, setIsLoggedIN] = useState(user.value)
+
+  const [isLoggedIN, setIsLoggedIN] = useState(user)
+
+  // console.log(user.value)
 
   const [open, setOpen] = useState(true)
 
@@ -22,9 +24,9 @@ const Navbar = ({user,logout}) => {
 
   const router = useRouter();
   const isVideosPage = router.pathname === '/' || router.pathname === '/videos' || router.pathname.startsWith('/videos/');
-  
-  const {data:session} = useSession();
-  const isSession = session || user.value;
+
+  const { data: session } = useSession();
+  const isSession = session || user;
 
   // If the current page is the videos page or any URL starting with /videos, don't render the hamburger menu
 
@@ -51,17 +53,17 @@ const Navbar = ({user,logout}) => {
         <nav className={`navbar navbar-expand-lg px-2 ${styles.navbar} ${theme === "light" ? styles.navdark : styles.navlight}`}>
           <div className={`container-fluid`} >
             <Link href="/" className={styles.containerFluid}><span className={theme === "light" ? "textpurpledark" : "textpurplelight"}><b className={`${styles.codebyte} fontBold`}>&lt;/&gt; Codebyte</b></span></Link>
-            <a onMouseOver={()=>{setIsHovered(true)}}
-                onMouseLeave={()=>{setIsHovered(false)}}>
+            <i onMouseOver={() => { setIsHovered(true) }}
+              onMouseLeave={() => { setIsHovered(false) }}>
               {isSession && (
                 <>
-                <MdAccountCircle className={`${styles.account1}`} onMouseOver={()=>{setIsHovered(true)}}
-                onMouseLeave={()=>{setIsHovered(false)}} />{isHovered && <ul className={`${styles.accdrop}`} style={{ display: isHovered ? 'block' : 'none' }}>
-                  <Link href={'/myaccount'} style={{textDecoration:'none'}}><li className={`nav-item ${styles.nav_item}`}>My account</li></Link>
-                  <li className={`nav-item ${styles.nav_item}`} onClick={logout}>Logout</li>
-                </ul>}</>
+                  <MdAccountCircle className={` ${theme === "light" ? styles.account1dark : styles.account1light}`} onMouseOver={() => { setIsHovered(true) }}
+                    onMouseLeave={() => { setIsHovered(false) }} />{isHovered && <ul className={`${styles.accdrop}`} style={{ display: isHovered ? 'block' : 'none' }}>
+                      <Link href={'/myaccount'} style={{ textDecoration: 'none' }}><li className={`nav-item ${styles.nav_item}`}>My account</li></Link>
+                      <li className={`nav-item ${styles.nav_item}`} onClick={logout}>Logout</li>
+                    </ul>}</>
               )}
-              </a>
+            </i>
             <img
               className={`${styles.imgMode1} ${theme === "light" ? styles.imgdark : styles.imglight}`}
               src="/nmicon.png"
@@ -102,17 +104,17 @@ const Navbar = ({user,logout}) => {
                 <button className={`btn ${styles.serBtn}`} type="submit">Search</button>
               </form>
               {!isSession && (<Link href={"/login"}><button className={` btn mx-2 ${styles.signBtn}`} type="submit">Login</button></Link>)}
-              <a onMouseOver={()=>{setIsHovered(true)}}
-                onMouseLeave={()=>{setIsHovered(false)}}>
-              {isSession && (
-                <>
-                <MdAccountCircle className={`${styles.account}`} onMouseOver={()=>{setIsHovered(true)}}
-                onMouseLeave={()=>{setIsHovered(false)}} />{isHovered && <ul className={`${styles.accdrop}`} style={{ display: isHovered ? 'block' : 'none' }}>
-                  <Link href={'/myaccount'} style={{textDecoration:'none'}}><li className={`nav-item ${styles.nav_item}`}>My account</li></Link>
-                  <li className={`nav-item ${styles.nav_item}`} onClick={logout}>Logout</li>
-                </ul>}</>
-              )}
-              </a>
+              <i onMouseOver={() => { setIsHovered(true) }}
+                onMouseLeave={() => { setIsHovered(false) }}>
+                {isSession && (
+                  <>
+                    <MdAccountCircle className={`${theme === "light" ? styles.accountdark : styles.accountlight}`} onMouseOver={() => { setIsHovered(true) }}
+                      onMouseLeave={() => { setIsHovered(false) }} />{isHovered && <ul className={`${styles.accdrop}`} style={{ display: isHovered ? 'block' : 'none' }}>
+                        <Link href={'/myaccount'} style={{ textDecoration: 'none' }}><li className={`nav-item ${styles.nav_item}`}>My account</li></Link>
+                        <li className={`nav-item ${styles.nav_item}`} onClick={logout}>Logout</li>
+                      </ul>}</>
+                )}
+              </i>
               <span className={`p-1`}>
 
                 <img

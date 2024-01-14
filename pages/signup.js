@@ -21,11 +21,12 @@ const Signup = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     //google signin
     async function handleGoogleSignin() {
         signIn("google", { callbackUrl: "http://localhost:3000" })
-        
+
     }
 
     //github signin
@@ -33,12 +34,12 @@ const Signup = () => {
         signIn("github", { callbackUrl: "http://localhost:3000" })
     }
 
-    const handleTextType = () =>{
+    const handleTextType = () => {
         setVisible(!visible)
-        if(visible){
+        if (visible) {
             setTextType('text')
         }
-        else{
+        else {
             setTextType('password')
         }
     }
@@ -56,62 +57,91 @@ const Signup = () => {
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        const data = { name, email, password }
-        let res = await fetch('http://localhost:3000/api/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-        let response = await res.json();
-        console.log(response)
-        setEmail('');
-        setName('');
-        setPassword('');
-        if (response.error) {
-            toast.error(response.error, {
-                position: "bottom-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+        e.preventDefault();
 
-        }
-        else if (response.success) {
-            toast.success(response.success, {
-                position: "bottom-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-            setTimeout(() => {
-                router.push('http://localhost:3000/login')
-            }, 3000)
-        }
-        else {
-            toast.error("error", {
-                position: "bottom-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-        }
+        if (password.length < 8) {
+            setError('Password must be at least 8 characters long');
+        } else if (password.search(/[a-z]/) < 0) {
+            setError('Password must contain at least one lowercase letter');
+        } else if (password.search(/[A-Z]/) < 0) {
+            setError('Password must contain at least one uppercase letter');
+        } else if (password.search(/[0-9]/) < 0) {
+            setError('Password must contain at least one digit');
+        }else if((password.search(/[!@#$%^&*]/) < 0)){
+            setError('Password must contain at least one special character');
+        } else {
+            setError('');
+            const data = { name, email, password };
 
-    }
+            try {
+                let res = await fetch('http://localhost:3000/api/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                let response = await res.json();
+                console.log(response);
+
+                setEmail('');
+                setName('');
+                setPassword('');
+
+                if (response.error) {
+                    toast.error(response.error, {
+                        position: "bottom-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                } else if (response.success) {
+                    toast.success(response.success, {
+                        position: "bottom-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                    setTimeout(() => {
+                        router.push('http://localhost:3000/login');
+                    }, 3000);
+                } else {
+                    toast.error("Unexpected response from server", {
+                        position: "bottom-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                }
+            } catch (error) {
+                console.error('An error occurred:', error);
+                toast.error("An error occurred while processing your request", {
+                    position: "bottom-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            }
+        }
+    };
+
 
     return (
         <>
@@ -132,7 +162,7 @@ const Signup = () => {
                     <img src={'/HarshLogin.jpg'} className={`${styles.photo}`} alt='none' width={100} height={150} />
                 </div>
                 <form className={`${styles.form} container `} onSubmit={handleSubmit} method='POST' >
-                <h3 className={`text-center ${theme === "light" ? "textpurpledark" : "textpurplelight"}`}>Signup</h3>
+                    <h3 className={`text-center ${theme === "light" ? "textpurpledark" : "textpurplelight"}`}>Signup</h3>
                     <div className="form-group">
                         <label htmlFor="name" className={`text-${theme === "light" ? 'white' : 'black'} mx-1 `}>Name</label>
                         <input onChange={handleChange} type="text" className={`${styles.input2} border-secondary form-control m-1`} name='name' id="name" value={name} aria-describedby="emailHelp" placeholder="Enter name" required />
@@ -144,11 +174,14 @@ const Signup = () => {
                     <div className="form-group">
                         <label htmlFor="password" className={`text-${theme === "light" ? 'white' : 'black'} mx-1`}>Password</label>
                         <div className={`${styles.eyeinput}`}>
-                        <input onChange={handleChange} value={password} type={textType} className={`${styles.input} border-secondary form-control m-1`} name='password' id="password" placeholder="Password" required />
-                        <i onClick={handleTextType} className={`${theme === "light" ? styles.eyelight : styles.eyedark}`}>
-                            {visible ? <FaEye /> : <FaEyeSlash />}
-                        </i>
+                            <input onChange={handleChange} value={password} type={textType} className={`${styles.input} border-secondary form-control m-1`} name='password' id="password" placeholder="Password" required />
+                            <i onClick={handleTextType} className={`${theme === "light" ? styles.eyelight : styles.eyedark}`}>
+                                {visible ? <FaEye /> : <FaEyeSlash />}
+                            </i>
                         </div>
+                        {error && (<div class="alert alert-danger" role="alert">
+                            {error}
+                        </div>)}
                     </div>
                     {/* <div className="form-group form-check m-1">
                         <input type="checkbox" className="form-check-input" id="exampleCheck1" />
@@ -160,7 +193,7 @@ const Signup = () => {
                     <div className='text-center'>
                         <p className={`text-${theme === "light" ? 'white' : 'black'} ${styles.signusing} text-center m-1`}>Or Signup using</p>
                         <span onClick={handleGoogleSignin} ><FaGoogle className={`${styles.google} m-2`} /></span>
-                        <span  onClick={handleGithubSignin}><FaGithub className={`${styles.google} m-2`} /></span>
+                        <span onClick={handleGithubSignin}><FaGithub className={`${styles.google} m-2`} /></span>
                     </div>
                     <div className={`${styles.already}`}>
                         <p className={`text-${theme === "light" ? 'white' : 'black'} text-center`}>Already have an account <Link href={'/login'}>Login</Link></p>
