@@ -12,7 +12,7 @@ const Navbar = ({user,logout}) => {
 
   
 
-  const [isLoggedIN, setIsLoggedIN] = useState(user.value)
+  const [isLoggedIN, setIsLoggedIN] = useState(user)
 
   const [open, setOpen] = useState(true)
 
@@ -24,7 +24,7 @@ const Navbar = ({user,logout}) => {
   const isVideosPage = router.pathname === '/' || router.pathname === '/videos' || router.pathname.startsWith('/videos/');
   
   const {data:session} = useSession();
-  const isSession = session || user.value;
+  const isSession = session || user;
 
   // If the current page is the videos page or any URL starting with /videos, don't render the hamburger menu
 
