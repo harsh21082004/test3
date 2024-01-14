@@ -8,6 +8,7 @@ import LoadingBar from 'react-top-loading-bar'
 import { useRouter } from 'next/router';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {SessionProvider,signIn,signOut} from 'next-auth/react'
 
 import { motion, useViewportScroll, useTransform,useScroll } from "framer-motion";
 
@@ -41,10 +42,10 @@ export default function App({ Component, pageProps }) {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) {
-      setUser({value:token})
-      setKey(Math.random())
-    }
+    if (token !== null) {
+    setUser({ value: token })
+    setKey(Math.random())
+  }
 
   }, [router.query]);
   
@@ -85,6 +86,7 @@ export default function App({ Component, pageProps }) {
   }, [theme]);
 
   const logout = () =>{
+    signOut()
     localStorage.removeItem('token')
     toast.success("successfully logged out", {
       position: "bottom-center",
@@ -108,7 +110,11 @@ export default function App({ Component, pageProps }) {
 
 
 
-  return <>
+  return <><motion.div
+  className="progress-bar"
+  style={{ scaleX: scrollYProgress }}
+/>
+  <SessionProvider session={pageProps.session}>
   <ToastContainer
                 position="bottom-center"
                 autoClose={3000}
@@ -135,5 +141,6 @@ export default function App({ Component, pageProps }) {
   {/* <Footer/> */}
   </ThemeContext.Provider>
   </MenuContext.Provider>
+  </SessionProvider>
   </>
 }

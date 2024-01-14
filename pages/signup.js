@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ThemeContext } from './context/themeContext';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import router from 'next/router';
+import { useSession, signIn, signOut } from "next-auth/react"
 
 const Signup = () => {
 
@@ -17,9 +18,20 @@ const Signup = () => {
 
     const { theme, handleOnClick } = useContext(ThemeContext)
 
-    const [name, setName] = useState();
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    //google signin
+    async function handleGoogleSignin() {
+        signIn("google", { callbackUrl: "http://localhost:3000" })
+        
+    }
+
+    //github signin
+    async function handleGithubSignin() {
+        signIn("github", { callbackUrl: "http://localhost:3000" })
+    }
 
     const handleTextType = () =>{
         setVisible(!visible)
@@ -120,6 +132,7 @@ const Signup = () => {
                     <img src={'/HarshLogin.jpg'} className={`${styles.photo}`} alt='none' width={100} height={150} />
                 </div>
                 <form className={`${styles.form} container `} onSubmit={handleSubmit} method='POST' >
+                <h3 className={`text-center ${theme === "light" ? "textpurpledark" : "textpurplelight"}`}>Signup</h3>
                     <div className="form-group">
                         <label htmlFor="name" className={`text-${theme === "light" ? 'white' : 'black'} mx-1 `}>Name</label>
                         <input onChange={handleChange} type="text" className={`${styles.input2} border-secondary form-control m-1`} name='name' id="name" value={name} aria-describedby="emailHelp" placeholder="Enter name" required />
@@ -146,9 +159,8 @@ const Signup = () => {
                         <Link href={'/forgot'} style={{ float: 'right' }} className='m-3'>Forgot Password</Link></span>
                     <div className='text-center'>
                         <p className={`text-${theme === "light" ? 'white' : 'black'} ${styles.signusing} text-center m-1`}>Or Signup using</p>
-                        <span><Link href={'/'}><FaGoogle className={`${styles.google} m-2`} /></Link></span>
-                        <span><Link href={'/'}><FaFacebook className={`${styles.google} m-2`} /></Link></span>
-                        <span><Link href={'/'}><FaGithub className={`${styles.google} m-2`} /></Link></span>
+                        <span onClick={handleGoogleSignin} ><FaGoogle className={`${styles.google} m-2`} /></span>
+                        <span  onClick={handleGithubSignin}><FaGithub className={`${styles.google} m-2`} /></span>
                     </div>
                     <div className={`${styles.already}`}>
                         <p className={`text-${theme === "light" ? 'white' : 'black'} text-center`}>Already have an account <Link href={'/login'}>Login</Link></p>

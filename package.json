@@ -13,8 +13,10 @@
     "crypto-js": "^4.2.0",
     "framer-motion": "^10.17.12",
     "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
     "mongoose": "^8.0.3",
     "next": "14.0.4",
+    "next-auth": "^4.24.5",
     "react": "^18",
     "react-ace": "^10.1.0",
     "react-dom": "^18",
@@ -26,6 +28,7 @@
     "typewriter-effect": "^2.21.0"
   },
   "devDependencies": {
+    "@types/bootstrap": "^5.2.10",
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.33",
     "sass": "^1.69.7",

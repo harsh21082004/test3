@@ -5,9 +5,12 @@ import Link from 'next/link';
 import { ThemeContext } from './context/themeContext';
 import { MenuContext } from './context/menuContext';
 import { MdAccountCircle } from "react-icons/md";
+import { useSession, signIn, signOut } from "next-auth/react"
 
 
-const Navbar = ({user,key,logout}) => {
+const Navbar = ({user,logout}) => {
+
+  
 
   const [isLoggedIN, setIsLoggedIN] = useState(user.value)
 
@@ -19,10 +22,14 @@ const Navbar = ({user,key,logout}) => {
 
   const router = useRouter();
   const isVideosPage = router.pathname === '/' || router.pathname === '/videos' || router.pathname.startsWith('/videos/');
+  
+  const {data:session} = useSession();
+  const isSession = session || user.value;
 
   // If the current page is the videos page or any URL starting with /videos, don't render the hamburger menu
 
   // Check if the current page is the home page
+
 
 
   function toggle() {
@@ -37,8 +44,6 @@ const Navbar = ({user,key,logout}) => {
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
 
-  const handleLogOut = () =>{
-  }
 
   return (
     <>
@@ -48,11 +53,11 @@ const Navbar = ({user,key,logout}) => {
             <Link href="/" className={styles.containerFluid}><span className={theme === "light" ? "textpurpledark" : "textpurplelight"}><b className={`${styles.codebyte} fontBold`}>&lt;/&gt; Codebyte</b></span></Link>
             <a onMouseOver={()=>{setIsHovered(true)}}
                 onMouseLeave={()=>{setIsHovered(false)}}>
-              {user.value && (
+              {isSession && (
                 <>
                 <MdAccountCircle className={`${styles.account1}`} onMouseOver={()=>{setIsHovered(true)}}
                 onMouseLeave={()=>{setIsHovered(false)}} />{isHovered && <ul className={`${styles.accdrop}`} style={{ display: isHovered ? 'block' : 'none' }}>
-                  <li className={`nav-item ${styles.nav_item}`}>My account</li>
+                  <Link href={'/myaccount'} style={{textDecoration:'none'}}><li className={`nav-item ${styles.nav_item}`}>My account</li></Link>
                   <li className={`nav-item ${styles.nav_item}`} onClick={logout}>Logout</li>
                 </ul>}</>
               )}
@@ -96,14 +101,14 @@ const Navbar = ({user,key,logout}) => {
                 <input className={`${styles.serBox} form-control me-2`} type="search" placeholder="Search" aria-label="Search" />
                 <button className={`btn ${styles.serBtn}`} type="submit">Search</button>
               </form>
-              {!user.value && (<Link href={"/login"}><button className={` btn mx-2 ${styles.signBtn}`} type="submit">Login</button></Link>)}
+              {!isSession && (<Link href={"/login"}><button className={` btn mx-2 ${styles.signBtn}`} type="submit">Login</button></Link>)}
               <a onMouseOver={()=>{setIsHovered(true)}}
                 onMouseLeave={()=>{setIsHovered(false)}}>
-              {user.value && (
+              {isSession && (
                 <>
                 <MdAccountCircle className={`${styles.account}`} onMouseOver={()=>{setIsHovered(true)}}
                 onMouseLeave={()=>{setIsHovered(false)}} />{isHovered && <ul className={`${styles.accdrop}`} style={{ display: isHovered ? 'block' : 'none' }}>
-                  <li className={`nav-item ${styles.nav_item}`}>My account</li>
+                  <Link href={'/myaccount'} style={{textDecoration:'none'}}><li className={`nav-item ${styles.nav_item}`}>My account</li></Link>
                   <li className={`nav-item ${styles.nav_item}`} onClick={logout}>Logout</li>
                 </ul>}</>
               )}

@@ -17,7 +17,7 @@
 
 .maindark{
     box-shadow: 0 0 5px rgb(255, 255, 255);
-    background-color: rgb(8, 0, 28);
+    background-color: rgb(18, 44, 57);
 }
 
 .photo{
@@ -44,6 +44,7 @@
 .google{
     color: #f11946;
     font-size: 2rem;
+    cursor: pointer;
 }
 
 .signusing{
@@ -110,23 +111,19 @@
     width: 40px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    color: #f11946;
+    color: #000000;
     cursor: pointer;
   }
 
   .eyedark{
-    background-color: rgb(151 151 151 /15% );
+    background-color: rgb(151, 151, 151);
   }
 
   .eyelight{
-    background-color: rgb(59, 59, 59);
+    background-color: rgb(91, 91, 91);
   }
 
-  .eyedark:hover{
-    color: black;
-  }
-
-  .eyelight:hover{
+  .eyelight:hover,.eyedark:hover{
     color: white;
   }
 

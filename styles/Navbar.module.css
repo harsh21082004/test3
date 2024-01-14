@@ -13,7 +13,7 @@
 
 .navItem a {
     margin: 0 6px;
-    font-size: 1em;
+    font-size: 17px;
     text-decoration: none;
     /* Remove the default underline */
     position: relative;
@@ -109,33 +109,7 @@
   }
   
   .scrollmenulight::-webkit-scrollbar,.sidebarlight::-webkit-scrollbar,.learncontlight::-webkit-scrollbar {
-    width: 5px;               /* width of the entire scrollbar */
-  }
-  .scrollmenulight::-webkit-scrollbar-track,.sidebarlight::-webkit-scrollbar-track,.learncontlight::-webkit-scrollbar-track {
-    background: rgb(255, 255, 255);        /* color of the tracking area */
-  }
-  .scrollmenulight::-webkit-scrollbar-thumb,.sidebarlight::-webkit-scrollbar-thumb,.learncontlight::-webkit-scrollbar-thumb {
-    background-color: rgb(195, 195, 195);    /* color of the scroll thumb */
-    border-radius: 20px;       
-  }
-  
-  .scrollmenulight::-webkit-scrollbar-thumb:hover,.sidebarlight::-webkit-scrollbar-thumb:hover,.learncontlight::-webkit-scrollbar-thumb:hover {
-    background-color: rgb(95, 95, 95);      
-  }
-  
-  .scrollmenudark::-webkit-scrollbar-thumb:hover,.sidebardark::-webkit-scrollbar-thumb:hover,.learncontdark::-webkit-scrollbar-thumb:hover {
-    background-color: rgb(227, 227, 227);      
-  }
-  
-  .scrollmenudark::-webkit-scrollbar,.sidebardark::-webkit-scrollbar,.learncontdark::-webkit-scrollbar {
-    width: 5px;
-  }
-  .scrollmenudark::-webkit-scrollbar-track,.sidebardark::-webkit-scrollbar-track,.learncontdark::-webkit-scrollbar-track {
-    background: rgb(130, 130, 130);        /* color of the tracking area */
-  }
-  .scrollmenudark::-webkit-scrollbar-thumb,.sidebardark::-webkit-scrollbar-thumb,.learncontdark::-webkit-scrollbar-thumb {
-    background-color: rgb(57, 57, 57);    /* color of the scroll thumb */
-    border-radius: 20px;       
+    display: none;             /* width of the entire scrollbar */
   }
   
   .scrollmenudark a {
@@ -182,7 +156,7 @@
   /* position: absolute; */
   top: 56px;
   left: 0;
-  padding: 3.4px 0px;
+  padding: 3.4px 8px;
   background-color: rgb(52, 52, 52);
 }
 

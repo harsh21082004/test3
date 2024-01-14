@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ThemeContext } from './context/themeContext';
 import router from 'next/router';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useSession, signIn, signOut } from "next-auth/react"
 
 const Signup = () => {
 
@@ -17,8 +18,18 @@ const Signup = () => {
 
     const { theme, handleOnClick } = useContext(ThemeContext)
 
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    //google signin
+    async function handleGoogleSignin() {
+        signIn("google", { callbackUrl: "http://localhost:3000" })
+    }
+
+    //github signin
+    async function handleGithubSignin() {
+        signIn("github", { callbackUrl: "http://localhost:3000" })
+    }
 
     const handleTextType = () =>{
         setVisible(!visible)
@@ -115,6 +126,7 @@ const Signup = () => {
                     <img src={'/HarshLogin.jpg'} className={`${styles.photo}`} alt='none' width={100} height={150} />
                 </div>
                 <form className={`${styles.form} container `} onSubmit={handleSubmit} method='POST' >
+                <h3 className={`text-center ${theme === "light" ? "textpurpledark" : "textpurplelight"}`}>Login</h3>
                     <div className="form-group">
                         <label htmlFor="email" className={`text-${theme === "light" ? 'white' : 'black'}  mx-1`}>Email address</label>
                         <input onChange={handleChange} value={email} type="email" className={`${styles.input1} border-secondary form-control m-1`} name='email' id="email" aria-describedby="emailHelp" placeholder="Enter email" required />
@@ -129,17 +141,16 @@ const Signup = () => {
                         </div>
                     </div>
                     <div className="form-group form-check m-1">
-                        <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                        <label className={` text-${theme === "light" ? 'white' : 'black'}form-check-label`} htmlFor="Check">Remember me</label>
+                        <input type="checkbox" className="form-check-input" id="Check" />
+                        <label className={`text-${theme === "light" ? 'white' : 'black'}`} htmlFor="Check">Remember me</label>
                     </div>
                     <span>
                         <button type="submit" className={`${styles.button} btn m-2`}>Login</button>
                         <Link href={'/forgot'} style={{ float: 'right' }} className='m-3'>Forgot Password</Link></span>
                     <div className='text-center'>
                         <p className={`text-${theme === "light" ? 'white' : 'black'} ${styles.signusing} text-center m-1`}>Or Login using</p>
-                        <span><Link href={'/'}><FaGoogle className={`${styles.google} m-2`} /></Link></span>
-                        <span><Link href={'/'}><FaFacebook className={`${styles.google} m-2`} /></Link></span>
-                        <span><Link href={'/'}><FaGithub className={`${styles.google} m-2`} /></Link></span>
+                        <span onClick={handleGoogleSignin} ><FaGoogle className={`${styles.google} m-2`} /></span>
+                        <span  onClick={handleGithubSignin}><FaGithub className={`${styles.google} m-2`} /></span>
                     </div>
                     <div className={`${styles.already}`}>
                         <p className={`text-${theme === "light" ? 'white' : 'black'} text-center`}>Don't have an account <Link href={'/signup'}>Signup</Link></p>

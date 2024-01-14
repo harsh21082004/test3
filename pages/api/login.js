@@ -2,14 +2,25 @@ import connectDb from "../../middleware/mongoose";
 import User from "../../models/user";
 var CryptoJS = require("crypto-js");
 var jwt = require('jsonwebtoken');
+import { useSession, signIn, signOut } from "next-auth/react"
 
 const handler = async (req, res) => {
+
+    // const session = useSession();
+
     if (req.method === 'POST') {
         try {
+            
             let user = await User.findOne({ email: req.body.email });
 
             if (!user) {
                 // No user found with the given email
+                // const newUser = new User({
+                //     name: session.user.name,
+                //     email: session.user.email,
+                //     // add any other details you want to save
+                // });
+                // await newUser.save();
                 return res.status(400).json({ error: "Invalid Credentials" });
             }
 
