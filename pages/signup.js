@@ -24,13 +24,13 @@ const Signup = () => {
 
     //google signin
     async function handleGoogleSignin() {
-        signIn("google", { callbackUrl: "http://localhost:3000" })
+        signIn("google", { callbackUrl: "https://codebytenext.vercel.app" })
         
     }
 
     //github signin
     async function handleGithubSignin() {
-        signIn("github", { callbackUrl: "http://localhost:3000" })
+        signIn("github", { callbackUrl: "https://codebytenext.vercel.app" })
     }
 
     const handleTextType = () =>{
@@ -58,7 +58,7 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const data = { name, email, password }
-        let res = await fetch('http://localhost:3000/api/signup', {
+        let res = await fetch('https://codebytenext.vercel.app/api/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -95,7 +95,7 @@ const Signup = () => {
                 theme: "light",
             });
             setTimeout(() => {
-                router.push('http://localhost:3000/login')
+                router.push('https://codebytenext.vercel.app/login')
             }, 3000)
         }
         else {
