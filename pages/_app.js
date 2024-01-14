@@ -14,7 +14,7 @@ import { motion, useViewportScroll, useTransform,useScroll } from "framer-motion
 
 export default function App({ Component, pageProps }) {
   
-  const [user, setUser] = useState({value:'hi'})
+  const [user, setUser] = useState(null)
 
   const [key, setKey] = useState(0)
 
@@ -43,7 +43,7 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token !== null) {
-    setUser({ value: token })
+    setUser(token)
     setKey(Math.random())
   }
 
