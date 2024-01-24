@@ -78,7 +78,7 @@ export default function Home() {
             }}
           /></span>
           <p>Welcome to codebyte.If you are worrying that how to start coding then you are at right place.Codbyte will provide you the all of the basic knowledge that is required while learning a language.</p>
-          <button className={`btn ${styles.btncourse}`}>Free Courses</button>
+          <Link href={'/protected'}><button className={`btn ${styles.btncourse}`}>Free Courses</button></Link>
         </div>
         <img src="/pic.jpg" width={100} height={100} alt="none" className={`${styles.photo}`} />
       </div>

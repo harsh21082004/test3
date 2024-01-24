@@ -1,6 +1,10 @@
-/** @type {import('next').NextConfig} */
+// next.config.js
 const nextConfig = {
   reactStrictMode: true,
-}
+  // experimental: {
+  //   // Enable edge runtime
+  //   runtime: 'edge',
+  // },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

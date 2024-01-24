@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import Footer from './footer'
 import styles from '@/styles/Signup.module.css'
 import Link from 'next/link'
@@ -6,9 +6,12 @@ import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ThemeContext } from './context/themeContext';
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { TbFingerprint,TbFingerprintOff } from "react-icons/tb";
+import { MdAlternateEmail } from "react-icons/md";
+import { SiNamebase } from "react-icons/si";
 import router from 'next/router';
 import { useSession, signIn, signOut } from "next-auth/react"
+import { GithubLoginButton, GoogleLoginButton } from "react-social-login-buttons";
 
 const Signup = () => {
 
@@ -67,7 +70,7 @@ const Signup = () => {
             setError('Password must contain at least one uppercase letter');
         } else if (password.search(/[0-9]/) < 0) {
             setError('Password must contain at least one digit');
-        }else if((password.search(/[!@#$%^&*]/) < 0)){
+        } else if ((password.search(/[!@#$%^&*]/) < 0)) {
             setError('Password must contain at least one special character');
         } else {
             setError('');
@@ -145,6 +148,7 @@ const Signup = () => {
 
     return (
         <>
+            
             <ToastContainer
                 position="bottom-center"
                 autoClose={5000}
@@ -157,26 +161,38 @@ const Signup = () => {
                 pauseOnHover
                 theme="light"
             />
-            <div className={`${theme === "light" ? styles.maindark : styles.mainlight}`}>
-                <div className={`${styles.image}`}>
-                    <img src={'/HarshLogin.jpg'} className={`${styles.photo}`} alt='none' width={100} height={150} />
-                </div>
+            <style jsx global>{`
+                body {
+                    background-color: rgb(21,32,43);
+                }
+            `}</style>
+            <div className={`${styles.main}`}>
                 <form className={`${styles.form} container `} onSubmit={handleSubmit} method='POST' >
-                    <h3 className={`text-center ${theme === "light" ? "textpurpledark" : "textpurplelight"}`}>Signup</h3>
+                    <h3 className={`text-center text-white`}>Signup</h3>
                     <div className="form-group">
-                        <label htmlFor="name" className={`text-${theme === "light" ? 'white' : 'black'} mx-1 `}>Name</label>
-                        <input onChange={handleChange} type="text" className={`${styles.input2} border-secondary form-control m-1`} name='name' id="name" value={name} aria-describedby="emailHelp" placeholder="Enter name" required />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="email" className={`text-${theme === "light" ? 'white' : 'black'}  mx-1`}>Email address</label>
-                        <input onChange={handleChange} value={email} type="email" className={`${styles.input1} border-secondary form-control m-1`} name='email' id="email" aria-describedby="emailHelp" placeholder="Enter email" required />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password" className={`text-${theme === "light" ? 'white' : 'black'} mx-1`}>Password</label>
+                        <label htmlFor="name" className={`text-white mx-1 `}>Name</label>
                         <div className={`${styles.eyeinput}`}>
-                            <input onChange={handleChange} value={password} type={textType} className={`${styles.input} border-secondary form-control m-1`} name='password' id="password" placeholder="Password" required />
-                            <i onClick={handleTextType} className={`${theme === "light" ? styles.eyelight : styles.eyedark}`}>
-                                {visible ? <FaEye /> : <FaEyeSlash />}
+                            <input onChange={handleChange} type="text" className={`${styles.input}   m-1`} name='name' id="name" value={name} aria-describedby="emailHelp" placeholder="Enter name" required />
+                            <i className={`${styles.eye}`}>
+                                <SiNamebase />
+                            </i>
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="email" className={`text-white  mx-1`}>Email address</label>
+                        <div className={`${styles.eyeinput}`}>
+                            <input onChange={handleChange} value={email} type="email" className={`${styles.input}  m-1`} name='email' id="email" aria-describedby="emailHelp" placeholder="Enter email" required />
+                            <i className={`${styles.eye}`}>
+                                <MdAlternateEmail />
+                            </i>
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="password" className={`text-white mx-1`}>Password</label>
+                        <div className={`${styles.eyeinput}`}>
+                            <input onChange={handleChange} value={password} type={textType} className={`${styles.input} m-1`} name='password' id="password" placeholder="Password" required />
+                            <i onClick={handleTextType} className={`${styles.eye}`}>
+                                {visible ? <TbFingerprint/>:<TbFingerprintOff/>}
                             </i>
                         </div>
                         {error && (<div class="alert alert-danger" role="alert">
@@ -185,18 +201,20 @@ const Signup = () => {
                     </div>
                     {/* <div className="form-group form-check m-1">
                         <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                        <label className={`text-${theme === "light" ? 'white' : 'black'}form-check-label`} htmlFor="Check">Check me out</label>
+                        <label className={`text-whiteform-check-label`} htmlFor="Check">Check me out</label>
                     </div> */}
                     <span>
                         <button type="submit" className={`${styles.button} btn m-2`}>Signup</button>
-                        <Link href={'/forgot'} style={{ float: 'right' }} className='m-3'>Forgot Password</Link></span>
+                        <Link href={'/forgotpassword'} style={{ float: 'right' }} className={`${styles.button} btn m-2`}>Forgot Password</Link></span>
                     <div className='text-center'>
-                        <p className={`text-${theme === "light" ? 'white' : 'black'} ${styles.signusing} text-center m-1`}>Or Signup using</p>
-                        <span onClick={handleGoogleSignin} ><FaGoogle className={`${styles.google} m-2`} /></span>
-                        <span onClick={handleGithubSignin}><FaGithub className={`${styles.google} m-2`} /></span>
+                        <div className={`${styles.loginusing}`}>
+                            <div className={`${styles.signusing}`}></div><b >Or Login using</b><div className={`${styles.signusing}`}></div>
+                        </div>
+                        <span onClick={handleGoogleSignin} ><GoogleLoginButton className={`${styles.google} m-2`} /></span>
+                        <span onClick={handleGithubSignin}><GithubLoginButton className={`${styles.google} m-2`} /></span>
                     </div>
                     <div className={`${styles.already}`}>
-                        <p className={`text-${theme === "light" ? 'white' : 'black'} text-center`}>Already have an account <Link href={'/login'}>Login</Link></p>
+                        <p className={`text-white text-center`}>Already have an account <Link href={'/login'} className={`${styles.button} btn m-1`}>Login</Link></p>
                     </div>
                 </form>
             </div>

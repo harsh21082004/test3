@@ -7,8 +7,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ThemeContext } from './context/themeContext';
 import router from 'next/router';
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { TbFingerprint,TbFingerprintOff } from "react-icons/tb";
+import { MdAlternateEmail } from "react-icons/md";
+import { SiNamebase } from "react-icons/si";
 import { useSession, signIn, signOut } from "next-auth/react"
+import { GithubLoginButton, GoogleLoginButton } from "react-social-login-buttons";
+
 
 const Signup = () => {
 
@@ -23,20 +27,20 @@ const Signup = () => {
 
     //google signin
     async function handleGoogleSignin() {
-        signIn("google", { callbackUrl: "https://codebytenext.vercel.app" })
+        signIn("google", { callbackUrl: "http://localhost:3000" })
     }
 
     //github signin
     async function handleGithubSignin() {
-        signIn("github", { callbackUrl: "https://codebytenext.vercel.app" })
+        signIn("github", { callbackUrl: "http://localhost:3000" })
     }
 
-    const handleTextType = () =>{
+    const handleTextType = () => {
         setVisible(!visible)
-        if(visible){
+        if (visible) {
             setTextType('text')
         }
-        else{
+        else {
             setTextType('password')
         }
     }
@@ -53,47 +57,74 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const data = { email, password }
-        let res = await fetch('https://codebytenext.vercel.app/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-        let response = await res.json();
-        console.log(response)
-        setEmail('');
-        setPassword('');
-        if (response.error) {
-            toast.error(response.error, {
-                position: "bottom-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+        try {
+            let res = await fetch('http://localhost:3000/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
 
-        }
-        else if (response.success) {
-            localStorage.setItem('token', response.token)
-            toast.success(response.success, {
-                position: "bottom-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-            setTimeout(() => {
-                router.push('https://codebytenext.vercel.app')
-            }, 3000)
-        }
-        else {
+            if (!res.ok) {
+                toast.error(res.error, {
+                    position: "bottom-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            }
+            let response = await res.json();
+            console.log(response)
+            setEmail('');
+            setPassword('');
+            if (response.error) {
+                toast.error(response.error, {
+                    position: "bottom-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+
+            }
+            else if (response.success) {
+                localStorage.setItem('token', response.token)
+                toast.success(response.success, {
+                    position: "bottom-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                setTimeout(() => {
+                    router.push('http://localhost:3000')
+                }, 3000)
+            }
+            else {
+                toast.error("error", {
+                    position: "bottom-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            }
+        } catch (error) {
+            console.log(error)
             toast.error("error", {
                 position: "bottom-center",
                 autoClose: 3000,
@@ -121,39 +152,39 @@ const Signup = () => {
                 pauseOnHover
                 theme="light"
             />
-            <div className={`${theme === "light" ? styles.maindark : styles.mainlight}`}>
-                <div className={`${styles.image}`}>
-                    <img src={'/HarshLogin.jpg'} className={`${styles.photo}`} alt='none' width={100} height={150} />
-                </div>
+            <div className={`${styles.main}`}>
                 <form className={`${styles.form} container `} onSubmit={handleSubmit} method='POST' >
-                <h3 className={`text-center ${theme === "light" ? "textpurpledark" : "textpurplelight"}`}>Login</h3>
+                    <h3 className={`text-center text-white`}>Login</h3>
                     <div className="form-group">
-                        <label htmlFor="email" className={`text-${theme === "light" ? 'white' : 'black'}  mx-1`}>Email address</label>
-                        <input onChange={handleChange} value={email} type="email" className={`${styles.input1} border-secondary form-control m-1`} name='email' id="email" aria-describedby="emailHelp" placeholder="Enter email" required />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password" className={`text-${theme === "light" ? 'white' : 'black'} mx-1`}>Password</label>
+                        <label htmlFor="email" className={`text-white  mx-1`}>Email address</label>
                         <div className={`${styles.eyeinput}`}>
-                            <input onChange={handleChange} value={password} type={textType} className={`${styles.input} border-secondary form-control m-1`} name='password' id="password" placeholder="Password" required />
-                            <i onClick={handleTextType} className={`${theme === "light" ? styles.eyelight : styles.eyedark}`}>
-                                {visible ? <FaEye /> : <FaEyeSlash />}
+                            <input onChange={handleChange} value={email} type="email" className={`${styles.input} m-1`} name='email' id="email" aria-describedby="emailHelp" placeholder="Enter email" required />
+                            <i className={`${styles.eye}`}>
+                                <MdAlternateEmail />
                             </i>
                         </div>
                     </div>
-                    <div className="form-group form-check m-1">
-                        <input type="checkbox" className="form-check-input" id="Check" />
-                        <label className={`text-${theme === "light" ? 'white' : 'black'}`} htmlFor="Check">Remember me</label>
+                    <div className="form-group">
+                        <label htmlFor="password" className={`text-white mx-1 `}>Password</label>
+                        <div className={`${styles.eyeinput}`}>
+                            <input onChange={handleChange} value={password} type={textType} className={`${styles.input} m-1`} name='password' id="password" placeholder="Password" required />
+                            <i onClick={handleTextType} className={`${styles.eye}`}>
+                                {visible ? <TbFingerprint/>:<TbFingerprintOff/>}
+                            </i>
+                        </div>
                     </div>
                     <span>
                         <button type="submit" className={`${styles.button} btn m-2`}>Login</button>
-                        <Link href={'/forgot'} style={{ float: 'right' }} className='m-3'>Forgot Password</Link></span>
-                    <div className='text-center'>
-                        <p className={`text-${theme === "light" ? 'white' : 'black'} ${styles.signusing} text-center m-1`}>Or Login using</p>
-                        <span onClick={handleGoogleSignin} ><FaGoogle className={`${styles.google} m-2`} /></span>
-                        <span  onClick={handleGithubSignin}><FaGithub className={`${styles.google} m-2`} /></span>
+                        <Link href={'/forgotpassword'} style={{ float: 'right' }} className={`${styles.button} btn m-2`}>Forgot Password</Link></span>
+                        <div className='text-center'>
+                        <div className={`${styles.loginusing}`}>
+                            <div className={`${styles.signusing}`}></div><b >Or Login using</b><div className={`${styles.signusing}`}></div>
+                        </div>
+                        <span onClick={handleGoogleSignin} ><GoogleLoginButton className={`${styles.google} m-2`} /></span>
+                        <span onClick={handleGithubSignin}><GithubLoginButton className={`${styles.google} m-2`} /></span>
                     </div>
                     <div className={`${styles.already}`}>
-                        <p className={`text-${theme === "light" ? 'white' : 'black'} text-center`}>Don't have an account <Link href={'/signup'}>Signup</Link></p>
+                        <p className={`text-white text-center`}>Don't have an account <Link href={'/signup'} className={`${styles.button} btn m-2`}>Signup</Link></p>
                     </div>
                 </form>
             </div>

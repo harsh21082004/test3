@@ -1,24 +1,36 @@
+// Import necessary modules
 import connectDb from "../../middleware/mongoose";
 import User from "../../models/user";
-var CryptoJS = require("crypto-js");
+import CryptoJS from 'crypto-js';
+import { sendEmail } from "../email/mailer";
 
 const handler = async (req, res) => {
+    await connectDb();
     if (req.method === 'POST') {
-
-        const {name,email} = req.body;
+        const { name, email, password } = req.body;
 
         try {
             const existingUser = await User.findOne({ email });
 
             if (existingUser) {
-                // If email already exists, send a message and prevent the save
                 return res.status(400).json({ error: "Email already exists. Please choose another email." });
             }
 
-            // If email doesn't exist, proceed with saving the new user
-            const newUser = new User({name,email,password:CryptoJS.AES.encrypt(req.body.password, 'secret123').toString()});
+            // Hash the password securely using CryptoJS
+            const hashedPassword = CryptoJS.SHA256(password).toString();
+
+            const newUser = new User({
+                name,
+                email,
+                password: hashedPassword,
+            });
+
             await newUser.save();
-            return res.status(200).json({ success: "Account created successfully,redirecting to login page" });
+
+            // Send email to user
+            await sendEmail({ email, emailType: 'VERIFY', userId: newUser._id });
+
+            return res.status(200).json({ success: "Account created successfully. Check your email for verification instructions." });
         } catch (error) {
             console.error('Error during signup:', error);
             return res.status(500).json({ error: "Internal Server Error" });
@@ -28,4 +40,4 @@ const handler = async (req, res) => {
     }
 }
 
-export default connectDb(handler);
+export default handler;

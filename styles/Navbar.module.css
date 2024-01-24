@@ -1,149 +1,161 @@
-.menu{
+.menu {
   display: flex;
 }
 
-.nav{
-    position: fixed !important;
-    top: 0;
-    width: 100%;
-    z-index: 2;
-    /* margin-bottom: 50px; */
+.nav {
+  position: fixed !important;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+  /* margin-bottom: 50px; */
 }
 
 
 .navItem a {
-    margin: 0 6px;
-    font-size: 17px;
-    text-decoration: none;
-    /* Remove the default underline */
-    position: relative;
-  }
-  
-  .navItem a:hover {
-    text-decoration: none;
-  }
-  
-  
-  .navItem a::before {
-    content: "";
-    /* Create an empty pseudo-element before the text */
-    position: absolute;
-    bottom: 0;
-    /* Position it at the bottom of the anchor element */
-    left: 0;
-    /* Align it with the text */
-    width: 100%;
-    /* Make it as wide as the text */
-    height: 2px;
-    /* Set the height of the underline */
-    background-color: #f11946;
-    /* Color of the underline */
-    transform: translateY(-4px);
-    /* Push the text upwards by adjusting the translateY value */
-    opacity: 0;
-    /* Hide the underline by default */
-    transition: opacity 0.3s, transform 0.3s;
-    /* Add a smooth transition effect */
-  }
-  
-  .navItem a:hover::before {
-    opacity: 1;
-    /* Show the underline on hover */
-    transform: translateY(-8px);
-    /* Adjust the translateY value to push the text upwards more */
-  }
+  margin: 0 6px;
+  font-size: 17px;
+  text-decoration: none;
+  /* Remove the default underline */
+  position: relative;
+}
 
-  .serBox{
-    width: 140px;
-  }
-  
-  .serBtn,.signBtn {
-    background-color: #f11946;
-    color: white;
-  }
-  
-  .serBtn:hover,.signBtn:hover {
-    background-color: rgb(0, 0, 0);
-    color: white;
-  }
-  
-  .navbar {
-    box-shadow: 0 0 10px black;
-    background-color: rgb(220, 220, 220) ;
-  }
-  
-  .navdark{
-    background-color: rgb(21,32,43);
-  }
+.navItem a:hover {
+  text-decoration: none;
+}
 
-  .fontBold {
-    font-size: 1.25rem;
-  }
-  
-  .containerFluid {
-    text-decoration: none;
-  }
-  
-  .containerFluid:hover {
-    text-decoration: none;
-  }
+.navItem a::before,
+.navItem a::after {
+  content: "";
+  /* Create two empty pseudo-elements before and after the text */
+  position: absolute;
+  left: 0;
+  height: 1.5px;
+  /* Set the height of the lines */
+  background-color: #f11946;
+  /* Color of the lines */
+  opacity: 0;
+  /* Hide the lines by default */
+  transition: opacity 0.3s, width 0.3s;
+  /* Add a smooth transition effect for opacity and width */
+}
 
-  .imgMode {
-    cursor: pointer;
-  }
-  
-  .imgdark{
-    filter: invert(1);
-  }
+.navItem a::before {
+  top: 1;
+  /* Position the line above the text */
+  width: 0%;
+}
 
-  .scrollmenudark {
-    background-color: #000000;
-    overflow: auto;
-    white-space: nowrap;
-  }
-  
-  .scrollmenulight {
-    background-color: rgb(21,32,43);
-    overflow: auto;
-    white-space: nowrap;
-  }
-  
-  .scrollmenulight::-webkit-scrollbar,.sidebarlight::-webkit-scrollbar,.learncontlight::-webkit-scrollbar {
-    display: none;             /* width of the entire scrollbar */
-  }
-  
-  .scrollmenudark a {
-    display: inline-block;
-    color: white;
-    text-align: center;
-    /* text-wrap:nowrap; */
-    padding: 5px 20px;
-    text-decoration: none;
-    letter-spacing: 1px;
-    font-family: 'Source Sans Pro Topnav', sans-serif;
-  }
-  
-  .scrollmenulight a {
-    display: inline-block;
-    color: white;
-    text-align: center;
-    padding: 5px 20px;
-    text-decoration: none;
-    letter-spacing: 1px;
-    font-family: 'Source Sans Pro Topnav', sans-serif;
-  }
-  
-  .scrollmenudark a:hover {
-    background-color: #777;
-  
-  }
-  
-  .scrollmenulight a:hover {
-    background-color: #777;
-  
-  }
+.navItem a::after {
+  bottom: 7px;
+  /* Position the line below the text */
+  width: 0%;
+}
 
-  /* HamburgerMenu.css */
+.navItem a:hover::before,
+.navItem a:hover::after {
+  opacity: 0.8;
+  /* Show the lines on hover */
+  width: 100%;
+  /* Expand the width to 100% on hover */
+}
+
+
+.serBox {
+  width: 140px;
+}
+
+.serBtn,
+.signBtn {
+  background-color: #f11946;
+  color: white;
+}
+
+.serBtn:hover,
+.signBtn:hover {
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
+
+.navbar {
+  box-shadow: 0 0 10px black;
+  background-color: rgb(220, 220, 220);
+}
+
+.navdark {
+  background-color: rgb(21, 32, 43);
+}
+
+.fontBold {
+  font-size: 1.25rem;
+}
+
+.containerFluid {
+  text-decoration: none;
+}
+
+.containerFluid:hover {
+  text-decoration: none;
+}
+
+.imgMode {
+  cursor: pointer;
+}
+
+.imgdark {
+  filter: invert(1);
+}
+
+.scrollmenudark {
+  background-color: #000000;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.scrollmenulight {
+  background-color: rgb(21, 32, 43);
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.scrollmenulight::-webkit-scrollbar,
+.sidebarlight::-webkit-scrollbar,
+.learncontlight::-webkit-scrollbar {
+  display: none;
+  /* width of the entire scrollbar */
+}
+
+.scrollmenudark a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  /* text-wrap:nowrap; */
+  padding: 5px 20px;
+  text-decoration: none;
+  letter-spacing: 1px;
+  font-family: 'Source Sans Pro Topnav', sans-serif;
+}
+
+.scrollmenulight a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 5px 20px;
+  text-decoration: none;
+  letter-spacing: 1px;
+  font-family: 'Source Sans Pro Topnav', sans-serif;
+}
+
+.scrollmenudark a:hover {
+  background-color: #777;
+
+}
+
+.scrollmenulight a:hover {
+  background-color: #777;
+
+}
+
+/* HamburgerMenu.css */
 
 .hamburger {
   display: none;
@@ -160,7 +172,8 @@
   background-color: rgb(52, 52, 52);
 }
 
-.hamburgerMenu1dark,.hamburgerMenu1light{
+.hamburgerMenu1dark,
+.hamburgerMenu1light {
   display: flex;
   flex-direction: column;
   cursor: pointer;
@@ -193,60 +206,73 @@
   transform: rotate(45deg) translate(-6.7px, -6.7px);
 }
 
-.imgMode1{
+.imgMode1 {
   display: none;
 }
 
 
 
-.scrollleft{
+.scrollleft {
   cursor: pointer;
-    display: none;
-    position: fixed;
-    left: 0;
-    top: 56px;
-    font-size: 15px;
-    color: white;
-    padding-top: 5px;
-    padding-bottom: 5px 
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 56px;
+  font-size: 15px;
+  color: white;
+  padding-top: 5px;
+  padding-bottom: 5px
 }
 
-.account1light,.account1dark{
+.account1light,
+.account1dark {
   display: none;
 }
 
-.accountlight,.account1dark,.accountdark,.account1light{
+.accountlight,
+.account1dark,
+.accountdark,
+.account1light {
   font-size: 2.5rem;
 }
 
-.accountdark,.account1dark{
+.accountdark,
+.account1dark {
   color: white;
 }
 
-.account:hover,.account1:hover{
+.account:hover,
+.account1:hover {
   cursor: pointer;
 }
 
 
-.accdrop{
+.accdrop {
   position: absolute;
   top: 40px;
   right: 80px;
   background-color: #fd839c;
   padding: 15px;
-  border-radius: 10px; 
+  border-radius: 10px;
 }
 
-.nav_item{
+.nav_item {
   list-style: none;
   padding: 5px;
   text-decoration: none;
   color: black;
 }
 
-.nav_item:hover{
+.nav_item:hover {
   color: white;
   cursor: pointer;
+}
+
+.accountImg{
+  width: 35px;
+  height: 35px;
+  margin: 2px;
+  border-radius: 50%;
 }
 
 @media screen and (max-width: 993px) {
@@ -254,28 +280,28 @@
     display: block;
   }
 
-  .navbar{
+  .navbar {
     padding: 14px;
   }
 
-  .signBtn{
+  .signBtn {
     margin-top: 5px;
     margin-left: 20px !important;
   }
 
-  .serBox{
+  .serBox {
     margin-left: 20px !important;
   }
 
-  .navul{
+  .navul {
     margin-top: 3px;
   }
 
-  .imgMode{
+  .imgMode {
     display: none;
   }
 
-  .imgMode1{
+  .imgMode1 {
     position: absolute;
     top: 11px;
     right: 60px;
@@ -283,30 +309,40 @@
     z-index: 1;
   }
 
-  .account1light,.account1dark{
+  .account1light,
+  .account1dark {
     position: absolute;
     top: 11px;
     left: 5px;
     display: block;
   }
 
-  .accountlight,.accountdark{
+  .accountlight,
+  .accountdark {
     display: none;
   }
 
-  .accdrop{
+  .accdrop {
     left: 25px;
     right: 0;
     width: 150px;
   }
 
-  .codebyte{
+  .codebyte {
     margin-left: 30px !important;
+  }
+
+  .navItem a:hover::before,
+  .navItem a:hover::after {
+    opacity: 0.8;
+    /* Show the lines on hover */
+    width: 22%;
+    /* Expand the width to 100% on hover */
   }
 }
 
 @media screen and (max-width: 450px) {
-  .codebyte{
+  .codebyte {
     font-size: 1rem;
     margin-left: 30px !important;
   }

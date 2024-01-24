@@ -10,27 +10,21 @@ import { useSession, signIn, signOut } from "next-auth/react"
 
 const Navbar = ({ user, logout }) => {
 
-
-
-  const [isLoggedIN, setIsLoggedIN] = useState(user.value)
-
+  const [isLoggedIN, setIsLoggedIN] = useState(user)
   const [open, setOpen] = useState(true)
-
   const { theme, handleOnClick } = useContext(ThemeContext)
-
   const { openHam, toggleMenu } = useContext(MenuContext)
-
   const router = useRouter();
-  const isVideosPage = router.pathname === '/' || router.pathname === '/videos' || router.pathname.startsWith('/videos/');
-  
-  const {data:session} = useSession();
-  const isSession = session || user.value;
+  // const isVideosPage = router.pathname === '/' || router.pathname === '/videos' || router.pathname.startsWith('/videos/');
+  const isLearnPage = router.pathname === '/learn' || router.pathname.startsWith('/learn/');
+  const { data: session, status } = useSession()
+  const isSession = (status == "authenticated");
 
-  // If the current page is the videos page or any URL starting with /videos, don't render the hamburger menu
+  // console.log(status)
 
-  // Check if the current page is the home page
+  const firstLetter = session?.user?.name?.charAt(0);
 
-
+  const accountImage = session?.user?.image;
 
   function toggle() {
     if (open == false)
@@ -39,11 +33,9 @@ const Navbar = ({ user, logout }) => {
       setOpen(false)
   }
 
-
   const [isHovered, setIsHovered] = useState(false);
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
-
 
   return (
     <>
@@ -51,17 +43,17 @@ const Navbar = ({ user, logout }) => {
         <nav className={`navbar navbar-expand-lg px-2 ${styles.navbar} ${theme === "light" ? styles.navdark : styles.navlight}`}>
           <div className={`container-fluid`} >
             <Link href="/" className={styles.containerFluid}><span className={theme === "light" ? "textpurpledark" : "textpurplelight"}><b className={`${styles.codebyte} fontBold`}>&lt;/&gt; Codebyte</b></span></Link>
-            <i onMouseOver={() => { setIsHovered(true) }}
+            <b onMouseOver={() => { setIsHovered(true) }}
               onMouseLeave={() => { setIsHovered(false) }}>
               {isSession && (
                 <>
-                  <MdAccountCircle className={` ${theme === "light" ? styles.account1dark : styles.account1light}`} onMouseOver={() => { setIsHovered(true) }}
-                    onMouseLeave={() => { setIsHovered(false) }} />{isHovered && <ul className={`${styles.accdrop}`} style={{ display: isHovered ? 'block' : 'none' }}>
+                  <img src={`${accountImage}`} className={`${styles.accountImg} ${theme === "light" ? styles.account1dark : styles.account1light}`} onMouseOver={() => { setIsHovered(true) }}
+                    onMouseLeave={() => { setIsHovered(false) }} alt='none' />{isHovered && <ul className={`${styles.accdrop}`} style={{ display: isHovered ? 'block' : 'none' }}>
                       <Link href={'/myaccount'} style={{ textDecoration: 'none' }}><li className={`nav-item ${styles.nav_item}`}>My account</li></Link>
                       <li className={`nav-item ${styles.nav_item}`} onClick={logout}>Logout</li>
                     </ul>}</>
               )}
-            </i>
+            </b>
             <img
               className={`${styles.imgMode1} ${theme === "light" ? styles.imgdark : styles.imglight}`}
               src="/nmicon.png"
@@ -101,10 +93,10 @@ const Navbar = ({ user, logout }) => {
                 <input className={`${styles.serBox} form-control me-2`} type="search" placeholder="Search" aria-label="Search" />
                 <button className={`btn ${styles.serBtn}`} type="submit">Search</button>
               </form>
-              {!isSession && (<Link href={"/login"}><button className={` btn mx-2 ${styles.signBtn}`} type="submit">Login</button></Link>)}
-              <i onMouseOver={() => { setIsHovered(true) }}
+              {!isSession && !isLoggedIN && (<Link href={"/login"}><button className={` btn mx-2 ${styles.signBtn}`} type="submit">Login</button></Link>)}
+              <b onMouseOver={() => { setIsHovered(true) }}
                 onMouseLeave={() => { setIsHovered(false) }}>
-                {isSession && (
+                {isLoggedIN && !isSession && (
                   <>
                     <MdAccountCircle className={`${theme === "light" ? styles.accountdark : styles.accountlight}`} onMouseOver={() => { setIsHovered(true) }}
                       onMouseLeave={() => { setIsHovered(false) }} />{isHovered && <ul className={`${styles.accdrop}`} style={{ display: isHovered ? 'block' : 'none' }}>
@@ -112,7 +104,18 @@ const Navbar = ({ user, logout }) => {
                         <li className={`nav-item ${styles.nav_item}`} onClick={logout}>Logout</li>
                       </ul>}</>
                 )}
-              </i>
+              </b>
+              <b onMouseOver={() => { setIsHovered(true) }}
+                onMouseLeave={() => { setIsHovered(false) }}>
+                {isSession && (
+                  <>
+                    <img src={`${accountImage}`} className={`${styles.accountImg}`} onMouseOver={() => { setIsHovered(true) }}
+                      onMouseLeave={() => { setIsHovered(false) }} alt='none' />{isHovered && <ul className={`${styles.accdrop}`} style={{ display: isHovered ? 'block' : 'none' }} alt>
+                        <Link href={'/myaccount'} style={{ textDecoration: 'none' }}><li className={`nav-item ${styles.nav_item}`}>My account</li></Link>
+                        <li className={`nav-item ${styles.nav_item}`} onClick={logout}>Logout</li>
+                      </ul>}</>
+                )}
+              </b>
               <span className={`p-1`}>
 
                 <img
@@ -128,7 +131,7 @@ const Navbar = ({ user, logout }) => {
           </div>
         </nav>
         <div className={styles.menu}>
-          {!isVideosPage && (
+          {isLearnPage && (
             <div className={`${styles.hamburger}`} >
               <div
                 className={`${styles.hamburgerMenu} ${openHam ? '' : styles.open}`}
