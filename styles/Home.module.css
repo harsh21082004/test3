@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-
-
 .main {
   display: flex;
   flex-direction: column;
@@ -11,37 +9,22 @@
   min-height: 100vh;
 }
 
-
-
-.active{
+.active {
   background-color: rgb(89, 89, 89) !important;
   color: white !important;
 }
 
-
-
-.textpurplelight {
+.textpurple {
   color: #f11946;
 }
 
-.textpurpledark {
-  color: #f11946;
-}
-
-.introlight {
+.intro {
   display: flex;
-  /* background-color: #FAACA8;
-background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%); */
 
 }
 
-.introdark {
-  display: flex;
-  background-color: rgb(21,32,43);
-}
-
-.introcontdark {
-  color: white;
+.introcont {
+  /* color: white; */
   text-align: left;
   padding: 5px;
   padding-left: 30px;
@@ -51,57 +34,39 @@ background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%); */
   min-height: 400px;
 }
 
-
-.introcontlight {
-  text-align: left;
-  padding: 5px;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-top: 40px;
-  width: 70%;
-  min-height: 400px;
+.introcont h1 b {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: #00DBDE;
+  background-image: linear-gradient(225deg, #007d9c 0%, #9f0265 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.introcontdark h1 b,.introcontlight h1 b {
-  color: #f11946;
-}
-
-.introcontdark h1 {
-  color: white;
-  font-size: 2.5rem;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-.introcontlight h1 {
+.introcont h1 {
+  /* color: white; */
   font-size: 2.5rem;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.introcontlight p {
+.introcont p {
+  /* color: white; */
   padding: 2px;
   padding-right: 20px;
 }
 
-.introcontdark p {
-  color: white;
-  padding: 2px;
-  padding-right: 20px;
-}
-
-.introcontlight span {
+.introcont span {
   font-weight: bold;
   font-size: 2.5rem;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.introcontdark span {
+.typer div span{
   font-weight: bold;
-  font-size: 2.5rem;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-.typer {
-  font-weight: bold;
-  color: #f11946;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: #00DBDE;
+  background-image: linear-gradient(225deg, #003c4b 0%, #890659 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .photo {
@@ -115,28 +80,33 @@ background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%); */
   opacity: 0.9;
 }
 
-.btncourse {
-  background-color: #f11946;
+.button {
+  background-color: #00DBDE;
+  background-image: linear-gradient(225deg, #007d9c 0%, #9f0265 100%);
   outline: none;
+  border: none;
   color: white;
 }
 
-.btncourse:hover{
-  background-color: black;
-  color: white;
+.button{
+  width: 150px;
 }
 
-.youtubelight h2 {
-  font-size: 2.5em;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  color: #f11946;
+
+.button:hover {
+  background-color: #00DBDE;
+  background-image: linear-gradient(-225deg, #0dd2d6 0%, #ff38d4 100%);
+  color: rgb(0, 0, 0);
 }
 
-.youtubedark h2 {
-  background-color: rgb(21,32,43) ;
+.youtube h2 {
   font-size: 2.5em;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  color: #f11946;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: #00DBDE;
+  background-image: linear-gradient(225deg, #015469 0%, #9f0265 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .contyoutube {
@@ -146,21 +116,13 @@ background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%); */
   margin: auto;
 }
 
-.youtubevideoslight {
+.youtubevideos {
+  background-color: rgb(222, 222, 222);
   /* padding: 10px; */
   width: 380px;
   max-height: 800px;
   border-radius: 30px;
   box-shadow: 0 0 5px black;
-  margin: 0 10px;
-}
-
-.youtubevideosdark {
-  /* padding: 10px; */
-  width: 380px;
-  max-height: 800px;
-  border-radius: 30px;
-  box-shadow: 0 0 5px rgb(255, 255, 255);
   margin: 0 10px;
 }
 
@@ -171,19 +133,11 @@ background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%); */
   justify-content: space-evenly;
 }
 
-.youtubevideoslight div p {
+.youtubevideos div p {
   max-height: 150px;
 }
 
-.youtubevideoslight div button {
-  max-height: 40px;
-}
-
-.youtubevideosdark div p {
-  max-height: 150px;
-}
-
-.youtubevideosdark div button {
+.youtubevideos div button {
   max-height: 40px;
 }
 
@@ -195,18 +149,20 @@ background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%); */
 }
 
 .watch {
+  width: 150px;
   border-radius: 30px;
-  width: 50%;
-  background-color: #f11946;
+  background-color: #00DBDE;
+  background-image: linear-gradient(225deg, #007d9c 0%, #9f0265 100%);
+  outline: none;
+  border: none;
   color: white;
-  position: static;
-  bottom: 0;
   margin: 0 10px;
 }
 
-.watch:hover{
-  background-color: black;
-  color: white;
+.watch:hover {
+  background-color: #00DBDE;
+  background-image: linear-gradient(-225deg, #0dd2d6 0%, #ff38d4 100%);
+  color: rgb(0, 0, 0);
 }
 
 @media screen and (max-width: 767px) {
@@ -215,11 +171,7 @@ background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%); */
     flex-direction: column;
   }
 
-  .youtubevideoslight {
-    margin: 10px auto;
-  }
-
-  .youtubevideosdark {
+  .youtubevideos {
     margin: 10px auto;
   }
 
@@ -227,12 +179,12 @@ background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%); */
     display: none;
   }
 
-  .introcontdark,.introcontlight {
+  .introcont {
     text-align: center;
     width: 100%;
   }
 
-  .introcontlight p,.introcontdark p {
+  .introcont p {
     padding: 0;
   }
 
@@ -246,14 +198,8 @@ background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%); */
     height: 160px;
   }
 
-  .youtubevideoslight {
-    width: 240px;
-  }
-
-  .youtubevideosdark {
+  .youtubevideos {
     width: 240px;
   }
 
 }
-
-.containe{}

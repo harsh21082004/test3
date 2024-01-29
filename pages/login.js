@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import Footer from './footer'
 import styles from '@/styles/Signup.module.css'
 import Link from 'next/link'
@@ -7,14 +7,18 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ThemeContext } from './context/themeContext';
 import router from 'next/router';
-import { TbFingerprint,TbFingerprintOff } from "react-icons/tb";
+import { TbFingerprint, TbFingerprintOff } from "react-icons/tb";
 import { MdAlternateEmail } from "react-icons/md";
 import { SiNamebase } from "react-icons/si";
 import { useSession, signIn, signOut } from "next-auth/react"
 import { GithubLoginButton, GoogleLoginButton } from "react-social-login-buttons";
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 const Signup = () => {
+
+    const [isLoggedIN, setIsLoggedIN] = useState(false)
+    const [key, setKey] = useState(0)
 
     const [textType, setTextType] = useState("password");
 
@@ -24,6 +28,9 @@ const Signup = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isLoading, setIsLoading] = useState(false)
+
+    const { data: session, status } = useSession()
 
     //google signin
     async function handleGoogleSignin() {
@@ -55,6 +62,7 @@ const Signup = () => {
     }
 
     const handleSubmit = async (e) => {
+        setIsLoading(true)
         e.preventDefault()
         const data = { email, password }
         try {
@@ -67,6 +75,7 @@ const Signup = () => {
             })
 
             if (!res.ok) {
+                setIsLoading(false)
                 toast.error(res.error, {
                     position: "bottom-center",
                     autoClose: 3000,
@@ -78,8 +87,8 @@ const Signup = () => {
                     theme: "light",
                 });
             }
+            setIsLoading(false)
             let response = await res.json();
-            console.log(response)
             setEmail('');
             setPassword('');
             if (response.error) {
@@ -124,7 +133,6 @@ const Signup = () => {
                 });
             }
         } catch (error) {
-            console.log(error)
             toast.error("error", {
                 position: "bottom-center",
                 autoClose: 3000,
@@ -137,28 +145,37 @@ const Signup = () => {
             });
         }
     }
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token !== null) {
+            setIsLoggedIN(true)
+            setKey(Math.random())
+        }
+        else if (session) {
+            setIsLoggedIN(true)
+        }
+        else {
+            setIsLoggedIN(false)
+        }
+
+    }, [session]);
+    useEffect(() => {
+        // Client-side redirect
+        if (isLoggedIN === true) {
+            router.push('/myaccount');
+        }
+    }, [isLoggedIN]);
+
 
     return (
         <>
-            <ToastContainer
-                position="bottom-center"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-            />
             <div className={`${styles.main}`}>
                 <form className={`${styles.form} container `} onSubmit={handleSubmit} method='POST' >
                     <h3 className={`text-center text-white`}>Login</h3>
                     <div className="form-group">
                         <label htmlFor="email" className={`text-white  mx-1`}>Email address</label>
                         <div className={`${styles.eyeinput}`}>
-                            <input onChange={handleChange} value={email} type="email" className={`${styles.input} m-1`} name='email' id="email" aria-describedby="emailHelp" placeholder="Enter email" required />
+                            <input onChange={handleChange} value={email} type="email" className={`${styles.input} m-1`} name='email' id="email" aria-describedby="emailHelp" placeholder="" required />
                             <i className={`${styles.eye}`}>
                                 <MdAlternateEmail />
                             </i>
@@ -167,16 +184,24 @@ const Signup = () => {
                     <div className="form-group">
                         <label htmlFor="password" className={`text-white mx-1 `}>Password</label>
                         <div className={`${styles.eyeinput}`}>
-                            <input onChange={handleChange} value={password} type={textType} className={`${styles.input} m-1`} name='password' id="password" placeholder="Password" required />
+                            <input onChange={handleChange} value={password} type={textType} className={`${styles.input} m-1`} name='password' id="password" placeholder="" required />
                             <i onClick={handleTextType} className={`${styles.eye}`}>
-                                {visible ? <TbFingerprint/>:<TbFingerprintOff/>}
+                                {visible ? <TbFingerprint /> : <TbFingerprintOff />}
                             </i>
                         </div>
                     </div>
                     <span>
-                        <button type="submit" className={`${styles.button} btn m-2`}>Login</button>
-                        <Link href={'/forgotpassword'} style={{ float: 'right' }} className={`${styles.button} btn m-2`}>Forgot Password</Link></span>
-                        <div className='text-center'>
+                        {isLoading ? (<button type="submit" className={`${styles.button} btn m-2`}><span>
+                            <ClipLoader
+                                color='#ffffff'
+                                loading={isLoading}
+                                size={15}
+                                aria-label="Loading Spinner"
+                                data-testid="loader"
+                            />
+                        </span></button>) : (<button type="submit" className={`${styles.button} btn m-2`}>Login</button>)}
+                        <Link href={'/forgotpassword'} style={{ float: 'right' }} className={`${styles.button1} btn m-2`}>Forgot Password</Link></span>
+                    <div className='text-center'>
                         <div className={`${styles.loginusing}`}>
                             <div className={`${styles.signusing}`}></div><b >Or Login using</b><div className={`${styles.signusing}`}></div>
                         </div>

@@ -2,7 +2,7 @@
 import connectDb from "../../middleware/mongoose";
 import User from "../../models/user";
 import CryptoJS from 'crypto-js';
-import { sendEmail } from "../email/mailer";
+import sendEmail from "../email/mailer";
 
 const handler = async (req, res) => {
     await connectDb();
@@ -28,7 +28,7 @@ const handler = async (req, res) => {
             await newUser.save();
 
             // Send email to user
-            await sendEmail({ email, emailType: 'VERIFY', userId: newUser._id });
+            await sendEmail({ email:email, emailType: 'VERIFY', userId: newUser._id });
 
             return res.status(200).json({ success: "Account created successfully. Check your email for verification instructions." });
         } catch (error) {

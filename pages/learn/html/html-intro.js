@@ -63,21 +63,21 @@ const HtmlIntro = () => {
   const [copyText, setCopyText] = useState("Copy");
 
   return (
-    <div className={`${theme === "light" ? styles.learndark : styles.learnlight}`}>
+    <div className={`${styles.learn}`}>
       <Html />
-      <div className={`${theme === "light" ? styles.learncontdark : styles.learncontlight}`} id='sidecont'>
-        <h2 className={`text-center text-${theme === "light" ? "white" : "black"} ${styles.h2html}`}>HTML Introduction</h2>
+      <div className={`${styles.learncont}`} id='sidecont'>
+        <h2 className={`text-center text-black ${styles.h2html}`}>HTML Introduction</h2>
         <div className={`${styles.nextprev}`}>
           <Link href={`/learn/html/${data.myObj[currentIndex - 1]}`} className={`${styles.prev}`}>&lt; Prev</Link>
           <Link href={`/learn/html/${data.myObj[currentIndex + 1]}`} className={`${styles.next}`}>Next &gt;</Link>
         </div>
-        <div className={`${theme === "light" ? styles.languegecoursedark : styles.languegecourselight} text-${theme === "light" ? "white" : "black"} px-5 py-5`}>
-          <h5 className={`text-left text-${theme === "light" ? "white" : "black"}`}>GET OUR FREE HTML COURSE</h5>
-          <p className={`text-left text-${theme === "light" ? "white" : "black"}`}>In this course you will learn HTML from basic to advanced.</p>
+        <div className={`${styles.languegecourse} text-black px-5 py-5`}>
+          <h5 className={`text-left text-black`}>GET OUR FREE HTML COURSE</h5>
+          <p className={`text-left text-black`}>In this course you will learn HTML from basic to advanced.</p>
           <Link href="/learn" target='_blank'><input type="button" value="Go to the Course" className={`btn btn-primary`} /></Link>
         </div>
         <div className={`px-3 ${styles.docpage}`}>
-          <p className={`text-${theme === "light" ? "white" : "black"}`}>HTML, or Hypertext Markup Language, is the foundational language of the World Wide Web. It serves as the backbone for creating and structuring web pages, allowing content to be presented and organized in a way that both browsers and users can understand. HTML employs a system of tags, each with a specific purpose, to define text, images, links, forms, and other elements on a web page. These tags create a structured hierarchy, and when combined with cascading style sheets (CSS) and JavaScript, they enable the web to be an interactive and visually appealing environment. HTML's simplicity and versatility have made it a cornerstone of web development, facilitating the creation of the websites and web applications we use every day.</p><br />
+          <p className={`text-black`}>HTML, or Hypertext Markup Language, is the foundational language of the World Wide Web. It serves as the backbone for creating and structuring web pages, allowing content to be presented and organized in a way that both browsers and users can understand. HTML employs a system of tags, each with a specific purpose, to define text, images, links, forms, and other elements on a web page. These tags create a structured hierarchy, and when combined with cascading style sheets (CSS) and JavaScript, they enable the web to be an interactive and visually appealing environment. HTML's simplicity and versatility have made it a cornerstone of web development, facilitating the creation of the websites and web applications we use every day.</p><br />
           <p><b>HTML Tags</b></p>
           <p>HTML (Hypertext Markup Language) tags are essential elements used to structure and define the content of a web page. They serve as the building blocks of web documents and are enclosed within angle brackets (&lt; &gt;). HTML tags come in pairs: an opening tag and a closing tag, with content in between. Here's a brief overview, including some common headings:<br /></p>
           <ol>
@@ -184,12 +184,12 @@ const HtmlIntro = () => {
         </div>
         <div className={`px-3 ${styles.docpage}`}>
           <h3
-            className={`text-${theme === "light" ? "white" : "black"}`}>
+            className={`text-black`}>
             Html Page Structure
           </h3>
           <div
-            className={`text-${theme === "light" ? "white" : "black"}`}>
-            <div style={{ border: "2px solid grey", padding: "5px", backgroundColor: theme === "light" ? "#38444d" : "#E7E9EB" }} >&lt;html&gt;
+            className={`text-black`}>
+            <div style={{ border: "2px solid grey", padding: "5px", backgroundColor: "#E7E9EB" }} >&lt;html&gt;
               <div style={{ margin: "15px", border: "2px solid grey", padding: "5px" }} >&lt;head&gt;
                 <div style={{ margin: "15px", border: "2px solid grey", padding: "5px" }} >&lt;title&gt;Page title&lt;/title&gt;
                 </div>

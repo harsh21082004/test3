@@ -9,6 +9,8 @@ import { ThemeContext } from './context/themeContext';
 import router from 'next/router';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useSession, signIn, signOut } from "next-auth/react"
+import { MdAlternateEmail } from 'react-icons/md';
+import { TbFingerprint, TbFingerprintOff } from 'react-icons/tb';
 
 const Signup = () => {
 
@@ -23,6 +25,7 @@ const Signup = () => {
     const [email, setEmail] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
+    const [isNotSame, setIsNotSame] = useState(false);
 
     const handleTextType1 = () => {
         setVisible1(!visible1)
@@ -48,12 +51,21 @@ const Signup = () => {
             setEmail(e.target.value)
         }
         else if (e.target.name === 'newPassword') {
-            setNewPassword(e.target.value)
-        }
-        else if (e.target.name === 'confirmNewPassword') {
-            setConfirmNewPassword(e.target.value)
-        }
+            setNewPassword(e.target.value);
+          }
+          else if (e.target.name === 'confirmNewPassword') {
+            setConfirmNewPassword(e.target.value);
+            checkPasswordsMatch(newPassword, e.target.value);
+          }
     }
+
+    const checkPasswordsMatch = (newPass, confirmNewPass) => {
+        if (newPass === confirmNewPass) {
+          setIsNotSame(false);
+        } else {
+          setIsNotSame(true);
+        }
+      };
 
     const handleChangePassword = async (e) => {
         e.preventDefault();
@@ -127,39 +139,36 @@ const Signup = () => {
                 pauseOnHover
                 theme="light"
             />
-            <div className={`${theme === "light" ? styles.maindark : styles.mainlight}`}>
-                <div className={`${styles.image}`}>
-                    <img src={'/HarshLogin.jpg'} className={`${styles.photo}`} alt='none' width={100} height={150} />
-                </div>
+            <div className={`${styles.main}`}>
                 <form className={`${styles.form} container `} onSubmit={handleChangePassword} >
-                    <h3 className={`text-center ${theme === "light" ? "textpurpledark" : "textpurplelight"}`}>Forgot Password</h3>
+                    <h3 className={`text-center text-white`}>Forgot Password</h3>
                     <div className="form-group">
-                        <label htmlFor="email" className={`text-${theme === "light" ? 'white' : 'black'}  mx-1`}>Email address</label>
-                        <input onChange={handleChange} value={email} type="email" className={`${styles.input1} border-secondary form-control m-1`} name='email' id="email" aria-describedby="emailHelp" placeholder="Enter email" required />
-                        {/* <label htmlFor="curPassword" className={`text-${theme === "light" ? 'white' : 'black'} mx-1`}>Current password</label>
+                        <label htmlFor="email" className={`text-white  mx-1`}>Email address</label>
                         <div className={`${styles.eyeinput}`}>
-                            <input onChange={handleChange} value={currentPassword} type={textType1} className={`${styles.input} border-secondary form-control m-1`} name='currentPassword' id="curPassword" placeholder="Current password" required />
-                            <i onClick={handleTextType1} className={`${theme === "light" ? styles.eyelight : styles.eyedark}`}>
-                                {visible1 ? <FaEye /> : <FaEyeSlash />}
-                            </i>
-                        </div> */}
-                        <label htmlFor="newPassword" className={`text-${theme === "light" ? 'white' : 'black'} mx-1`}>New password</label>
-                        <div className={`${styles.eyeinput}`}>
-                            <input onChange={handleChange} value={newPassword} type={textType1} className={`${styles.input} border-secondary form-control m-1`} name='newPassword' id="newPassword" placeholder="New password" required />
-                            <i onClick={handleTextType1} className={`${theme === "light" ? styles.eyelight : styles.eyedark}`}>
-                                {visible1 ? <FaEye /> : <FaEyeSlash />}
+                            <input onChange={handleChange} value={email} type="email" className={`${styles.input} m-1`} name='email' id="email" aria-describedby="emailHelp" placeholder="" required />
+                            <i className={`${styles.eye}`}>
+                                <MdAlternateEmail />
                             </i>
                         </div>
-                        <label htmlFor="cnfNewPassword" className={`text-${theme === "light" ? 'white' : 'black'} mx-1`}>Confirm new password</label>
+                        <label htmlFor="newPassword" className={`text-white mx-1`}>New password</label>
                         <div className={`${styles.eyeinput}`}>
-                            <input onChange={handleChange} value={confirmNewPassword} type={textType2} className={`${styles.input} border-secondary form-control m-1`} name='confirmNewPassword' id="cnfNewPassword" placeholder="Confirm new password" required />
-                            <i onClick={handleTextType2} className={`${theme === "light" ? styles.eyelight : styles.eyedark}`}>
-                                {visible2 ? <FaEye /> : <FaEyeSlash />}
+                            <input onChange={handleChange} value={newPassword} type={textType1} className={`${styles.input}`} name='newPassword' id="newPassword" required />
+                            <i onClick={handleTextType1} className={`${styles.eye}`}>
+                            {visible1 ? <TbFingerprint /> : <TbFingerprintOff />}
                             </i>
                         </div>
+                        <label htmlFor="cnfNewPassword" className={`text-white mx-1`}>Confirm new password</label>
+                        <div className={`${styles.eyeinput}`}>
+                            <input onChange={handleChange} value={confirmNewPassword} type={textType2} className={`${styles.input}`} name='confirmNewPassword' id="cnfNewPassword" required />
+                            <i onClick={handleTextType2} className={`${styles.eye}`}>
+                            {visible2 ? <TbFingerprint /> : <TbFingerprintOff />}
+                            </i>
+                        </div>{isNotSame && (<div className={`${styles.alert} alert alert-danger`} role="alert">
+                        New password and confirm password should be same
+                      </div>)}
                         <span className={`${styles.submitbut}`}>
-                            <button type="submit" className={`${styles.button} btn m-2`}>Change Password</button>
-                            <Link href={'/login'}><button type="submit" className={`${styles.button} btn m-2`}>Go to login</button></Link>
+                            <button type="submit" className={`${styles.button} btn mt-5 mx-2`}>Change Password</button>
+                            <Link href={'/login'}><button type="submit" className={`${styles.button} btn mt-5 mx-2`}>Go to login</button></Link>
                         </span>
                     </div>
                 </form>

@@ -18,6 +18,15 @@ const authOptions = {
     }),
   ],
   callbacks: {
+    async session({ session }) {
+      const sessionUser = await User.findOne({ email: session.user.email });
+      if (sessionUser) {
+        session.user.id = sessionUser._id;
+        session.user.name = sessionUser.name;
+        session.user.image = sessionUser.image;
+      }
+      return session;
+    },
     async signIn({ user, account }) {
 
       if (account.provider === 'google' || account.provider === 'github') {
@@ -37,31 +46,8 @@ const authOptions = {
               throw new Error(`HTTP error! Status: ${res.status}`);
             }
             return user;
-            // let response = await res.json();
-            // console.log(response);
           }
-          // let res = await fetch('http://localhost:3000/api/credential', {
-          //   method: 'POST',
-          //   headers: {
-          //     'Content-Type': 'application/json',
-
-          //   },
-          //   body: JSON.stringify({ email }),
-
-          // })
-          // if (!res.ok) {
-          //   throw new Error(`HTTP error! Status: ${res.status}`);
-          // }
-          // let response = await res.json();
-          // console.log(response)
-          // // localStorage.setItem('token', response.token)
-          // else{
-            
-          // //   console.log(user)
-          // //   return false;
-          // }
-
-
+          return true;
         } catch (error) {
           console.error(error);
           return false;

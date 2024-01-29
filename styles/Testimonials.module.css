@@ -1,114 +1,117 @@
 /* Testimonials */
 
-.carouselContainerlight{
-    box-shadow: 0 0 5px rgb(0, 0, 0);
-  }
-  
-  .carouselContainerdark{
-    box-shadow: 0 0 5px rgb(255, 255, 255);
-  }
-  
-  .demolight{
-    background: linear-gradient(112deg, #fcb8b8 50%, antiquewhite 50%);
-    max-width: 900px;
-    margin: auto;
-  }
-  
-  .demodark{
-    background: linear-gradient(112deg, #2d2d2d 50%, rgba(55, 80, 83, 0.801) 50%);
-    max-width: 900px;
-    margin: auto;
-  }
-  .carouselCaptionlight {
+.carouselContainer {
+  box-shadow: 0 0 5px rgb(0, 0, 0);
+}
+
+.demo {
+  background-image: radial-gradient(circle 311px at 8.6% 27.9%, rgba(62, 147, 252, 0.57) 12.9%, rgba(239, 183, 192, 0.44) 91.2%);
+  max-width: 900px;
+  margin: auto;
+}
+
+.text{
+  font-size: 2.5rem;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: #00DBDE;
+  background-image: linear-gradient(225deg, #015469 0%, #9f0265 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.carouselCaption {
+  position: initial;
+  z-index: 10;
+  padding: 5rem 8rem;
+  color: rgba(0, 0, 0, 0.856);
+  text-align: center;
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: bold;
+  line-height: 2rem;
+}
+
+@media(max-width:767px) {
+  .carouselCaption {
     position: initial;
     z-index: 10;
-    padding: 5rem 8rem;
+    padding: 3rem 2rem;
     color: rgba(0, 0, 0, 0.856);
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 0.7rem;
     font-style: italic;
     font-weight: bold;
-    line-height: 2rem;
+    line-height: 1.5rem;
   }
-  
-  .carouselCaptiondark {
-    position: initial;
-    z-index: 10;
-    padding: 5rem 8rem;
-    color: rgba(255, 255, 255, 0.856);
-    text-align: center;
-    font-size: 1.2rem;
-    font-style: italic;
-    font-weight: bold;
-    line-height: 2rem;
+}
+
+.carouselCaption img {
+  width: 6rem;
+  border-radius: 5rem;
+  margin-top: 2rem;
+}
+
+@media(max-width:767px) {
+  .carouselCaption img {
+    width: 4rem;
+    border-radius: 4rem;
+    margin-top: 1rem;
   }
-  @media(max-width:767px){
-    .carouselCaptionlight {
-        position: initial;
-        z-index: 10;
-        padding: 3rem 2rem;
-        color: rgba(0, 0, 0, 0.856);
-        text-align: center;
-        font-size: 0.7rem;
-        font-style: italic;
-        font-weight: bold;
-        line-height: 1.5rem;
-    }
-  
-    .carouselCaptiondark {
-        position: initial;
-        z-index: 10;
-        padding: 3rem 2rem;
-        color: rgba(255, 255, 255, 0.856);
-        text-align: center;
-        font-size: 0.7rem;
-        font-style: italic;
-        font-weight: bold;
-        line-height: 1.5rem;
-    }
-  }
-  .carouselCaptionlight img,.carouselCaptiondark img{
-    width: 6rem;
-    border-radius: 5rem;
-    margin-top: 2rem;
-  }
-  @media(max-width:767px){
-    .carouselCaptionlight img,.carouselCaptiondark img{
-        width: 4rem;
-        border-radius: 4rem;
-        margin-top: 1rem;
-    }
-  }
-  .imageCaption{
+}
+
+.imageCaption {
+  font-style: normal;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+@media(max-width:767px) {
+  .imageCaption {
     font-style: normal;
-    font-size: 1rem;
+    font-size: 0.6rem;
     margin-top: 0.5rem;
   }
-  @media(max-width:767px){
-    .imageCaption{
-        font-style: normal;
-        font-size: 0.6rem;
-        margin-top: 0.5rem;
-    }
+}
+
+.carouselControlNext i,
+.carouselControlPrev i {
+  background-color: #00DBDE;
+  background-image: linear-gradient(225deg, #007d9c 0%, #9f0265 100%);
+  outline: none;
+  border: none;
+  color: white;
+  padding: 1.4rem;
+}
+.carouselControlNext,.carouselControlPrev{
+  text-decoration: none;
+}
+
+.carouselControlNext i:hover,
+.carouselControlPrev i:hover{
+  background-color: #00DBDE;
+  background-image: linear-gradient(-225deg, #0dd2d6 0%, #ff38d4 100%);
+  color: rgb(0, 0, 0);
+}
+
+@media(max-width:767px) {
+
+  .carouselControlNext i,
+  .carouselControlPrev i {
+    padding: 0.8rem;
   }
-  .carouselControlNext i,.carouselControlPrev i{
-    background-color: #f11946;
-    padding: 1.4rem;
-  }
-  @media(max-width:767px){
-    .carouselControlNext i,.carouselControlPrev i{
-        padding: 0.8rem;
-    }
-  }
-  .carouselControlPrev{
-    justify-content: flex-start;
-  }
-  
-  .carouselControlNext {
-    justify-content: flex-end;
-  }
-  
-  .carouselControlPrev,.carouselControlNext{
-    transition: none;
-    opacity: unset;
-  }
+}
+
+.carouselControlPrev {
+  justify-content: flex-start;
+}
+
+.carouselControlNext {
+  justify-content: flex-end;
+}
+
+.carouselControlPrev,
+.carouselControlNext {
+  transition: none;
+  opacity: unset;
+}

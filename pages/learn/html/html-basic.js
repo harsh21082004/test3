@@ -1,23 +1,18 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import styles from '@/styles/Html.module.css';
 import Footer from '../../footer';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
-import { ThemeContext } from '../../context/themeContext';
-
 import Html from './html';
 import data from './html.json';
-import AceEditor from "react-ace";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { atomDark, docco,zTouch } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { zTouch } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-monokai";
 import { LuCopy } from 'react-icons/lu';
 
 const HtmlBasic = () => {
-  const { theme } = useContext(ThemeContext);
 
   const [currentIndex, setCurrentIndex] = useState(3);
 
@@ -60,21 +55,21 @@ const HtmlBasic = () => {
   const [copyText, setCopyText] = useState("Copy");
 
   return (
-    <div className={`${theme === "light" ? styles.learndark : styles.learnlight}`}>
+    <div className={`${styles.learn}`}>
       <Html />
-      <div className={`${theme === "light" ? styles.learncontdark : styles.learncontlight}`} id='sidecont'>
-        <h2 className={`text-center text-${theme === "light" ? "white" : "black"} ${styles.h2html}`}>HTML Tutorial</h2>
+      <div className={`${styles.learncont}`} id='sidecont'>
+        <h2 className={`text-center text-black ${styles.h2html}`}>HTML Tutorial</h2>
         <div className={`${styles.nextprev}`}>
           <Link href={`/learn/html/${data.myObj[currentIndex]}`} onClick={handlePrev} className={`${styles.prev}`}>&lt; Prev</Link>
           <Link href={`/learn/html/html-home`} onClick={handleNext} className={`${styles.next}`}>Next &gt;</Link>
         </div>
-        <div className={`${theme === "light" ? styles.languegecoursedark : styles.languegecourselight} text-${theme === "light" ? "white" : "black"} px-5 py-5`}>
-          <h5 className={`text-left text-${theme === "light" ? "white" : "black"}`}>GET OUR FREE HTML COURSE</h5>
-          <p className={`text-left text-${theme === "light" ? "white" : "black"}`}>In this course you will learn HTML from basic to advanced.</p>
+        <div className={`${styles.languegecourse} text-black px-5 py-5`}>
+          <h5 className={`text-left text-black`}>GET OUR FREE HTML COURSE</h5>
+          <p className={`text-left text-black`}>In this course you will learn HTML from basic to advanced.</p>
           <Link href="/learn" target='_blank'><input type="button" value="Go to the Course" className={`btn btn-primary`} /></Link>
         </div>
         <div className={`px-3 ${styles.docpage}`}>
-          <p className={`text-${theme === "light" ? "white" : "black"}`}>Welcome to our HTML tutorial, your go-to resource for mastering the art of web development with HTML. Whether you&apos;re a beginner taking your first steps into the world of coding or an experienced developer looking to brush up on your skills, we&apos;ve got you covered.<br /><br />Here is an example of simple HTML code...</p>
+          <p className={`text-black`}>Welcome to our HTML tutorial, your go-to resource for mastering the art of web development with HTML. Whether you&apos;re a beginner taking your first steps into the world of coding or an experienced developer looking to brush up on your skills, we&apos;ve got you covered.<br /><br />Here is an example of simple HTML code...</p>
         </div>
         <div style={{ position: "relative" }} className={`px-3`}>
           <button
@@ -101,7 +96,7 @@ const HtmlBasic = () => {
           </div>
         </div>
         <div className={`px-3 ${styles.docpage}`}>
-          <p className={`text-${theme === "light" ? "white" : "black"}`}>Here, you&apos;ll find a comprehensive collection of HTML tags, attributes, and best practices, presented in a clear and user-friendly format. Our goal is to empower you to create stunning and functional web pages with ease. Explore our well-organized tutorials, examples, and reference materials to enhance your HTML knowledge and unlock the full potential of web design and development. Happy coding!</p>
+          <p className={`text-black`}>Here, you&apos;ll find a comprehensive collection of HTML tags, attributes, and best practices, presented in a clear and user-friendly format. Our goal is to empower you to create stunning and functional web pages with ease. Explore our well-organized tutorials, examples, and reference materials to enhance your HTML knowledge and unlock the full potential of web design and development. Happy coding!</p>
         </div>
         <div className={`${styles.nextprev}`}>
           <Link href={`/learn/html/${data.myObj[currentIndex]}`} onClick={handlePrev} className={`${styles.prev}`}>&lt; Prev</Link>

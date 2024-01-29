@@ -6,12 +6,13 @@ import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ThemeContext } from './context/themeContext';
-import { TbFingerprint,TbFingerprintOff } from "react-icons/tb";
+import { TbFingerprint, TbFingerprintOff } from "react-icons/tb";
 import { MdAlternateEmail } from "react-icons/md";
 import { SiNamebase } from "react-icons/si";
 import router from 'next/router';
 import { useSession, signIn, signOut } from "next-auth/react"
 import { GithubLoginButton, GoogleLoginButton } from "react-social-login-buttons";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Signup = () => {
 
@@ -25,6 +26,7 @@ const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false)
 
     //google signin
     async function handleGoogleSignin() {
@@ -60,6 +62,7 @@ const Signup = () => {
     }
 
     const handleSubmit = async (e) => {
+        setIsLoading(true)
         e.preventDefault();
 
         if (password.length < 8) {
@@ -84,15 +87,15 @@ const Signup = () => {
                     },
                     body: JSON.stringify(data),
                 });
-
+                setIsLoading(false)
                 let response = await res.json();
                 console.log(response);
-
                 setEmail('');
                 setName('');
                 setPassword('');
 
                 if (response.error) {
+                    setIsLoading(false)
                     toast.error(response.error, {
                         position: "bottom-center",
                         autoClose: 5000,
@@ -104,6 +107,7 @@ const Signup = () => {
                         theme: "light",
                     });
                 } else if (response.success) {
+                    setIsLoading(false)
                     toast.success(response.success, {
                         position: "bottom-center",
                         autoClose: 5000,
@@ -118,6 +122,7 @@ const Signup = () => {
                         router.push('http://localhost:3000/login');
                     }, 3000);
                 } else {
+                    setIsLoading(false)
                     toast.error("Unexpected response from server", {
                         position: "bottom-center",
                         autoClose: 5000,
@@ -130,6 +135,7 @@ const Signup = () => {
                     });
                 }
             } catch (error) {
+                setIsLoading(false)
                 console.error('An error occurred:', error);
                 toast.error("An error occurred while processing your request", {
                     position: "bottom-center",
@@ -148,31 +154,13 @@ const Signup = () => {
 
     return (
         <>
-            
-            <ToastContainer
-                position="bottom-center"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-            />
-            <style jsx global>{`
-                body {
-                    background-color: rgb(21,32,43);
-                }
-            `}</style>
             <div className={`${styles.main}`}>
                 <form className={`${styles.form} container `} onSubmit={handleSubmit} method='POST' >
                     <h3 className={`text-center text-white`}>Signup</h3>
                     <div className="form-group">
                         <label htmlFor="name" className={`text-white mx-1 `}>Name</label>
                         <div className={`${styles.eyeinput}`}>
-                            <input onChange={handleChange} type="text" className={`${styles.input}   m-1`} name='name' id="name" value={name} aria-describedby="emailHelp" placeholder="Enter name" required />
+                            <input onChange={handleChange} type="text" className={`${styles.input}   m-1`} name='name' id="name" value={name} aria-describedby="emailHelp" placeholder="" required />
                             <i className={`${styles.eye}`}>
                                 <SiNamebase />
                             </i>
@@ -181,7 +169,7 @@ const Signup = () => {
                     <div className="form-group">
                         <label htmlFor="email" className={`text-white  mx-1`}>Email address</label>
                         <div className={`${styles.eyeinput}`}>
-                            <input onChange={handleChange} value={email} type="email" className={`${styles.input}  m-1`} name='email' id="email" aria-describedby="emailHelp" placeholder="Enter email" required />
+                            <input onChange={handleChange} value={email} type="email" className={`${styles.input}  m-1`} name='email' id="email" aria-describedby="emailHelp" placeholder="" required />
                             <i className={`${styles.eye}`}>
                                 <MdAlternateEmail />
                             </i>
@@ -190,9 +178,9 @@ const Signup = () => {
                     <div className="form-group">
                         <label htmlFor="password" className={`text-white mx-1`}>Password</label>
                         <div className={`${styles.eyeinput}`}>
-                            <input onChange={handleChange} value={password} type={textType} className={`${styles.input} m-1`} name='password' id="password" placeholder="Password" required />
+                            <input onChange={handleChange} value={password} type={textType} className={`${styles.input} m-1`} name='password' id="password" placeholder="" required />
                             <i onClick={handleTextType} className={`${styles.eye}`}>
-                                {visible ? <TbFingerprint/>:<TbFingerprintOff/>}
+                                {visible ? <TbFingerprint /> : <TbFingerprintOff />}
                             </i>
                         </div>
                         {error && (<div class="alert alert-danger" role="alert">
@@ -204,8 +192,16 @@ const Signup = () => {
                         <label className={`text-whiteform-check-label`} htmlFor="Check">Check me out</label>
                     </div> */}
                     <span>
-                        <button type="submit" className={`${styles.button} btn m-2`}>Signup</button>
-                        <Link href={'/forgotpassword'} style={{ float: 'right' }} className={`${styles.button} btn m-2`}>Forgot Password</Link></span>
+                        {isLoading ? (<button type="submit" className={`${styles.button} btn m-2`}><span>
+                            <ClipLoader
+                                color='#ffffff'
+                                loading={isLoading}
+                                size={15}
+                                aria-label="Loading Spinner"
+                                data-testid="loader"
+                            />
+                        </span></button>) : (<button type="submit" className={`${styles.button} btn m-2`}>Signup</button>)}
+                        <Link href={'/forgotpassword'} style={{ float: 'right' }} className={`${styles.button1} btn m-2`}>Forgot Password</Link></span>
                     <div className='text-center'>
                         <div className={`${styles.loginusing}`}>
                             <div className={`${styles.signusing}`}></div><b >Or Login using</b><div className={`${styles.signusing}`}></div>

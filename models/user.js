@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const UserSchema = new mongoose.Schema({
     name:{type: String,required:true},
     email:{type: String,required:true,unique:true,index:true},
-    image:{type: String,default:'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'},
+    image:{type: String,default:'https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671142.jpg?size=338&ext=jpg&ga=GA1.1.632798143.1705622400&semt=ais'},
     password:{type: String},
     isVerified:{type: Boolean,default:false},
     verifyToken:{type: String},

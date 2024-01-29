@@ -1,7 +1,6 @@
-.main,
 .main {
-    background: url('https://pics.craiyon.com/2023-09-21/2a88ef38beb248bf974a4701c7c12575.webp');
-    background-size: cover;
+    background-color: #FF3CAC;
+    background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
     display: flex;
     flex-direction: row;
     margin: auto;
@@ -14,14 +13,13 @@
     border-radius: 10px;
 }
 
-.main form,
-.main form{
+.main form {
     backdrop-filter: blur(0.8px);
 }
 
 .main {
     box-shadow: 0 0 5px black;
-    
+
 }
 
 .main input {
@@ -33,11 +31,6 @@
     width: 100%;
     padding: 6px;
     color: white;
-}
-
-/* For dark theme */
-.main input {
-    backdrop-filter: blur(10px); /* Adjust the blur amount as needed */
 }
 
 .main {
@@ -57,14 +50,27 @@
     border-radius: 10px;
 }
 
-.button {
-    background-color:#dc143c;
+.button,.button1{
+    background-color: #00DBDE;
+    background-image: linear-gradient(225deg, #007d9c 0%, #9f0265 100%);
+    outline: none;
+    border: none;
     color: white;
 }
 
-.button:hover {
-    background-color: black;
-    color: white;
+.button{
+    width: 100px;
+}
+
+.button1{
+    width: 150px;
+}
+
+
+.button:hover,.button1:hover {
+    background-color: #00DBDE;
+    background-image: linear-gradient(-225deg, #0dd2d6 0%, #ff38d4 100%);
+    color: rgb(0, 0, 0);
 }
 
 .google {
@@ -82,7 +88,7 @@
     position: relative;
 }
 
-.loginusing{
+.loginusing {
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -100,10 +106,6 @@
     backdrop-filter: blur(5px);
     color: white;
     padding: 0 10px;
-}
-
-.input1{
-    backdrop-filter: blur(5px);
 }
 
 @media screen and (max-width: 991px) {
@@ -166,7 +168,7 @@
 
 .eye:hover,
 .eye:hover {
-    color:rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
 }
 
 .input {

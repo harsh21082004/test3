@@ -1,44 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 
-  body{
-    margin-top: 110px;
-    /* background-color: black; */
-  }
+body {
+  margin-top: 100px;
+  /* background-color: black; */
+  background-color: #fce0a5;
+background-image: linear-gradient(62deg, #a5e2fc 0%, #febaff 100%);
 
-  .textpurplelight {
-    color: #f11946;
-  }
-  
-  .textpurpledark {
-    color: #f11946;
-  }
+}
 
-  .fontBold {
-    font-size: 1.25rem;
-  }
-  
-  .activelink{
-    background-color: rgb(89, 89, 89) !important;
-    color: white !important;
-  }
-  .imgMode {
-    cursor: pointer;
-  }
-  
-  .imgdark{
-    filter: invert(1);
-  }
+.textpurple {
+  /* background: -webkit-linear-gradient(#002aff, #ff0059,#002aff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+  color: rgb(0, 0, 0);
+}
 
-  .progress-bar {
-    position: fixed;
-    top: 0px;
-    left: 0;
-    right: 0;
-    height: 5px;
-    background: rgb(180,58,58);
-background: linear-gradient(90deg, rgba(180,58,58,1) 0%, rgba(253,29,29,1) 50%, rgba(69,122,252,1) 100%);
-    transform-origin: 0%;
-    z-index: 5;
-    border-radius: 20px;
-  }
+.fontBold {
+  font-size: 1.25rem;
+}
+
+.activelink {
+  background-color: rgb(89, 89, 89) !important;
+  color: white !important;
+}
+
+.imgMode {
+  cursor: pointer;
+}
+
+.imgdark {
+  filter: invert(1);
+}
+
+.progress-bar {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-image: linear-gradient( 108.7deg,  rgba(221,22,224,1) 11%, rgba(111,22,190,1) 88.2% );
+  transform-origin: 0%;
+  z-index: 5;
+  border-radius: 25px;
+}

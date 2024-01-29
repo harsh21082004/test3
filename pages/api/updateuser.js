@@ -19,7 +19,7 @@ export default async function handler(req, res) {
             // Update user information
             user.name = req.body.name;
             user.email = req.body.email;
-            user.image = req.body.image;
+            user.image = req.body.image1;
 
             // Save the updated user
             await user.save();
@@ -28,8 +28,6 @@ export default async function handler(req, res) {
             // Generate a new token with updated information
             const token = jwt.sign({ email: user.email, name: user.name,image:user.image }, 'jwtsecret1', { expiresIn: '3h' });
 
-            // Log the updated token
-            console.log(token);
 
             // Send the new token in the response
             return res.status(200).json({ token, success: "User information updated successfully" });

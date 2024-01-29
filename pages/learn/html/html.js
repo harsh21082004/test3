@@ -1,8 +1,7 @@
 import React from 'react'
 import styles from '@/styles/Html.module.css'
 import Link from 'next/link'
-import { useState,useContext } from 'react'
-import { ThemeContext } from '../../context/themeContext'
+import { useContext } from 'react'
 import { MenuContext } from '../../context/menuContext';
 import { useRouter } from "next/router";
 
@@ -10,15 +9,13 @@ const Html = () => {
 
   const router = useRouter();
 
-  const { theme, handleOnClick } = useContext(ThemeContext)
-
   const { openHam } = useContext(MenuContext)
   
 
 
   return (
     <>
-        <div className={`${theme === "light"?styles.sidebardark:styles.sidebarlight} ${!openHam ? styles.sideopen : ''}`} id='navside'>
+        <div className={`${styles.sidebar} ${!openHam ? styles.sideopen : ''}`} id='navside'>
           <h3>Learn</h3>
           <Link href="/learn/html/html-home" className={router.pathname === "/learn/html/html-home" ? 'activelink' : ""}>HTML Home</Link>
           <Link href="/learn/html/html-intro" className={router.pathname === "/learn/html/html-intro" ? 'activelink' : ""}>HTML INTRODUCTION</Link>

@@ -1,12 +1,8 @@
-.learnlight {
-    display: flex;
-}
-  
-.learndark {
+.learn {
     display: flex;
 }
 
-.learncontdark,.learncontlight{
+.learncont{
     /* padding-top: 120px; */
     width: 100%;
     margin-left: 350px;
@@ -14,7 +10,7 @@
 
 @media screen and (max-width: 991px) {
   
-    .learncontdark,.learncontlight{
+    .learncont{
         width: 100%;
         margin-left: 0px;
     }
