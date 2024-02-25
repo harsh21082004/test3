@@ -94,10 +94,10 @@ export default function App({ Component, pageProps }) {
         theme="light"
       />
       <LoadingBar
-        color='#f11946'
+        color='#df00a2'
         progress={progress}
         onLoaderFinished={() => setProgress(0)}
-        waitingTime={600}
+        waitingTime={600}className='loading-bar'
       />
       <MenuContext.Provider value={{ openHam, toggleMenu }}>
           <Navbar logout={logout} key={key} user={user} />

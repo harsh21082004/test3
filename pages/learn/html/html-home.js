@@ -60,18 +60,18 @@ const HtmlHome = () => {
     <div className={`${styles.learn}`}>
       <Html />
       <div className={`${styles.learncont} `} id='sidecont'>
-        <h2 className={`text-center text-black ${styles.h2html}`}>HTML Tutorial</h2>
+        <h2 className={`text-center text-white ${styles.h2html}`}>HTML Home</h2>
         <div className={`${styles.nextprev}`}>
-          <Link href={`/learn`} onClick={handlePrev} className={`${styles.prev}`}>&lt; Prev</Link>
-          <Link href={`/learn/html/${data.myObj[currentIndex]}`} onClick={handleNext} className={`${styles.next}`}>Next &gt;</Link>
+          <Link href={`/learn`} onClick={handlePrev} className={`${styles.button}`}>&lt; Prev</Link>
+          <Link href={`/learn/html/${data.myObj[currentIndex]}`} onClick={handleNext} className={`${styles.button}`}>Next &gt;</Link>
         </div>
-        <div className={`${styles.languegecourse} text-black px-5 py-5`}>
-          <h5 className={`text-left text-black`}>GET OUR FREE HTML COURSE</h5>
-          <p className={`text-left text-black`}>In this course you will learn HTML from basic to advanced.</p>
+        <div className={`${styles.languegecourse} text-white px-5 py-5`}>
+          <h5 className={`text-left text-white`}>GET OUR FREE HTML COURSE</h5>
+          <p className={`text-left text-white`}>In this course you will learn HTML from basic to advanced.</p>
           <Link href="/learn" target='_blank'><input type="button" value="Go to the Course" className={`btn btn-primary`} /></Link>
         </div>
         <div className={`px-3 ${styles.docpage}`}>
-          <p className={`text-black`}>Welcome to our HTML tutorial, your go-to resource for mastering the art of web development with HTML. Whether you&apos;re a beginner taking your first steps into the world of coding or an experienced developer looking to brush up on your skills, we&apos;ve got you covered.<br /><br />Here is an example of simple HTML code...</p>
+          <p className={`text-white`}>Welcome to our HTML tutorial, your go-to resource for mastering the art of web development with HTML. Whether you&apos;re a beginner taking your first steps into the world of coding or an experienced developer looking to brush up on your skills, we&apos;ve got you covered.<br /><br />Here is an example of simple HTML code...</p>
         </div>
         <div style={{ position: "relative" }} className={`px-3`}>
           <button
@@ -98,11 +98,11 @@ const HtmlHome = () => {
           </div>
         </div>
         <div className={`px-3 ${styles.docpage}`}>
-          <p className={`text-black`}>Here, you&apos;ll find a comprehensive collection of HTML tags, attributes, and best practices, presented in a clear and user-friendly format. Our goal is to empower you to create stunning and functional web pages with ease. Explore our well-organized tutorials, examples, and reference materials to enhance your HTML knowledge and unlock the full potential of web design and development. Happy coding!</p>
+          <p className={`text-white`}>Here, you&apos;ll find a comprehensive collection of HTML tags, attributes, and best practices, presented in a clear and user-friendly format. Our goal is to empower you to create stunning and functional web pages with ease. Explore our well-organized tutorials, examples, and reference materials to enhance your HTML knowledge and unlock the full potential of web design and development. Happy coding!</p>
         </div>
         <div className={`${styles.nextprev}`}>
-          <Link href={`/learn`} onClick={handlePrev} className={`${styles.prev}`}>&lt; Prev</Link>
-          <Link href={`/learn/html/${data.myObj[currentIndex]}`} onClick={handleNext} className={`${styles.next}`}>Next &gt;</Link>
+          <Link href={`/learn`} onClick={handlePrev} className={`${styles.button}`}>&lt; Prev</Link>
+          <Link href={`/learn/html/${data.myObj[currentIndex]}`} onClick={handleNext} className={`${styles.button}`}>Next &gt;</Link>
         </div>
         <Footer />
       </div>

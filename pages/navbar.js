@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router';
 import styles from '@/styles/Navbar.module.css'
 import Link from 'next/link';
@@ -6,10 +6,32 @@ import { MenuContext } from './context/menuContext';
 import { MdAccountCircle } from "react-icons/md";
 import { useSession, signIn, signOut } from "next-auth/react"
 import { jwtDecode } from 'jwt-decode';
+import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa';
 
 
 const Navbar = ({ user, logout }) => {
+  const scrollMenuRef = useRef(null);
+  const [scrollInterval, setScrollInterval] = useState(null);
 
+  const handleMouseDown = (scrollOffset) => {
+    if (scrollMenuRef.current) {
+      // Scroll initially
+      scrollMenuRef.current.scrollLeft += scrollOffset;
+
+      // Set up an interval to continue scrolling while mouse is held down
+      const intervalId = setInterval(() => {
+        scrollMenuRef.current.scrollLeft += scrollOffset;
+      },220); // Adjust the interval duration as needed
+
+      setScrollInterval(intervalId);
+    }
+  };
+
+  const handleMouseUp = () => {
+    // Clear the interval to stop scrolling when mouse is released
+    clearInterval(scrollInterval);
+    setScrollInterval(null);
+  };
   const [isLoggedIN, setIsLoggedIN] = useState(user)
   const [open, setOpen] = useState(true)
   const { openHam, toggleMenu } = useContext(MenuContext)
@@ -61,6 +83,7 @@ const Navbar = ({ user, logout }) => {
                   <img src={`${image}`} className={`${styles.accountImg} ${styles.account1}`} onMouseOver={() => { setIsHovered(true) }}
                     onMouseLeave={() => { setIsHovered(false) }} alt=' ' />{isHovered && <ul className={`${styles.accdrop}`} style={{ display: isHovered ? 'block' : 'none' }}>
                       <Link href={'/myaccount'} style={{ textDecoration: 'none' }}><li className={`nav-item ${styles.nav_item}`}>My account</li></Link>
+                      <Link href={'/settings'} style={{ textDecoration: 'none' }}><li className={`nav-item ${styles.nav_item}`}>Settings</li></Link>
                       <li className={`nav-item ${styles.nav_item}`} onClick={logout}>Logout</li>
                     </ul>}</>
               )}
@@ -77,19 +100,19 @@ const Navbar = ({ user, logout }) => {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className={`${styles.navul} navbar-nav me-auto mb-2 mb-lg-0 px-3`} id='links'>
                 <li className={`nav-item ${styles.navItem}`} >
-                  <Link className={`nav-link text-black `} aria-current="page" href="/" >Home</Link>
+                  <Link className={`nav-link text-white `} aria-current="page" href="/" >Home</Link>
                 </li>
                 <li className={`nav-item ${styles.navItem}`} >
-                  <Link className={`nav-link text-black `} aria-current="page" href="/learn">Learn</Link>
+                  <Link className={`nav-link text-white `} aria-current="page" href="/learn">Learn</Link>
                 </li>
                 <li className={`nav-item ${styles.navItem}`} >
-                  <Link className={`nav-link text-black`} aria-current="page" href="/courses">Courses</Link>
+                  <Link className={`nav-link text-white`} aria-current="page" href="/courses">Courses</Link>
                 </li>
                 <li className={`nav-item ${styles.navItem}`} >
-                  <Link className={`nav-link text-black`} aria-current="page" href="/about">About Us</Link>
+                  <Link className={`nav-link text-white`} aria-current="page" href="/about">About Us</Link>
                 </li>
                 <li className={`nav-item ${styles.navItem}`} >
-                  <Link className={`nav-link text-black`} aria-current="page" href="/contact">Contact Us</Link>
+                  <Link className={`nav-link text-white`} aria-current="page" href="/contact">Contact Us</Link>
                 </li>
               </ul>
               <form className="d-flex" role="search">
@@ -104,6 +127,7 @@ const Navbar = ({ user, logout }) => {
                     <img src={`${image}`} className={`${styles.accountImg} ${styles.account}`} onMouseOver={() => { setIsHovered(true) }}
                       onMouseLeave={() => { setIsHovered(false) }} alt=' ' />{isHovered && <ul className={`${styles.accdrop}`} style={{ display: isHovered ? 'block' : 'none' }}>
                         <Link href={'/myaccount'} style={{ textDecoration: 'none' }}><li className={`nav-item ${styles.nav_item}`}>My account</li></Link>
+                        <Link href={'/settings'} style={{ textDecoration: 'none' }}><li className={`nav-item ${styles.nav_item}`}>Settings</li></Link>
                         <li className={`nav-item ${styles.nav_item}`} onClick={logout}>Logout</li>
                       </ul>}</>
                 )}
@@ -122,12 +146,44 @@ const Navbar = ({ user, logout }) => {
                 <div className={`${styles.bar}`} onClick={toggleMenu}></div>
               </div>
             </div>
-          )}
+                  )}
           {/* <div id="scroll_left_btn" class={`${styles.scrollleft} w3-hide-medium w3-hide-small`} style={{display: 'block'}}>
             <span onmousedown="scrollmenow(-1)" onmouseup="stopscrollmenow()" onmouseout="stopscrollmenow()">&nbsp;&nbsp;&nbsp;❮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           </div> */}
-          <div className={`${styles.scrollmenu}`}>
-            <div className={styles.scrollmenuContent}>
+          <span className={`${styles.scrollLeft}`}>
+          <FaArrowCircleLeft onMouseDown={(e) => {
+            e.preventDefault() // Prevent the default behavior
+            handleMouseDown(-100);
+          }}
+            onMouseUp={handleMouseUp}
+            /></span>
+          {/* <span onMouseDown={(e) => {
+            e.preventDefault() // Prevent the default behavior
+            handleMouseDown(-100);
+          }}
+            onMouseUp={handleMouseUp}
+            className={`${styles.scrollLeft}`}>&lt;</span> */}
+          <div className={`${styles.scrollmenu}`} ref={scrollMenuRef}>
+            <div className={styles.scrollmenuContent} >
+              <Link href="/learn/html/html-home">HTML</Link>
+              <Link href="/learn/css/css1">CSS</Link>
+              <Link href="/contact">JAVASCRIPT</Link>
+              <Link href="/about">C</Link>
+              <Link href="/support">C++</Link>
+              <Link href="/blog">PYTHON</Link>
+              <Link href="/tools">REACT</Link>
+              <Link href="/base">NEXTJS</Link>
+              <Link href="/custom">BOOTSTRAP</Link>
+              <Link href="/more">TAILWIND CSS</Link>
+              <Link href="/logo">JAVA</Link>
+              <Link href="/friends">JQUERY</Link>
+              <Link href="/partners">NODEJS</Link>
+              <Link href="/people">FONTAWESOME</Link>
+              <Link href="/work">HOW TO</Link>
+              <Link href="/work">SQL</Link>
+              <Link href="/work">PHP</Link>
+              <Link href="/work">MONGODB</Link>
+              <Link href="/work">AI</Link>
               <Link href="/learn/html/html-home">HTML</Link>
               <Link href="/learn/css/css1">CSS</Link>
               <Link href="/contact">JAVASCRIPT</Link>
@@ -149,6 +205,13 @@ const Navbar = ({ user, logout }) => {
               <Link href="/work">AI</Link>
             </div>
           </div>
+          <span className={`${styles.scrollRight}`}>
+          <FaArrowCircleRight onMouseDown={(e) => {
+            e.preventDefault() // Prevent the default behavior
+            handleMouseDown(100);
+          }}
+            onMouseUp={handleMouseUp}
+            /></span>
         </div>
       </div>
     </>

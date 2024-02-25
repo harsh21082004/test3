@@ -1,6 +1,5 @@
 .sidebar {
-    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(255,94,247,1) 17.8%, rgba(2,245,255,1) 100.2% );
-    box-shadow: 0 0 5px #D9EEE1;
+    background-color: #0a1014;
 }
 
 .sidebar{
@@ -16,14 +15,14 @@
 }
 
 .sidebar h3 {
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     padding-left: 32px;
     margin-top: 15px;
 }
 
 .sidebar a {
     text-decoration: none;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     /* font-size: 15px; */
     margin-left: 15px;
     padding: 2px 15px 1px 16px;
@@ -36,8 +35,8 @@
 
 
 .sidebar a:hover {
-    background-color: rgb(232, 232, 232);
-    color: black;
+    background-color: #5e6060 !important;
+    color: rgb(255, 255, 255);
 }
 
 @media screen and (max-width: 991px) {
@@ -67,27 +66,6 @@
     /* Add space between playlist and navigation buttons */
 }
 
-.prev,
-.next {
-    padding: 10px;
-    background-color: #f11946;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    margin: 5px 0;
-    font-size: 1.2rem;
-}
-
-.prev:hover,
-.next:hover {
-    background-color: #000000;
-    /* Darken the background on hover */
-    text-decoration: none;
-    color: white;
-}
-
 /* Html-Home */
 .h2html {
     margin-top: 20px;
@@ -105,8 +83,8 @@
 
 .languegecourse {
     margin-top: 10px;
-    background-image: linear-gradient( 65.9deg,  rgba(85,228,224,1) 5.5%, rgba(75,68,224,0.74) 54.2%, rgba(64,198,238,1) 55.2%, rgba(177,36,224,1) 98.4% );
-    box-shadow: 0 0 5px black;
+    background-image: linear-gradient( 65.9deg,  rgb(1, 80, 77) 5.5%, rgba(16, 8, 159, 0.74) 54.2%, rgb(5, 93, 120) 55.2%, rgb(85, 2, 113) 98.4% );
+    box-shadow: 0 0 5px rgb(255, 255, 255);
 }
 
 .docpage p {
@@ -119,6 +97,30 @@
 .docpage {
     margin: 25px 0;
 }
+
+.button {
+    padding: 10px;
+    background-color: #00DBDE;
+    background-image: linear-gradient(225deg, #007d9c 0%, #e53da7 100%);
+    outline: none;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 18px;
+    text-align: center;
+  }
+  
+  .button {
+    width: 80px;
+  }
+  
+  
+  .button:hover {
+    background-color: #00DBDE;
+    background-image: linear-gradient(-225deg, #0dd2d6 0%, #ff38d4 100%);
+    color: rgb(0, 0, 0);
+  }
 
 @media screen and (max-width: 991px) {
     .learncont{
@@ -134,7 +136,7 @@
   }
   .learncont::-webkit-scrollbar-thumb {
     background-color: rgb(195, 195, 195);    /* color of the scroll thumb */
-    border-radius: 20px;       
+    border-radius: 4px;       
   }
   
   .learncont::-webkit-scrollbar-thumb:hover {
@@ -149,5 +151,5 @@
   }
   .sidebar::-webkit-scrollbar-thumb{
     background-color: rgb(57, 57, 57);    /* color of the scroll thumb */
-    border-radius: 20px;       
+    border-radius: 4px;       
   }

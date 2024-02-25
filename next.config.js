@@ -1,6 +1,7 @@
+
 /**
  * @type {import('next').NextConfig}
- */
+*/
 module.exports = {
   reactStrictMode: false,
   webpack5: true,
@@ -19,3 +20,7 @@ module.exports = {
     runtime: 'edge',
   },
 }
+
+const withVideos = require('next-videos')
+
+module.exports = withVideos()

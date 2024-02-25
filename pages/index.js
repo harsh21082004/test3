@@ -4,8 +4,13 @@ import Typewriter from 'typewriter-effect'
 import Link from 'next/link'
 import Footer from './footer'
 import Testimonials from './testimonials'
+import { motion, useAnimation } from "framer-motion";
 
 export default function Home() {
+  const variant = {
+    visible: { scale: 1 },
+    hidden: { scale: 0 },
+  };
 
   return (
     <div className={`${styles.maincont}`}>
@@ -35,69 +40,62 @@ export default function Home() {
 
             }}
           /></span>
-          <p>Welcome to codebyte.If you are worrying that how to start coding then you are at right place.Codbyte will provide you the all of the basic knowledge that is required while learning a language.</p>
+          <p>Welcome to CodeByte, your go-to resource for initiating your coding journey! If you find yourself contemplating how to embark on the coding path, worry not. CodeByte is here to furnish you with fundamental knowledge essential for language acquisition. Whether you are a novice or looking to strengthen your coding foundation, we've got you covered with comprehensive insights and guidance.</p>
           <Link href={'/protected'}><button className={`btn ${styles.button}`}>Free Courses</button></Link>
         </div>
-        <img src="/pic.jpg" width={100} height={100} alt="none" className={`${styles.photo}`} />
+        <video src={require('../public/video.mp4')} autoPlay muted loop className={`${styles.photo}`} loading='lazy' />
+        <video src={require('../public/video2.mp4')} autoPlay muted loop className={`${styles.photo1}`} loading='lazy' />
       </div>
       <div className={`${styles.youtube}`}>
         <h2 className={`text-center my-5`}>Recomended Videos</h2>
         <div className={`${styles.contyoutube}`}>
           <div className={`${styles.contyoutubevideos}`}>
-          {/* <motion.div
-              className="card-container"
-              initial="offscreen"
-              whileInView="onscreen"
-              viewport={{ once: true, amount: 0.8 }}
+            <motion.div
+              variants={variant}
+              initial="hidden"
+              whileInView="visible"
             >
-              <motion.div variants={cardVariants}> */}
-            <div className={`${styles.youtubevideos}`}>
-              <img className={`${styles.videos}`} height={100} width={100} src="/picture.png" alt='none'></img>
-              <div className={` px-3 my-2`}>
-                <h4 className={`text-black`}>My upcoming react project</h4>
-                <p className={`text-black`}>It is my new upcoming react project (AI Based Attandence System).Here you will learn how to work in react and make webapps.</p>
+              <div className={`${styles.youtubevideos}`}>
+                <img className={`${styles.videos}`} src="/picture.png" alt='none'></img>
+                <div className={`${styles.videotext} px-3 my-2`}>
+                  <h4 className={`text-white`}>My upcoming react project</h4>
+                  <p className={`text-white`}>It is my new upcoming react project (AI Based Attandence System).Here you will learn how to work in react and make webapps.</p>
+                </div>
+                <div className={`mt-5`}>
+                  <Link href="/videos/new-upcoming-react-project">
+                    <button className={`btn  my-2 ${styles.watch}`}>Watch</button>
+                  </Link>
+                </div>
               </div>
-              <div className={`mt-5`}>
-                <Link href="/videos/new-upcoming-react-project">
-                  <button className={`btn  my-2 ${styles.watch}`}>Watch</button>
-                </Link>
-              </div>
-            </div>
-            {/* </motion.div>
             </motion.div>
             <motion.div
-              className="card-container"
-              initial="offscreen"
-              whileInView="onscreen"
-              viewport={{ once: true, amount: 0.8 }}
+              variants={variant}
+              initial="hidden"
+              whileInView="visible"
             >
-              <motion.div variants={cardVariants}> */}
-                <div className={`${styles.youtubevideos}`}>
-                  <img className={`${styles.videos}`} height={100} width={100} src="/picture2.png" alt='none'></img>
-                  <div className={`px-3 my-2`}>
-                    <h4 className={`text-black`}>How To Make Contact Form</h4>
-                    <p className={`text-black`}>In this video you will learn hoe to make a working contact form using html, css and javascript.</p>
-                  </div>
-                  <div className={`mt-5`}>
-                    <Link href="/videos/responsive-navbar">
-                      <button className={`btn  my-2 ${styles.watch}`}>Watch</button>
-                    </Link>
-                  </div>
-                </div>
-              {/* </motion.div>
-              </motion.div>
-              <motion.div
-              className="card-container"
-              initial="offscreen"
-              whileInView="onscreen"
-              viewport={{ once: true, amount: 0.8 }}
-            >
-              <motion.div variants={cardVariants}> */}
               <div className={`${styles.youtubevideos}`}>
-                <img className={`${styles.videos}`} height={100} width={100} src="/picture3.png" alt='none' ></img>
-                <div className={`px-3 my-2`}>
-                  <h4 className={`text-black`}>How To Make a Login Form</h4>
-                  <p className={`text-black`}>In this video i will show you how to make a responsive login form using html, css and javascript.</p>
+                <img className={`${styles.videos}`} src="/picture2.png" alt='none'></img>
+                <div className={`${styles.videotext} px-3 my-2`}>
+                  <h4 className={`text-white`}>How To Make Contact Form</h4>
+                  <p className={`text-white`}>In this video you will learn hoe to make a working contact form using html, css and javascript.</p>
+                </div>
+                <div className={`mt-5`}>
+                  <Link href="/videos/responsive-navbar">
+                    <button className={`btn  my-2 ${styles.watch}`}>Watch</button>
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+            <motion.div
+              variants={variant}
+              initial="hidden"
+              whileInView="visible"
+            >
+              <div className={`${styles.youtubevideos}`}>
+                <img className={`${styles.videos}`} src="/picture3.png" alt='none' ></img>
+                <div className={`${styles.videotext} px-3 my-2`}>
+                  <h4 className={`text-white`}>How To Make a Login Form</h4>
+                  <p className={`text-white`}>In this video i will show you how to make a responsive login form using html, css and javascript.</p>
                 </div>
                 <div className={`mt-5`}>
                   <Link href="/videos/contact-form">
@@ -105,21 +103,17 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
-              {/* </motion.div>
-              </motion.div> */}
+            </motion.div>
           </div>
         </div>
       </div>
-      {/* <motion.div
-              className="card-container"
-              initial="offscreen"
-              whileInView="onscreen"
-              viewport={{ once: true, amount: 0.8 }}
-            >
-              <motion.div variants={testimonialsVariant}> */}
-      <Testimonials />
-      {/* </motion.div>
-      </motion.div> */}
+      <motion.div
+        variants={variant}
+        initial="hidden"
+        whileInView="visible"
+      >
+        <Testimonials />
+      </motion.div>
       <Footer />
     </div>
   )

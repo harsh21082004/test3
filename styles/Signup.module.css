@@ -108,6 +108,32 @@
     padding: 0 10px;
 }
 
+.rightCheck{
+    color: #05e205;
+    font-size: 22px;
+}
+
+.wrongCheck{
+    color: rgb(183 9 9);
+    font-size: 25px;
+    font-weight:bold;
+}
+
+.alert ul span{
+    display: flex;
+    align-items: center;
+}
+
+.alert ul{
+    list-style: none;
+    align-items: center;
+    padding: 0;
+}
+
+.alert ul li{
+    color: white;
+}
+
 @media screen and (max-width: 991px) {
     .photo {
         display: none;

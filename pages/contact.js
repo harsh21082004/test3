@@ -3,6 +3,7 @@ import styles from '@/styles/Contact.module.scss';
 import ClipLoader from "react-spinners/ClipLoader";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from './footer';
 
 const Contact = () => {
   const [name, setName] = useState('')
@@ -161,6 +162,7 @@ const Contact = () => {
           </form>
         </div>
       </div>
+      <Footer/>
     </>
   )
 }

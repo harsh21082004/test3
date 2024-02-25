@@ -3,9 +3,13 @@
 
 body {
   margin-top: 100px;
-  /* background-color: black; */
-  background-color: #fce0a5;
-background-image: linear-gradient(62deg, #a5e2fc 0%, #febaff 100%);
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+/* background-image: url('/background5.jpg');
+background-size: cover; */
+/* backdrop-filter: blur(5px); */
 
 }
 
@@ -13,7 +17,7 @@ background-image: linear-gradient(62deg, #a5e2fc 0%, #febaff 100%);
   /* background: -webkit-linear-gradient(#002aff, #ff0059,#002aff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; */
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
 }
 
 .fontBold {
@@ -21,8 +25,9 @@ background-image: linear-gradient(62deg, #a5e2fc 0%, #febaff 100%);
 }
 
 .activelink {
-  background-color: rgb(89, 89, 89) !important;
-  color: white !important;
+  background-color: rgb(16, 49, 49);
+
+  color: rgb(254, 251, 251) !important;
 }
 
 .imgMode {
@@ -39,8 +44,22 @@ background-image: linear-gradient(62deg, #a5e2fc 0%, #febaff 100%);
   left: 0;
   right: 0;
   height: 4px;
-  background-image: linear-gradient( 108.7deg,  rgba(221,22,224,1) 11%, rgba(111,22,190,1) 88.2% );
+  background-image: linear-gradient( 108.7deg,  rgb(242, 123, 244) 11%, rgb(188, 124, 244) 88.2% );
   transform-origin: 0%;
   z-index: 5;
   border-radius: 25px;
+}
+
+p{
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+h4{
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: #ffffff;
+  background-image: linear-gradient(225deg, #ffffff 0%, #e53da7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: rgb(109, 3, 81) 0px 0px 30px;
 }

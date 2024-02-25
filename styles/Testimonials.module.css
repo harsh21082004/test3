@@ -1,23 +1,29 @@
-/* Testimonials */
-
-.carouselContainer {
-  box-shadow: 0 0 5px rgb(0, 0, 0);
-}
-
 .demo {
   background-image: radial-gradient(circle 311px at 8.6% 27.9%, rgba(62, 147, 252, 0.57) 12.9%, rgba(239, 183, 192, 0.44) 91.2%);
+  box-shadow: rgb(255, 193, 238) 0px 0px 5px;
+  border-radius: 5px;
   max-width: 900px;
   margin: auto;
+  margin-top: 100px;
 }
 
 .text{
+  padding-top: 35px !important;
+  padding-bottom: 0;
+  margin-bottom: 0;
   font-size: 2.5rem;
   font-weight: bold;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  background-color: #00DBDE;
-  background-image: linear-gradient(225deg, #015469 0%, #9f0265 100%);
+  background-color: #ffffff;
+  background-image: linear-gradient(-225deg, #000000 0%, #87105c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.text1{
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #400129;
 }
 
 .carouselCaption {
@@ -44,6 +50,9 @@
     font-weight: bold;
     line-height: 1.5rem;
   }
+  .text{
+    font-size: 2rem;
+  }
 }
 
 .carouselCaption img {
@@ -51,6 +60,7 @@
   border-radius: 5rem;
   margin-top: 2rem;
 }
+
 
 @media(max-width:767px) {
   .carouselCaption img {
@@ -99,6 +109,11 @@
   .carouselControlNext i,
   .carouselControlPrev i {
     padding: 0.8rem;
+  }
+
+  .text{
+    font-size: 1.5rem;
+  
   }
 }
 

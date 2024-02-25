@@ -5,26 +5,42 @@
 }
 
 .accContainer {
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 25px !important;
     margin-top: 50px !important;
     max-width: 1200px;
-    background-color: #8EC5FC;
-    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
-    box-shadow: 0 0 10px rgb(0, 0, 0);
+    border: 1px solid rgb(72, 72, 72);
+    background: #0a1014;
+    /* background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%); */
+    box-shadow: 0 0 5px rgb(255, 255, 255);
 }
 
-.main {
+/* .main {
     display: flex;
     align-items: center;
-    justify-content: center;
-}
+    justify-content: space-evenly;
+} */
 
 .forms {
     display: flex;
     align-items: center;
-    max-width: 800px;
-    justify-content: center;
+    /* max-width: 800px; */
+    justify-content: space-evenly;
+    border: 1px solid rgb(72, 72, 72);
+    border-radius: 5px;
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.passform{
+    border: 1px solid rgb(72, 72, 72);
+    border-radius: 5px;
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .alert{
     position: absolute;
@@ -42,7 +58,7 @@
     margin-bottom: 0;
     max-width: 400px;
     font-size: 13px;
-    margin: auto;
+    /* margin: auto; */
     padding: 5px;
     text-align: center;
 }
@@ -53,6 +69,8 @@
     outline: none;
     border: none;
     color: white;
+    margin: auto;
+    border-radius: 3px;
 }
 
 .button{
@@ -70,6 +88,37 @@
     color: rgb(0, 0, 0);
 }
 
+.rightCheck{
+    color: #05e205;
+    font-size: 22px;
+}
+
+.wrongCheck{
+    color: rgb(183 9 9);
+    font-size: 25px;
+    font-weight:bold;
+}
+
+.alert1{
+    margin-top: 35px !important;
+}
+
+.alert1 ul span{
+    display: flex;
+    align-items: center;
+}
+
+.alert1 ul{
+    padding: 0;
+    list-style: none;
+    align-items: center;
+}
+
+.alert1 ul li{
+    color: rgb(255, 255, 255);
+}
+
+
 @media screen and (max-width: 993px) {
     .main {
         display: flex;
@@ -79,5 +128,14 @@
     .forms {
         display: flex;
         flex-direction: column;
+    }
+
+    .alert{
+        font-size: 10px;
+        max-width: 170px;
+    }
+
+    .alert1{
+        margin-top: 55px !important;
     }
 }

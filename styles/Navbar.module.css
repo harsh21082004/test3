@@ -9,6 +9,7 @@
   width: 100%;
   z-index: 2;
   /* margin-bottom: 50px; */
+  box-shadow: rgb(255, 193, 238) 0px 0px 4px;
 }
 
 
@@ -24,35 +25,26 @@
   text-decoration: none;
 }
 
-.navItem a::before,
 .navItem a::after {
   content: "";
   /* Create two empty pseudo-elements before and after the text */
   position: absolute;
   left: 0;
-  height: 1.5px;
+  height: 2px;
   /* Set the height of the lines */
-  background-color: #f11946;
+  background-color: #df00a2;
   /* Color of the lines */
   opacity: 0;
   /* Hide the lines by default */
   transition: opacity 0.3s, width 0.3s;
   /* Add a smooth transition effect for opacity and width */
 }
-
-.navItem a::before {
-  top: 1;
-  /* Position the line above the text */
-  width: 0%;
-}
-
 .navItem a::after {
   bottom: 7px;
   /* Position the line below the text */
   width: 0%;
 }
 
-.navItem a:hover::before,
 .navItem a:hover::after {
   opacity: 0.8;
   /* Show the lines on hover */
@@ -63,24 +55,14 @@
 
 .serBox {
   width: 140px;
-}
-
-.serBtn,
-.signBtn {
-  background-color: #f11946;
-  color: white;
-}
-
-.serBtn:hover,
-.signBtn:hover {
-  background-color: rgb(0, 0, 0);
-  color: white;
+  border-radius: 4px;
 }
 
 .navbar {
-  box-shadow: 0 0 10px black;
-  background-color: #FA8BFF;
-  background-image: linear-gradient(45deg, #FA8BFF 0%, #72daf7 52%, #fc8ccd 90%);
+  box-shadow: 0 0 4px black;
+  /* background-color: #FA8BFF;
+  background-image: linear-gradient(45deg, #FA8BFF 0%, #72daf7 52%, #fc8ccd 90%); */
+  backdrop-filter: blur(2px);
 }
 
 .fontBold {
@@ -106,9 +88,15 @@
 .scrollmenu {
   background-color: #5d0037;
 background-image: linear-gradient(225deg, #5d0037 0%, #35005f 50%, #000000 100%);
-
+box-shadow: rgb(255, 193, 238) 0px 0px 4px;
   overflow: auto;
   white-space: nowrap;
+  scroll-behavior: smooth;
+}
+
+.menu{
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .scrollmenu::-webkit-scrollbar {
@@ -128,8 +116,9 @@ background-image: linear-gradient(225deg, #5d0037 0%, #35005f 50%, #000000 100%)
 }
 
 .scrollmenu a:hover {
-  background-color: #777;
-
+  background-color: #5d0037;
+background-image: linear-gradient(225deg, #f461b7 0%, #710fc1 50%, #000000 100%);
+box-shadow: rgb(255, 193, 238) 0px 0px 10px;
 }
 
 /* HamburgerMenu.css */
@@ -146,7 +135,6 @@ background-image: linear-gradient(225deg, #5d0037 0%, #35005f 50%, #000000 100%)
   top: 56px;
   left: 0;
   padding: 3.4px 8px;
-  background-color: rgb(52, 52, 52);
 }
 
 .hamburgerMenu1 {
@@ -164,8 +152,8 @@ background-image: linear-gradient(225deg, #5d0037 0%, #35005f 50%, #000000 100%)
   width: 30px;
   height: 3.5px;
   margin: 3px 0;
-  background-color: #93fff9;
-  background-image: linear-gradient(45deg, #730000 0%, #ff2a52 50%, #000000 80%);
+  background-color: #fdfdfd;
+  /* background-image: linear-gradient(45deg, #730000 0%, #ff2a52 50%, #000000 80%); */
   transition: 0.4s;
   border-radius: 10px;
 }
@@ -175,7 +163,7 @@ background-image: linear-gradient(225deg, #5d0037 0%, #35005f 50%, #000000 100%)
 }
 
 .open .bar:nth-child(2) {
-  /* transform: translateX(-5); */
+  transform: translateX(-10px);
   opacity: 0;
 }
 
@@ -189,16 +177,28 @@ background-image: linear-gradient(225deg, #5d0037 0%, #35005f 50%, #000000 100%)
 
 
 
-.scrollleft {
+.scrollLeft {
+  margin: auto;
+  text-align: center;
+  width: 30px;
   cursor: pointer;
-  display: none;
   position: fixed;
   left: 0;
   top: 56px;
-  font-size: 15px;
+  font-size: 20px;
   color: white;
-  padding-top: 5px;
-  padding-bottom: 5px
+}
+
+.scrollRight {
+  margin: auto;
+  text-align: center;
+  width: 30px;
+  cursor: pointer;
+  position: fixed;
+  right: 0;
+  top: 56px;
+  font-size: 20px;
+  color: white;
 }
 
 .account1 {
@@ -225,21 +225,28 @@ background-image: linear-gradient(225deg, #5d0037 0%, #35005f 50%, #000000 100%)
   position: absolute;
   top: 35px;
   right: 35px;
-  background-color: #ffaebd;
-  background-image: linear-gradient(90deg, #c8eef9 0%, #ff6ad2 55%, #ed45a7 100%);
-  padding: 15px;
-  border-radius: 10px;
+  background-color: #282828;
+  width: 170px;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.accdrop li:nth-child(3){
+  margin-top: 5px;
+  border-top: 1px solid rgb(72, 72, 72);
 }
 
 .nav_item {
   list-style: none;
   padding: 5px;
   text-decoration: none;
-  color: black;
+  color: rgb(255, 255, 255);
 }
 
 .nav_item:hover {
   color: white;
+  background-color: #545454;
+  border-radius: 4px;
   cursor: pointer;
 }
 
@@ -257,14 +264,15 @@ background-image: linear-gradient(225deg, #5d0037 0%, #35005f 50%, #000000 100%)
   outline: none;
   border: none;
   color: white;
+  border-radius: 4px;
 }
 
 .button {
-  width: 100px;
+  width: 80px;
 }
 
 .button1 {
-  width: 100px;
+  width: 80px;
 }
 
 
@@ -299,6 +307,15 @@ background-image: linear-gradient(225deg, #5d0037 0%, #35005f 50%, #000000 100%)
 
   .imgMode {
     display: none;
+  }
+
+  .scrollLeft,.scrollRight{
+    display: none;
+  }
+
+  .menu{
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
   .imgMode1 {

@@ -9,6 +9,8 @@ import style from '@/styles/Myaccount.module.scss';
 import { FaCamera } from 'react-icons/fa';
 import { TbFingerprint, TbFingerprintOff } from "react-icons/tb";
 import ClipLoader from "react-spinners/ClipLoader";
+import { FaCheck } from "react-icons/fa6";
+import { RxCross2 } from "react-icons/rx";
 
 const Myaccount = () => {
   const router = useRouter();
@@ -34,6 +36,11 @@ const Myaccount = () => {
   const [exceedImageSize, setExceedImageSize] = useState(false);
   const [isLoading1, setIsLoading1] = useState(false)
   const [isLoading2, setIsLoading2] = useState(false)
+  const [error1, setError1] = useState(false);
+  const [error2, setError2] = useState(false);
+  const [error3, setError3] = useState(false);
+  const [error4, setError4] = useState(false);
+  const [error5, setError5] = useState(false);
 
   const handleTextType1 = (e) => {
     setVisible1(!visible1)
@@ -287,10 +294,6 @@ const Myaccount = () => {
 
   const handleChange = (e) => {
     if (e.target.name === 'name') setName(e.target.value);
-    else if (e.target.name === 'curPass') setCurrentPassword(e.target.value);
-    else if (e.target.name === 'newPass') {
-      setNewPassword(e.target.value);
-    }
     else if (e.target.name === 'cnfNewPass') {
       setConfirmNewPassword(e.target.value);
       checkPasswordsMatch(newPassword, e.target.value);
@@ -316,6 +319,43 @@ const Myaccount = () => {
     // This part should not be reached due to the client-side redirect
     return null;
   }
+  const handleChange1 = (e) => {
+    if (e.target.name === 'newPass') {
+      setNewPassword(e.target.value);
+    }
+
+    const lower = new RegExp('^(?=.*[a-z])');
+    const upper = new RegExp('^(?=.*[A-Z])');
+    const number = new RegExp('^(?=.*[0-9])');
+    const special = new RegExp('^(?=.*[!@#$%^&*])');
+    const length = new RegExp('^(?=.{8,})');
+
+    if (lower.test(e.target.value)) {
+      setError2(true);
+    } else {
+      setError2(false);
+    }
+    if (upper.test(e.target.value)) {
+      setError3(true);
+    } else {
+      setError3(false);
+    }
+    if (number.test(e.target.value)) {
+      setError4(true);
+    } else {
+      setError4(false);
+    }
+    if (special.test(e.target.value)) {
+      setError5(true);
+    } else {
+      setError5(false);
+    }
+    if (length.test(e.target.value)) {
+      setError1(true);
+    } else {
+      setError1(false);
+    }
+  }
   const handleImageChange = (e) => {
     if (e.target.files.length) {
       const selectedImage = e.target.files[0];
@@ -337,10 +377,10 @@ const Myaccount = () => {
   return (
     <>
       <div className={`${styles.accContainer} container`}>
-        <h4 className="text-center">Profile Settings</h4>
+        <h3 className="text-center text-white">Profile Settings</h3>
         <div className="container rounded mt-5 mb-5">
-          <div className={`${styles.main}`}>
-            {/* <div className="col-md-3 border-right"> */}
+          {/* <div className={`${styles.main}`}> */}
+          <div className={`${styles.forms} ${style.forms}`}>
             <div className="d-flex flex-column align-items-center text-center p-5">
               <div className={`${style.profilepic} profile-pic`}>
                 <label className={`${style.label}`} for="file">
@@ -352,71 +392,72 @@ const Myaccount = () => {
               </div>{exceedImageSize && (<div className={`${styles.alert1} alert alert-danger`} role="alert">
                 Please select image less than 1MB
               </div>)}
-              {session ? (<><span className="font-weight-bold">{userName}</span>
-                <span className="text-black-50">{userEmail}</span></>) : (<><span className="font-weight-bold">{userName}</span>
-                  <span className="text-black-50">{userEmail}</span></>)}</div>
-            {/* </div> */}
-            {/* <div className="col-md-5 border-right"> */}
-            <div className={`${styles.forms}`}>
-              <form className="p-3 py-5" onSubmit={handleSubmit}>
-                <div className="row mt-3">
-                  <div className="col-md-12"><label className="labels">Name</label><input type="text" className={`${style.input} m-1`} placeholder="name" name='name' value={name} onChange={handleChange
-                  } /></div>
-                  <div className="col-md-12"><label className="labels">Email ID(Can't be changed)</label><input type="text" className={`${style.input} m-1`} value={email} readOnly /></div>
-                </div>
-                {isLoading1 ? (<button type="submit" className={`${styles.button} btn m-2`}><span>
-                  <ClipLoader
-                    color='#ffffff'
-                    loading={isLoading1}
-                    size={25}
-                    aria-label="Loading Spinner"
-                    data-testid="loader"
-                  />
-                </span></button>) : (<button type="submit" className={`${styles.button} btn m-2`}>Update</button>)}
-              </form>
-              {!session ? (<form className="p-3 py-5" onSubmit={handleChangePassword}>
-                <div className="row mt-3">
-                  <div className="col-md-12"><label className="labels">Current Password</label>
-                    <div className={`${style.eyeinput}`}>
-                      <input type={textType1} className={`${style.input}`} placeholder="current password" name='curPass' value={currentPassword} onChange={handleChange
-                      } required /><i onClick={handleTextType1} className={`${style.eye}`}>
-                        {visible1 ? <TbFingerprint /> : <TbFingerprintOff />}
-                      </i></div></div>
-                  <div className="col-md-12"><label className="labels">New Password</label>
-                    <div className={`${style.eyeinput}`}>
-                      <input type={textType2} className={`${style.input}`} placeholder="new password" name='newPass' value={newPassword} onChange={handleChange
-                      } required /><i onClick={handleTextType2} className={`${style.eye}`}>
-                        {visible2 ? <TbFingerprint /> : <TbFingerprintOff />}
-                      </i></div></div>
-                  <div className="col-md-12"><label className="labels">Confirm New Password</label>
-                    <div className={`${style.eyeinput}`}><input type={textType3} className={`${style.input}`} placeholder="confirm new password" name='cnfNewPass' value={confirmNewPassword} onChange={handleChange
-                    } required /><i onClick={handleTextType3} className={`${style.eye}`}>
-                        {visible3 ? <TbFingerprint /> : <TbFingerprintOff />}
-                      </i></div>{isNotSame && (<div className={`${styles.alert} alert alert-danger`} role="alert">
-                        New password and confirm password should be same
-                      </div>)}</div>
-                  {isLoading2 ? (<button type="submit" className={`${styles.button} btn mt-5`}><span>
-                    <ClipLoader
-                      color='#ffffff'
-                      loading={isLoading2}
-                      size={15}
-                      aria-label="Loading Spinner"
-                      data-testid="loader"
-                    />
-                  </span></button>) : (<button type="submit" className={`${styles.button1} btn mt-5`}>Change Password</button>)}
-                </div>
-              </form>) : (<form className="p-3 py-5" onSubmit={handleCreatePassword}>
-                <div className="row mt-3">
-                  <div className="col-md-12"><label className="labels">New Password</label><input type="text" className={`${style.input} m-1`} placeholder="new password" name='newPass' value={newPassword} onChange={handleChange
-                  } /></div>
-                  <div className="col-md-12"><label className="labels">Confirm New Password</label><input type="text" className={`${style.input} m-1`} placeholder="confirm new password" name='cnfNewPass' value={confirmNewPassword} onChange={handleChange
-                  } /></div>
-                  <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="submit">Change Password</button>
-                  </div>
-                </div>
-              </form>)}
-            </div>
+              <span className="text-white font-weight-bold mt-2">{userName}</span>
+              <span className="text-white">{userEmail}</span></div>
+            <form className="p-3 py-5" onSubmit={handleSubmit}>
+              <div className="row mt-3">
+                <div className="col-md-12 my-3"><label className="labels text-white">Name</label><input type="text" className={`${style.input} m-1`} placeholder="name" name='name' value={name} onChange={handleChange
+                } /></div>
+                <div className="col-md-12 my-3"><label className="labels text-white">Email ID(Can't be changed)</label><input type="text" className={`${style.input} m-1`} value={email} readOnly /></div>
+              </div>
+              {isLoading1 ? (<button type="submit" className={`${styles.button} btn m-2`}><span>
+                <ClipLoader
+                  color='#ffffff'
+                  loading={isLoading1}
+                  size={25}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              </span></button>) : (<button type="submit" className={`${styles.button} btn m-2`}>Update</button>)}
+            </form>
           </div>
+          <form className={`${styles.passform} p-3 py-5`} onSubmit={handleCreatePassword}>
+            <div className="row mt-3">
+              <div className="col-md-12 my-3"><label className="labels text-white">New Password</label>
+                <div className={`${style.eyeinput}`}>
+                  <input type={textType2} className={`${style.input}`} placeholder="new password" name='newPass' value={newPassword} onChange={handleChange1
+                  } required /><i onClick={handleTextType2} className={`${style.eye}`}>
+                    {visible2 ? <TbFingerprint /> : <TbFingerprintOff />}
+                  </i></div></div>
+              <div className="col-md-12 my-3"><label className="labels text-white">Confirm New Password</label>
+                <div className={`${style.eyeinput}`}><input type={textType3} className={`${style.input}`} placeholder="confirm new password" name='cnfNewPass' value={confirmNewPassword} onChange={handleChange
+                } required /><i onClick={handleTextType3} className={`${style.eye}`}>
+                    {visible3 ? <TbFingerprint /> : <TbFingerprintOff />}
+                  </i></div>{isNotSame && (<div className={`${styles.alert} alert alert-danger`} role="alert">
+                    New password and confirm password should be same
+                  </div>)}
+                <div className={`${styles.alert1}`}>
+                  <ul>
+                    <span>
+                      {/* <FaCheck className={`${styles.rightCheck}`} /> */}
+                      {!error1 ? <RxCross2 className={`${styles.wrongCheck}`} /> : <FaCheck className={`${styles.rightCheck}`} />}
+                      {/* <RxCross2 className={`${styles.wrongCheck}`} /> */}
+                      <li>Password must be at least 8 characters long</li></span>
+                    <span>
+                      {!error2 ? <RxCross2 className={`${styles.wrongCheck}`} /> : <FaCheck className={`${styles.rightCheck}`} />}
+                      <li>Password must contain at least one lowercase letter</li></span>
+                    <span>
+                      {!error3 ? <RxCross2 className={`${styles.wrongCheck}`} /> : <FaCheck className={`${styles.rightCheck}`} />}
+                      <li>Password must contain at least one uppercase letter</li></span>
+                    <span>
+                      {!error4 ? <RxCross2 className={`${styles.wrongCheck}`} /> : <FaCheck className={`${styles.rightCheck}`} />}
+                      <li>Password must contain at least one digit</li></span>
+                    <span>
+                      {!error5 ? <RxCross2 className={`${styles.wrongCheck}`} /> : <FaCheck className={`${styles.rightCheck}`} />}
+                      <li>Password must contain at least one special character</li></span>
+                  </ul>
+                </div></div>
+              {isLoading2 ? (<button type="submit" className={`${styles.button} btn mt-5`}><span>
+                <ClipLoader
+                  color='#ffffff'
+                  loading={isLoading2}
+                  size={15}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              </span></button>) : (<button type="submit" className={`${styles.button1} btn mt-5`}>Change Password</button>)}
+            </div>
+          </form>
         </div>
       </div>
       {/* </div> */}

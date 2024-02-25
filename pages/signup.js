@@ -13,6 +13,8 @@ import router from 'next/router';
 import { useSession, signIn, signOut } from "next-auth/react"
 import { GithubLoginButton, GoogleLoginButton } from "react-social-login-buttons";
 import ClipLoader from "react-spinners/ClipLoader";
+import { FaCheck } from "react-icons/fa6";
+import { RxCross2 } from "react-icons/rx";
 
 const Signup = () => {
 
@@ -25,7 +27,11 @@ const Signup = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    const [error1, setError1] = useState(false);
+    const [error2, setError2] = useState(false);
+    const [error3, setError3] = useState(false);
+    const [error4, setError4] = useState(false);
+    const [error5, setError5] = useState(false);
     const [isLoading, setIsLoading] = useState(false)
 
     //google signin
@@ -56,27 +62,49 @@ const Signup = () => {
         else if (e.target.name === 'email') {
             setEmail(e.target.value)
         }
-        else if (e.target.name === 'password') {
+    }
+    const handleChange1 = (e) => {
+        if (e.target.name === 'password') {
             setPassword(e.target.value)
+        }
+
+        const lower = new RegExp('^(?=.*[a-z])');
+        const upper = new RegExp('^(?=.*[A-Z])');
+        const number = new RegExp('^(?=.*[0-9])');
+        const special = new RegExp('^(?=.*[!@#$%^&*])');
+        const length = new RegExp('^(?=.{8,})');
+
+        if(lower.test(e.target.value)){
+            setError2(true);
+        }else{
+            setError2(false);
+        }
+        if(upper.test(e.target.value)){
+            setError3(true);
+        }else{
+            setError3(false);
+        }
+        if(number.test(e.target.value)){
+            setError4(true);
+        }else{
+            setError4(false);
+        }
+        if(special.test(e.target.value)){
+            setError5(true);
+        }else{
+            setError5(false);
+        }
+        if(length.test(e.target.value)){
+            setError1(true);
+        }else{
+            setError1(false);
         }
     }
 
     const handleSubmit = async (e) => {
         setIsLoading(true)
         e.preventDefault();
-
-        if (password.length < 8) {
-            setError('Password must be at least 8 characters long');
-        } else if (password.search(/[a-z]/) < 0) {
-            setError('Password must contain at least one lowercase letter');
-        } else if (password.search(/[A-Z]/) < 0) {
-            setError('Password must contain at least one uppercase letter');
-        } else if (password.search(/[0-9]/) < 0) {
-            setError('Password must contain at least one digit');
-        } else if ((password.search(/[!@#$%^&*]/) < 0)) {
-            setError('Password must contain at least one special character');
-        } else {
-            setError('');
+        if(error1 && error2 && error3 && error4 && error5){
             const data = { name, email, password };
 
             try {
@@ -93,6 +121,11 @@ const Signup = () => {
                 setEmail('');
                 setName('');
                 setPassword('');
+                setError1(false);
+                setError2(false);
+                setError3(false);
+                setError4(false);
+                setError5(false);
 
                 if (response.error) {
                     setIsLoading(false)
@@ -148,6 +181,18 @@ const Signup = () => {
                     theme: "light",
                 });
             }
+        }else{
+            setIsLoading(false)
+            toast.error("Password does not meet the requirements", {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         }
     };
 
@@ -178,14 +223,32 @@ const Signup = () => {
                     <div className="form-group">
                         <label htmlFor="password" className={`text-white mx-1`}>Password</label>
                         <div className={`${styles.eyeinput}`}>
-                            <input onChange={handleChange} value={password} type={textType} className={`${styles.input} m-1`} name='password' id="password" placeholder="" required />
+                            <input onChange={handleChange1} value={password} type={textType} className={`${styles.input} m-1`} name='password' id="password" placeholder="" required />
                             <i onClick={handleTextType} className={`${styles.eye}`}>
                                 {visible ? <TbFingerprint /> : <TbFingerprintOff />}
                             </i>
                         </div>
-                        {error && (<div class="alert alert-danger" role="alert">
-                            {error}
-                        </div>)}
+                        <div className={`${styles.alert}`}>
+                            <ul>
+                                <span>
+                                    {/* <FaCheck className={`${styles.rightCheck}`} /> */}
+                                    {!error1 ? <RxCross2 className={`${styles.wrongCheck}`} /> : <FaCheck className={`${styles.rightCheck}`} />}
+                                    {/* <RxCross2 className={`${styles.wrongCheck}`} /> */}
+                                    <li>Password must be at least 8 characters long</li></span>
+                                <span>
+                                    {!error2? <RxCross2 className={`${styles.wrongCheck}`} /> : <FaCheck className={`${styles.rightCheck}`} />}
+                                    <li>Password must contain at least one lowercase letter</li></span>
+                                <span>
+                                    {!error3? <RxCross2 className={`${styles.wrongCheck}`} /> : <FaCheck className={`${styles.rightCheck}`} />}
+                                    <li>Password must contain at least one uppercase letter</li></span>
+                                <span>
+                                    {!error4? <RxCross2 className={`${styles.wrongCheck}`} /> : <FaCheck className={`${styles.rightCheck}`} />}
+                                    <li>Password must contain at least one digit</li></span>
+                                <span>
+                                    {!error5? <RxCross2 className={`${styles.wrongCheck}`} /> : <FaCheck className={`${styles.rightCheck}`} />}
+                                    <li>Password must contain at least one special character</li></span>
+                            </ul>
+                        </div>
                     </div>
                     {/* <div className="form-group form-check m-1">
                         <input type="checkbox" className="form-check-input" id="exampleCheck1" />
