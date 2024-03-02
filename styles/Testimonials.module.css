@@ -1,10 +1,19 @@
-.demo {
-  background-image: radial-gradient(circle 311px at 8.6% 27.9%, rgba(62, 147, 252, 0.57) 12.9%, rgba(239, 183, 192, 0.44) 91.2%);
-  box-shadow: rgb(255, 193, 238) 0px 0px 5px;
+.demolight {
+  background-color: #ffffff;
   border-radius: 5px;
   max-width: 900px;
   margin: auto;
   margin-top: 100px;
+  box-shadow: 0 0 10px black;
+}
+
+.demodark{
+  background-color: #20232a;
+  border-radius: 5px;
+  max-width: 900px;
+  margin: auto;
+  margin-top: 100px;
+  box-shadow: 0 0 5px white;
 }
 
 .text{
@@ -14,23 +23,17 @@
   font-size: 2.5rem;
   font-weight: bold;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  background-color: #ffffff;
-  background-image: linear-gradient(-225deg, #000000 0%, #87105c 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .text1{
   font-weight: bold;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  color: #400129;
 }
 
 .carouselCaption {
   position: initial;
   z-index: 10;
   padding: 5rem 8rem;
-  color: rgba(0, 0, 0, 0.856);
   text-align: center;
   font-size: 1.2rem;
   font-style: italic;
@@ -38,12 +41,27 @@
   line-height: 2rem;
 }
 
+.carouselControlNext{
+  margin: auto 0;
+  height: 50px;
+  width: 50px;
+  background-color: #0d6efd;
+  cursor: pointer;
+}
+
+.carouselControlPrev{
+  margin: auto 0;
+  height: 50px;
+  width: 50px;
+  background-color: #0d6efd;
+  cursor: pointer;
+}
+
 @media(max-width:767px) {
   .carouselCaption {
     position: initial;
     z-index: 10;
     padding: 3rem 2rem;
-    color: rgba(0, 0, 0, 0.856);
     text-align: center;
     font-size: 0.7rem;
     font-style: italic;
@@ -86,22 +104,12 @@
 
 .carouselControlNext i,
 .carouselControlPrev i {
-  background-color: #00DBDE;
-  background-image: linear-gradient(225deg, #007d9c 0%, #9f0265 100%);
   outline: none;
   border: none;
-  color: white;
   padding: 1.4rem;
 }
 .carouselControlNext,.carouselControlPrev{
   text-decoration: none;
-}
-
-.carouselControlNext i:hover,
-.carouselControlPrev i:hover{
-  background-color: #00DBDE;
-  background-image: linear-gradient(-225deg, #0dd2d6 0%, #ff38d4 100%);
-  color: rgb(0, 0, 0);
 }
 
 @media(max-width:767px) {

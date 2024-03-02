@@ -9,7 +9,8 @@
   width: 100%;
   z-index: 2;
   /* margin-bottom: 50px; */
-  box-shadow: rgb(255, 193, 238) 0px 0px 4px;
+  background-color: #20232a;
+  box-shadow: rgb(255, 255, 255) 0px 0px 4px;
 }
 
 
@@ -39,6 +40,7 @@
   transition: opacity 0.3s, width 0.3s;
   /* Add a smooth transition effect for opacity and width */
 }
+
 .navItem a::after {
   bottom: 7px;
   /* Position the line below the text */
@@ -77,24 +79,41 @@
   text-decoration: none;
 }
 
-.imgMode {
+.themeMode {
+  height: 2rem;
+  width: 2rem;
+  margin: 0 10px;
   cursor: pointer;
 }
 
-.imgdark {
-  filter: invert(1);
+
+.imgMode {
+  align-items: center;
+  border-radius: 50%;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  color: white;
+  width: 100%;
+}
+
+.imgMode:hover {
+  background-color: #444950;
+  border-radius: 50%;
+}
+
+.imageMode {
+  font-size: 25px;
 }
 
 .scrollmenu {
-  background-color: #5d0037;
-background-image: linear-gradient(225deg, #5d0037 0%, #35005f 50%, #000000 100%);
-box-shadow: rgb(255, 193, 238) 0px 0px 4px;
+  background-color: #151a1e;
   overflow: auto;
   white-space: nowrap;
   scroll-behavior: smooth;
 }
 
-.menu{
+.menu {
   padding-left: 30px;
   padding-right: 30px;
 }
@@ -116,9 +135,7 @@ box-shadow: rgb(255, 193, 238) 0px 0px 4px;
 }
 
 .scrollmenu a:hover {
-  background-color: #5d0037;
-background-image: linear-gradient(225deg, #f461b7 0%, #710fc1 50%, #000000 100%);
-box-shadow: rgb(255, 193, 238) 0px 0px 10px;
+  background-color: #545454;
 }
 
 /* HamburgerMenu.css */
@@ -231,7 +248,7 @@ box-shadow: rgb(255, 193, 238) 0px 0px 10px;
   border-radius: 4px;
 }
 
-.accdrop li:nth-child(3){
+.accdrop li:nth-child(3) {
   margin-top: 5px;
   border-top: 1px solid rgb(72, 72, 72);
 }
@@ -259,11 +276,8 @@ box-shadow: rgb(255, 193, 238) 0px 0px 10px;
 
 .button,
 .button1 {
-  background-color: #00DBDE;
-  background-image: linear-gradient(225deg, #007d9c 0%, #9f0265 100%);
   outline: none;
   border: none;
-  color: white;
   border-radius: 4px;
 }
 
@@ -273,14 +287,6 @@ box-shadow: rgb(255, 193, 238) 0px 0px 10px;
 
 .button1 {
   width: 80px;
-}
-
-
-.button:hover,
-.button1:hover {
-  background-color: #00DBDE;
-  background-image: linear-gradient(-225deg, #0dd2d6 0%, #ff38d4 100%);
-  color: rgb(0, 0, 0);
 }
 
 @media screen and (max-width: 993px) {
@@ -305,15 +311,12 @@ box-shadow: rgb(255, 193, 238) 0px 0px 10px;
     margin-top: 3px;
   }
 
-  .imgMode {
+  .scrollLeft,
+  .scrollRight {
     display: none;
   }
 
-  .scrollLeft,.scrollRight{
-    display: none;
-  }
-
-  .menu{
+  .menu {
     padding-left: 0px;
     padding-right: 0px;
   }

@@ -63,22 +63,22 @@ const Footer = () => {
                     <div className={`${styles.logos} text-center mt-4`}>
                         <div className="mb-4">
                             <a href="https://github.com/harsh21082004" target='_blank'>
-                                <button className="btn btn-dark btn-flat p-3 mx-2">
+                                <button className="btn btn-primary btn-flat p-3 mx-2">
                                     <i className="fa fa-github"></i>
                                 </button>
                             </a>
                             <a href="https://www.instagram.com/harshtiwari2108/" target='_blank'>
-                                <button className="btn btn-dark btn-flat p-3 mx-2">
+                                <button className="btn btn-primary btn-flat p-3 mx-2">
                                     <i className="fa fa-instagram"></i>
                                 </button>
                             </a>
                             <a href="https://www.youtube.com/channel/UC3PaBnmCwSDWkQS8QbbndCA" target='_blank'>
-                                <button className="btn btn-dark btn-flat p-3 mx-2">
+                                <button className="btn btn-primary btn-flat p-3 mx-2">
                                     <i className="fa fa-youtube"></i>
                                 </button>
                             </a>
                             <a href="https://www.linkedin.com/in/harsh-tiwari-745a85274?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target='_blank'>
-                                <button className="btn btn-dark btn-flat p-3 mx-2">
+                                <button className="btn btn-primary btn-flat p-3 mx-2">
                                     <i className="fa fa-linkedin"></i>
                                 </button>
                             </a>

@@ -1,9 +1,6 @@
 .footer {
   margin-top: 100px !important;
-  box-shadow: rgb(255, 255, 255) 0px 0px 10px;
-  /* background-color: #3EECAC; */
-  /* background-image: linear-gradient(19deg, #003421 0%, #6e0564 100%); */
-  backdrop-filter: blur(5px);
+  background-color: #20232a;
   
 }
 
@@ -13,12 +10,6 @@
 
 .containerFluid:hover {
   text-decoration: none;
-}
-
-.logos div a button{
-  background-color: #4158D0;
-background-image: linear-gradient(43deg, #000000 0%, #C850C0 46%, #000000 100%);
-
 }
 
 .logos div a button i{

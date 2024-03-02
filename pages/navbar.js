@@ -3,10 +3,13 @@ import { useRouter } from 'next/router';
 import styles from '@/styles/Navbar.module.css'
 import Link from 'next/link';
 import { MenuContext } from './context/menuContext';
-import { MdAccountCircle } from "react-icons/md";
+import { ThemeContext } from './context/themeContext';
+import { MdAccountCircle, MdLightMode, MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { useSession, signIn, signOut } from "next-auth/react"
 import { jwtDecode } from 'jwt-decode';
 import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa';
+import { CiLight } from "react-icons/ci";
+import { MdDarkMode } from "react-icons/md";
 
 
 const Navbar = ({ user, logout }) => {
@@ -35,6 +38,7 @@ const Navbar = ({ user, logout }) => {
   const [isLoggedIN, setIsLoggedIN] = useState(user)
   const [open, setOpen] = useState(true)
   const { openHam, toggleMenu } = useContext(MenuContext)
+  const { theme, toggleTheme } = useContext(ThemeContext)
   const router = useRouter();
   // const isVideosPage = router.pathname === '/' || router.pathname === '/videos' || router.pathname.startsWith('/videos/');
   const isLearnPage = router.pathname === '/learn' || router.pathname.startsWith('/learn/');
@@ -115,11 +119,16 @@ const Navbar = ({ user, logout }) => {
                   <Link className={`nav-link text-white`} aria-current="page" href="/contact">Contact Us</Link>
                 </li>
               </ul>
+              <div className={`${styles.themeMode}`} onClick={toggleTheme}>
+                <div className={`${styles.imgMode}`}>
+                  {theme === 'light' ? <MdOutlineLightMode className={`${styles.imageMode}`}/> : <MdOutlineDarkMode className={`${styles.imageMode}`}/>}
+                </div>
+                </div>
               <form className="d-flex" role="search">
-                <input className={`${styles.serBox} form-control me-2`} type="search" placeholder="Search" aria-label="Search" />
-                <button className={`btn ${styles.button}`} type="submit">Search</button>
+                <input className={`${styles.serBox}  form-control me-2`} type="search" placeholder="Search" aria-label="Search" />
+                <button className={`btn btn-primary ${styles.button}`} type="submit">Search</button>
               </form>
-              {!isSession && (<Link href={"/login"}><button className={` btn mx-2 ${styles.button1}`} type="submit">Login</button></Link>)}
+              {!isSession && (<Link href={"/login"}><button className={`btn-primary btn mx-2 ${styles.button1}`} type="submit">Login</button></Link>)}
               <b onMouseOver={() => { setIsHovered(true) }}
                 onMouseLeave={() => { setIsHovered(false) }}>
                 {isSession && (

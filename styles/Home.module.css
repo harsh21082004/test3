@@ -1,29 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-/* .main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6rem;
-  min-height: 100vh;
-} */
+.maincont {}
 
 .active {
   background-color: rgb(89, 89, 89) !important;
   color: white !important;
 }
 
-.textpurple {
-  color: #f11946;
-}
-
-.intro {
+.introlight,
+.introdark {
   display: flex;
-
+  /* z-index: 1; */
+  background-color: #0f0818;
+  max-height: 1100px;
+  z-index: -1;
 }
 
-.introcont {
+.introcontlight,
+.introcontdark {
   /* color: white; */
   text-align: left;
   padding: 5px;
@@ -32,42 +26,35 @@
   padding-top: 40px;
   width: 80%;
   min-height: 600px;
+  z-index: 2;
 }
 
-.intro img {
+.introlight img,
+.introdark img {
   position: absolute;
   left: 0;
 }
 
-.introcont h1 b {
+.introcontlight h1 b,
+.introcontdark h1 b {
   font-family: Georgia, 'Times New Roman', Times, serif;
-  background-color: #ffffff;
-  background-image: linear-gradient(-225deg, #ffffff 0%, #e53da7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #00DBDE;
 }
 
-.introcont p {
+.introcontlight h1,
+.introcontdark h1 {
+  color: #ffffff;
+}
+
+.introcontlight p,
+.introcontdark p {
   letter-spacing: 2px;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 1.5rem !important;
-  background-color: #ffffff;
-  background-image: linear-gradient(-225deg, #ffffff 0%, #e53da7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: bold;
 }
 
-.introcont h1 {
-  background-color: #ffffff;
-  background-image: linear-gradient(-225deg, #ffffff 0%, #e53da7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 2.5rem;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-.introcont p {
+.introcontlight p,
+.introcontdark p {
   color: #ffffff;
   font-size: 20px;
   padding: 2px;
@@ -75,11 +62,9 @@
   max-width: 70%;
 }
 
-.introcont span {
-  background-color: #ffffff;
-  background-image: linear-gradient(-225deg, #ffffff 0%, #e53da7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.introcontlight span,
+.introcontdark span {
+  color: #00DBDE;
   font-weight: bold;
   font-size: 2.5rem;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -88,31 +73,24 @@
 .typer div span {
   font-weight: bold;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  background-color: #ffffff;
-  background-image: linear-gradient(225deg, #ffffff 0%, #e53da7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #00DBDE;
 }
 
 .photo {
   position: absolute;
   max-width: 100%;
   right: 0;
-  z-index: -4;
+  z-index: 1;
   top: 0;
-  opacity: 0.5;
 }
 
-.photo1{
+.photo1 {
   display: none;
 }
 
 .button {
-  background-color: #00DBDE;
-  background-image: linear-gradient(225deg, #007d9c 0%, #e53da7 100%);
   outline: none;
   border: none;
-  color: white;
   border-radius: 4px;
 }
 
@@ -120,25 +98,14 @@
   width: 150px;
 }
 
-
-.button:hover {
-  background-color: #00DBDE;
-  background-image: linear-gradient(-225deg, #0dd2d6 0%, #ff38d4 100%);
-  color: rgb(0, 0, 0);
-}
-
 .youtube h2 {
   font-size: 2.5em;
   font-weight: bold;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  background-color: #ffffff;
-  background-image: linear-gradient(225deg, #ffffff 0%, #e53da7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: rgb(109, 3, 81) 0px 0px 30px;
+  color: #000000;
 }
 
-.youtube p{
+.youtube p {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 18px;
 }
@@ -147,7 +114,6 @@
   margin-top: 150px !important;
   max-width: 95%;
   margin: auto;
-  
 }
 
 .contyoutube {
@@ -157,29 +123,41 @@
   margin: auto;
 }
 
-.youtubevideos {
+.youtubevideoslight {
   backdrop-filter: blur(10px);
-  /* padding: 10px; */
+  background-color: #ffffff;
   width: 380px;
-  max-height: 800px;
+  height: 500px;
   border-radius: 5px;
-  background-image: radial-gradient(circle 311px at 8.6% 27.9%, rgba(62, 147, 252, 0.57) 12.9%, rgba(239, 183, 192, 0.44) 91.2%);
-  box-shadow: rgb(255, 193, 238) 0px 0px 4px;
+  box-shadow: rgb(0, 0, 0) 0px 0px 10px;
   margin: 0 10px;
 }
 
-.contyoutubevideos {
+.youtubevideosdark {
+  backdrop-filter: blur(10px);
+  background-color: #20232a;
+  width: 380px;
+  height: 500px;
+  border-radius: 5px;
+  box-shadow: rgb(255, 255, 255) 0px 0px 5px;
+  margin: 0 10px;
+}
+
+.contyoutubevideoslight,
+.contyoutubevideosdark {
   width: 100%;
   display: flex;
   /* margin: auto !important; */
   justify-content: space-evenly;
 }
 
-.youtubevideos div p {
-  max-height: 150px;
+.youtubevideoslight div p,
+.youtubevideosdark div p {
+  max-height: 300px;
 }
 
-.youtubevideos div button {
+.youtubevideoslight div button,
+.youtubevideosdark div button {
   max-height: 40px;
 }
 
@@ -193,39 +171,37 @@
 .watch {
   width: 150px;
   border-radius: 4px;
-  background-color: #00DBDE;
-  background-image: linear-gradient(225deg, #007d9c 0%, #e53da7 100%);
   outline: none;
   border: none;
-  color: white;
   margin: 0 10px;
 }
 
-.watch:hover {
-  background-color: #00DBDE;
-  background-image: linear-gradient(-225deg, #0dd2d6 0%, #ff38d4 100%);
-  color: rgb(0, 0, 0);
+.watchButton {
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
 }
 
-.videotext {
-  height: 150px;
+.videotextlight,
+.videotextdark {
+  max-height: 300px;
 }
 
-.videotext p{
-  background-color: #ffffff;
-  background-image: linear-gradient(-225deg, #000000 0%, #3e023c 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: rgb(0, 0, 0) 0px 0px 50px;
-  font-weight: bolder;
+.videotextlight p {
+  color: #000000;
+  font-weight: bold;
 }
 
-.videotext h4{
-  background-color: #ffffff;
-  background-image: linear-gradient(225deg, #2d0000 0%, #5a0239 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: rgb(83, 1, 64) 0px 0px 50px;
+.videotextdark p {
+  color: #ffffff;
+}
+
+.videotextlight h4 {
+  color: black;
+}
+
+.videotextdark h4 {
+  color: rgb(255, 255, 255);
 }
 
 @media screen and (max-width: 767px) {
@@ -245,23 +221,28 @@
     max-width: 100%;
     top: 0;
     right: 0;
-    z-index: -4;
+    z-index: 1;
     margin-right: auto;
-    opacity: 0.5;
+    opacity: 0.4;
   }
 
   .photo {
     display: none;
   }
 
-  .introcont {
+  .introcontlight,
+  .introcontdark {
     text-align: center;
     width: 100%;
   }
 
-  .introcont p {
+  .introcontlight p,
+  .introcontdark p {
     padding: 0;
     margin: auto;
+    max-width: 100%;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
   }
 
 }

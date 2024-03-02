@@ -19,7 +19,9 @@ const handler = async (req, res) => {
         const hashedPassword = CryptoJS.SHA256(req.body.password).toString();
 
         if (hashedPassword === user.password) {
-          var token = jwt.sign({ email: user.email, name: user.name, image: user.image }, 'jwtsecret',);
+          var token = jwt.sign({ email: user.email, name: user.name, image: user.image }, 'jwtsecret',{
+            expiresIn: 20
+          });
           //   console.log(user.image);
           return res.status(200).json({ token, success: "Successfully logged in, redirecting to homepage" });
         } else {

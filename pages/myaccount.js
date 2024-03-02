@@ -69,6 +69,7 @@ const Myaccount = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+    console.log(token);
     if (token !== null) {
       setIsLoggedIN(true)
       setKey(Math.random())

@@ -3,6 +3,7 @@ import '@/styles/globals.css'
 import Navbar from './navbar'
 import { useEffect, useState } from 'react';
 import { MenuContext, menu } from './context/menuContext'
+import { ThemeContext,themes} from './context/themeContext';
 import LoadingBar from 'react-top-loading-bar'
 import { useRouter } from 'next/router';
 import { ToastContainer, toast } from 'react-toastify';
@@ -23,10 +24,33 @@ export default function App({ Component, pageProps }) {
 
   const [openHam, setOpenHam] = useState(menu.open)
 
+  const [theme, setTheme] = useState(themes.light)
+
+  useEffect(() => {
+    // Retrieve theme from localStorage or use a default theme
+    const savedTheme = localStorage.getItem('theme');
+    setTheme(savedTheme || 'light');
+  }, []);
+
+  useEffect(() => {
+    // Update body background color when theme changes
+    document.body.style.backgroundColor = theme === 'light' ? '#ffffff' : '#282c34';
+  }, [theme]);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+  };
+
 
   function toggleMenu() {
     openHam === menu.open ? setOpenHam(!menu.open) : setOpenHam(menu.open)
   }
+
+  // function toggleTheme(){
+  //   setTheme(theme === themes.light ? themes.dark : themes.light)
+  // }
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -70,13 +94,11 @@ export default function App({ Component, pageProps }) {
     setKey(Math.random())
   }
 
-
   const { scrollYProgress } = useScroll();
 
-
-
-
-  return <><motion.div
+  return <>
+  <ThemeContext.Provider value={{theme, toggleTheme}}>
+    <motion.div
     className="progress-bar"
     style={{ scaleX: scrollYProgress }}
   />
@@ -106,5 +128,6 @@ export default function App({ Component, pageProps }) {
           {/* <Footer/> */}
       </MenuContext.Provider>
     </SessionProvider>
+    </ThemeContext.Provider>
   </>
 }
