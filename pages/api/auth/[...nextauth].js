@@ -17,6 +17,7 @@ const authOptions = {
       clientSecret: process.env.GITHUB_SECRET,
     }),
   ],
+  secret:"hi123",
   callbacks: {
     async session({ session }) {
       const sessionUser = await User.findOne({ email: session.user.email });
