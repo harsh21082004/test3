@@ -123,7 +123,7 @@ const Myaccount = () => {
     try {
       // const token = localStorage.getItem('token');
       const image1 = image.preview;
-      const response = await fetch('http://localhost:3000/api/updateuser', {
+      const response = await fetch('https://test3codebyte.vercel.app/api/updateuser', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -187,7 +187,7 @@ const Myaccount = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/api/createpassword', {
+      const response = await fetch('https://test3codebyte.vercel.app/api/createpassword', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -234,7 +234,7 @@ const Myaccount = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/api/updatepassword', {
+      const response = await fetch('https://test3codebyte.vercel.app/api/updatepassword', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
