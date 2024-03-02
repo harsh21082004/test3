@@ -125,7 +125,7 @@ const Navbar = ({ user, logout }) => {
                 </div>
                 </div>
               <form className="d-flex" role="search">
-                <input className={`${styles.serBox}  form-control me-2`} type="search" placeholder="Search" aria-label="Search" />
+                <input className={`${theme === 'light'? styles.serBoxlight:styles.serBoxdark} mx-2`} type="search" aria-label="Search" placeholder='Search' />
                 <button className={`btn btn-primary ${styles.button}`} type="submit">Search</button>
               </form>
               {!isSession && (<Link href={"/login"}><button className={`btn-primary btn mx-2 ${styles.button1}`} type="submit">Login</button></Link>)}

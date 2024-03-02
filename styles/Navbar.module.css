@@ -1,18 +1,16 @@
 .menu {
   display: flex;
-
 }
 
 .nav {
   position: fixed !important;
   top: 0;
   width: 100%;
-  z-index: 2;
+  z-index: 4;
   /* margin-bottom: 50px; */
   background-color: #20232a;
   box-shadow: rgb(255, 255, 255) 0px 0px 4px;
 }
-
 
 .navItem a {
   margin: 0 6px;
@@ -55,9 +53,25 @@
 }
 
 
-.serBox {
+.serBoxlight,.serBoxdark {
   width: 140px;
   border-radius: 4px;
+  padding: 5px;
+  outline: none;  
+  border: none;
+}
+
+.serBoxlight:hover,.serBoxdark:hover{
+  outline: 2px solid #0d6efd;
+}
+
+.serBoxlight{
+  background-color: #ffffff;
+}
+
+.serBoxdark{
+  background-color: #1b1b1d;
+  color: white;
 }
 
 .navbar {
@@ -303,7 +317,7 @@
     margin-left: 20px !important;
   }
 
-  .serBox {
+  .serBoxlight,.serBoxdark {
     margin-left: 20px !important;
   }
 

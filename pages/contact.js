@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import styles from '@/styles/Contact.module.scss';
 import ClipLoader from "react-spinners/ClipLoader";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from './footer';
+import { ThemeContext } from './context/themeContext';
 
 const Contact = () => {
   const [name, setName] = useState('')
@@ -11,6 +12,7 @@ const Contact = () => {
   const [subject, setSubject] = useState('')
   const [message, setMessage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const { theme } = useContext(ThemeContext);
 
   const handleChange = (e) => {
     if (e.target.name === 'name') {
@@ -100,41 +102,41 @@ const Contact = () => {
   }
   return (
     <>
-      <div className={`${styles.containerContact100} container-contact100`}>
-        <div className={`${styles.wrapContact100} wrap-contact100`}>
+      <div className={`${theme === 'light'? styles.containerContact100light:styles.containerContact100dark} container-contact100`}>
+        <div className={`${theme === 'light'? styles.wrapContact100light:styles.wrapContact100dark} wrap-contact100`}>
           <form className={`${styles.contact100Form} ${styles.validateForm} contact100-form validate-form`} onSubmit={handleSubmit} method='POST'>
-            <span className={`${styles.contact100FormTitle} contact100-form-title`}>
+            <span className={`${styles.contact100FormTitle} text-${theme === 'light'?'black':'white'} contact100-form-title`}>
               Contact Us
             </span>
-            <div className={`${styles.wrapInput100} ${styles.validateInput} wrap-input100 validate-input`} >
-              <span className={`${styles.labelInput100} label-input100`}>Your Name</span>
-              <input className={`${styles.input100} ${styles.input} input100`} type="text" name="name"
+            <div className={`${theme === 'light'? styles.wrapInput100light:styles.wrapInput100dark}  ${styles.validateInput} wrap-input100 validate-input`} >
+              <span className={`${styles.labelInput100} text-${theme === 'light'?'black':'white'} label-input100`}>Your Name</span>
+              <input className={`${styles.input100} text-${theme === 'light'?'black':'white'} ${styles.input} input100`} type="text" name="name"
                 value={name}
                 onChange={handleChange}
                 required />
               <span className="focus-input100"></span>
             </div>
-            <div className={`${styles.wrapInput100} ${styles.validateInput} wrap-input100 validate-input`} >
-              <span className={`${styles.labelInput100} label-input100`}>Email</span>
-              <input className={`${styles.input100} ${styles.input} input100`} type="email" name="email"
+            <div className={`${theme === 'light'? styles.wrapInput100light:styles.wrapInput100dark} ${styles.validateInput} wrap-input100 validate-input`} >
+              <span className={`${styles.labelInput100} text-${theme === 'light'?'black':'white'} label-input100`}>Email</span>
+              <input className={`${styles.input100} text-${theme === 'light'?'black':'white'} ${styles.input} input100`} type="email" name="email"
                 value={email}
                 onChange={handleChange}
                 required />
               <span className="focus-input100"></span>
             </div>
 
-            <div className={`${styles.wrapInput100} ${styles.validateInput} wrap-input100 validate-input`} >
-              <span className={`${styles.labelInput100} label-input100`}>Subject</span>
-              <input className={`${styles.input100} ${styles.input} input100`} type="text" name="subject"
+            <div className={`${theme === 'light'? styles.wrapInput100light:styles.wrapInput100dark} ${styles.validateInput} wrap-input100 validate-input`} >
+              <span className={`${styles.labelInput100} text-${theme === 'light'?'black':'white'} label-input100`}>Subject</span>
+              <input className={`${styles.input100} text-${theme === 'light'?'black':'white'} ${styles.input} input100`} type="text" name="subject"
                 value={subject}
                 onChange={handleChange}
                 required />
               <span className="focus-input100"></span>
             </div>
 
-            <div className={`${styles.wrapInput100} ${styles.validateInput} wrap-input100 validate-input`} data-validate="Message is required">
-              <span className={`${styles.labelInput100} label-input100`}>Message</span>
-              <textarea className={`${styles.input100} ${styles.input} input100`} style={{height:'100px'}} name="messege"
+            <div className={`${theme === 'light'? styles.wrapInput100light:styles.wrapInput100dark} ${styles.validateInput} wrap-input100 validate-input`} data-validate="Message is required">
+              <span className={`${styles.labelInput100} text-${theme === 'light'?'black':'white'} label-input100`}>Message</span>
+              <textarea className={`${styles.input100} text-${theme === 'light'?'black':'white'} ${styles.input} input100`} style={{height:'100px'}} name="messege"
                 value={message}
                 onChange={handleChange}
                 required></textarea>
@@ -152,7 +154,7 @@ const Contact = () => {
                       aria-label="Loading Spinner"
                       data-testid="loader"
                     />
-                  </span></button></>) : (<><button className={`${styles.contact100FormBtn} contact100-form-btn`} type='submit'>
+                  </span></button></>) : (<><button className={`${styles.contact100FormBtn} btn btn-primary contact100-form-btn`} type='submit'>
                     <span>
                       Submit
                       <i className="fa fa-long-arrow-right mx-1" aria-hidden="true"></i>

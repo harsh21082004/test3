@@ -3,6 +3,7 @@ import styles from '@/styles/Html.module.css'
 import Link from 'next/link'
 import { useContext } from 'react'
 import { MenuContext } from '../../context/menuContext';
+import { ThemeContext } from '@/pages/context/themeContext';
 import { useRouter } from "next/router";
 
 const Html = () => {
@@ -10,12 +11,13 @@ const Html = () => {
   const router = useRouter();
 
   const { openHam } = useContext(MenuContext)
+  const { theme } = useContext(ThemeContext)
   
 
 
   return (
     <>
-        <div className={`${styles.sidebar} ${!openHam ? styles.sideopen : ''}`} id='navside'>
+        <div className={`${theme === "light"? styles.sidebarlight:styles.sidebardark} ${!openHam ? styles.sideopen : ''}`} id='navside'>
           <h3>Learn</h3>
           <Link href="/learn/html/html-home" className={router.pathname === "/learn/html/html-home" ? 'activelink' : ""}>HTML Home</Link>
           <Link href="/learn/html/html-intro" className={router.pathname === "/learn/html/html-intro" ? 'activelink' : ""}>HTML INTRODUCTION</Link>
@@ -46,7 +48,6 @@ const Html = () => {
           <Link href="/html">Html</Link>
           <Link href="/html">Html</Link>
           <Link href="/html">Html</Link>
-
         </div>
     </>
   )

@@ -1,4 +1,4 @@
-.containerContact100 {
+.containerContact100light,.containerContact100dark {
     margin-top: -15px;
     width: 100%;
     min-height: 100vh;
@@ -13,13 +13,23 @@
     padding: 15px;
 }
 
-.wrapContact100 {
+.wrapContact100light,.wrapContact100dark {
     width: 500px;
-    background-color: #FF3CAC;
-    background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
     border-radius: 10px;
     overflow: hidden;
     padding: 42px 55px 45px;
+}
+
+.wrapContact100light{
+    background: #ffffff;
+    border: 1px solid rgb(95, 95, 95);
+    box-shadow: 0 0 10px black;
+}
+
+.wrapContact100dark{
+    background: #151a1e;
+    border: 1px solid rgb(95, 95, 95);
+    box-shadow: 0 0 5px white;
 }
 
 .contact100Form {
@@ -39,12 +49,19 @@
 .validateInput {
     position: relative;
 }
-.wrapInput100 {
+.wrapInput100light,.wrapInput100dark {
     width: 100%;
     position: relative;
-    border-bottom: 2px solid #d9d9d9;
     padding-bottom: 13px;
     margin-bottom: 27px;
+}
+
+.wrapInput100light{
+    border-bottom: 2px solid #000000;
+}
+
+.wrapInput100dark{
+    border-bottom: 2px solid #d9d9d9;
 }
 
 .validateInput {
@@ -91,7 +108,6 @@
 .contact100FormBtn {
     outline: none;
     border: none;
-    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,19 +116,9 @@
     height: 50px;
     font-family: Poppins-Medium;
     font-size: 18px;
-    color: #fff;
     line-height: 1.2;
-    border: none;
     outline: none!important;
     border: none;
-    background-color: #00DBDE;
-    background-image: linear-gradient(225deg, #007d9c 0%, #9f0265 100%);
-}
-
-.contact100FormBtn:hover{
-    background-color: #00DBDE;
-    background-image: linear-gradient(-225deg, #007d9c 0%, #9f0265 100%);
-    color: rgb(0, 0, 0);
 }
 
 .wrapContact100FormBtn {
@@ -120,7 +126,7 @@
     display: block;
     position: relative;
     z-index: 1;
-    border-radius: 25px;
+    border-radius: 5px;
     overflow: hidden;
     margin: 0 auto;
 }

@@ -3,15 +3,12 @@ import styles from '@/styles/Html.module.css';
 import Footer from '../../footer';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
 import { ThemeContext } from '../../context/themeContext';
-
 import Html from './html';
 import data from './html.json';
 import AceEditor from "react-ace";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark, docco, zTouch } from "react-syntax-highlighter/dist/cjs/styles/prism";
-
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-monokai";
 import { LuCopy } from 'react-icons/lu';
@@ -66,21 +63,21 @@ const HtmlIntro = () => {
     <div className={`${styles.learn}`}>
       <Html />
       <div className={`${styles.learncont}`} id='sidecont'>
-        <h2 className={`text-center text-white ${styles.h2html}`}>HTML Introduction</h2>
+        <h2 className={`text-center text-${theme === 'light'?'black':'white'} ${styles.h2html}`}>HTML Introduction</h2>
         <div className={`${styles.nextprev}`}>
-          <Link href={`/learn/html/${data.myObj[currentIndex - 1]}`} className={`${styles.button}`}>&lt; Prev</Link>
-          <Link href={`/learn/html/${data.myObj[currentIndex + 1]}`} className={`${styles.button}`}>Next &gt;</Link>
+          <Link href={`/learn/html/${data.myObj[currentIndex - 1]}`} className={`${styles.button} btn btn-primary`}>&lt; Prev</Link>
+          <Link href={`/learn/html/${data.myObj[currentIndex + 1]}`} className={`${styles.button} btn btn-primary`}>Next &gt;</Link>
         </div>
-        <div className={`${styles.languegecourse} text-white px-5 py-5`}>
+        <div className={`${styles.languegecourse} text-${theme === 'light'?'black':'white'} px-5 py-5`}>
           <h5 className={`text-left text-white`}>GET OUR FREE HTML COURSE</h5>
           <p className={`text-left text-white`}>In this course you will learn HTML from basic to advanced.</p>
           <Link href="/learn" target='_blank'><input type="button" value="Go to the Course" className={`btn btn-primary`} /></Link>
         </div>
         <div className={`px-3 ${styles.docpage}`}>
-          <p className={`text-white`}>HTML, or Hypertext Markup Language, is the foundational language of the World Wide Web. It serves as the backbone for creating and structuring web pages, allowing content to be presented and organized in a way that both browsers and users can understand. HTML employs a system of tags, each with a specific purpose, to define text, images, links, forms, and other elements on a web page. These tags create a structured hierarchy, and when combined with cascading style sheets (CSS) and JavaScript, they enable the web to be an interactive and visually appealing environment. HTML's simplicity and versatility have made it a cornerstone of web development, facilitating the creation of the websites and web applications we use every day.</p><br />
-          <p className={`text-white`}><b>HTML Tags</b></p>
-          <p className={`text-white`}>HTML (Hypertext Markup Language) tags are essential elements used to structure and define the content of a web page. They serve as the building blocks of web documents and are enclosed within angle brackets (&lt; &gt;). HTML tags come in pairs: an opening tag and a closing tag, with content in between. Here's a brief overview, including some common headings:<br /></p>
-          <ol className={`text-white`}>
+          <p className={`text-${theme === 'light'?'black':'white'}`}>HTML, or Hypertext Markup Language, is the foundational language of the World Wide Web. It serves as the backbone for creating and structuring web pages, allowing content to be presented and organized in a way that both browsers and users can understand. HTML employs a system of tags, each with a specific purpose, to define text, images, links, forms, and other elements on a web page. These tags create a structured hierarchy, and when combined with cascading style sheets (CSS) and JavaScript, they enable the web to be an interactive and visually appealing environment. HTML's simplicity and versatility have made it a cornerstone of web development, facilitating the creation of the websites and web applications we use every day.</p><br />
+          <p className={`text-${theme === 'light'?'black':'white'}`}><b>HTML Tags</b></p>
+          <p className={`text-${theme === 'light'?'black':'white'}`}>HTML (Hypertext Markup Language) tags are essential elements used to structure and define the content of a web page. They serve as the building blocks of web documents and are enclosed within angle brackets (&lt; &gt;). HTML tags come in pairs: an opening tag and a closing tag, with content in between. Here's a brief overview, including some common headings:<br /></p>
+          <ol className={`text-${theme === 'light'?'black':'white'}`}>
             <li>&lt;<b>!DOCTYPE</b>&gt; Declaration:
               <ul>
                 <li>Specifies the HTML version being used by the document.</li>
@@ -184,11 +181,11 @@ const HtmlIntro = () => {
         </div>
         <div className={`px-3 ${styles.docpage}`}>
           <h3
-            className={`text-white`}>
+            className={`text-${theme === 'light'?'black':'white'}`}>
             Html Page Structure
           </h3>
           <div
-            className={`text-white text-xl`}>
+            className={`text-${theme === 'light'?'black':'white'} text-xl`}>
             <div style={{ border: "2px solid black", padding: "5px"}} >&lt;html&gt;
               <div style={{ margin: "15px", border: "2px solid black", padding: "5px" }} >&lt;head&gt;
                 <div style={{ margin: "15px", border: "2px solid black", padding: "5px" }} >&lt;title&gt;Page title&lt;/title&gt;
@@ -208,8 +205,8 @@ const HtmlIntro = () => {
           </div>
         </div>
         <div className={`${styles.nextprev}`}>
-          <Link href={`/learn/html/${data.myObj[currentIndex]}`} onClick={handlePrev} className={`${styles.button}`}>&lt; Prev</Link>
-          <Link href={`/learn/html/${data.myObj[currentIndex]}`} onClick={handleNext} className={`${styles.button}`}>Next &gt;</Link>
+          <Link href={`/learn/html/${data.myObj[currentIndex]}`} onClick={handlePrev} className={`${styles.button} btn btn-primary`}>&lt; Prev</Link>
+          <Link href={`/learn/html/${data.myObj[currentIndex]}`} onClick={handleNext} className={`${styles.button} btn btn-primary`}>Next &gt;</Link>
         </div>
         <Footer />
       </div>

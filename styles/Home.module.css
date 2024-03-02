@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-.maincont {}
-
 .active {
   background-color: rgb(89, 89, 89) !important;
   color: white !important;
@@ -205,12 +203,12 @@
 }
 
 @media screen and (max-width: 767px) {
-  .contyoutubevideos {
+  .contyoutubevideosdark,.contyoutubevideoslight{
     display: flex;
     flex-direction: column;
   }
 
-  .youtubevideos {
+  .youtubevideosdark,.youtubevideoslight{
     margin: 10px auto;
   }
 
@@ -253,7 +251,7 @@
     height: 160px;
   }
 
-  .youtubevideos {
+  .youtubevideosdark,.youtubevideoslight{
     width: 240px;
   }
 
