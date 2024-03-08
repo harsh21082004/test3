@@ -17,6 +17,7 @@ const authOptions = {
       clientSecret: process.env.GITHUB_SECRET,
     }),
   ],
+  secret:"hi123",
   callbacks: {
     async session({ session }) {
       const sessionUser = await User.findOne({ email: session.user.email });
@@ -35,7 +36,7 @@ const authOptions = {
           await connectDb();
           const userExist = await User.findOne({ email });
           if (!userExist) {
-            let res = await fetch('http://localhost:3000/api/googlecredential', {
+            let res = await fetch('https://test3codebyte.vercel.app/api/googlecredential', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
