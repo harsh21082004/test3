@@ -27,7 +27,7 @@ export default function VerifyEmailPage() {
         }
     }
 
-    console.log(JSON.stringify({token}));
+    console.log(JSON.stringify({ token }));
     console.log(verified);
 
     useEffect(() => {
@@ -44,7 +44,6 @@ export default function VerifyEmailPage() {
     return (
         <div className="container">
             <h1 className="text-center">Verify Email</h1>
-            <h2 className="text-center">{token ? `${token}` : 'no token'}</h2>
             {verified && (
                 <div className="alert alert-success">
                     Your email has been verified. You can now <Link href="/login">login</Link>
@@ -55,6 +54,17 @@ export default function VerifyEmailPage() {
                     Some error occurred. Please try again later.
                 </div>
             )}
+            <style jsx>{`
+        .container {
+          background: #212529;
+          width:100%;
+          height:500px;
+          borderRadius: 10px;
+        }
+        p {
+          color: blue;
+        }
+      `}</style>
         </div>
     );
 }
