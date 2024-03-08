@@ -235,12 +235,12 @@
 }
 
 @media screen and (max-width: 1000px){
-  .htmlBoxDark,.htmlBoxLight,.cssBoxDark,.cssBoxLight{
+  .htmlBoxDark,.htmlBoxLight,.cssBoxDark,.cssBoxLight,.jsBoxLight,.jsBoxDark{
     display: flex;
     flex-direction: column;
   }
 
-  .htmlBoxLight div,.htmlBoxDark div,.cssBoxLight div,.cssBoxDark div{
+  .htmlBoxLight div,.htmlBoxDark div,.cssBoxLight div,.cssBoxDark div,.jsBoxLight div,.jsBoxDark div{
     width: 100%;
     margin: 10px;
   }  
