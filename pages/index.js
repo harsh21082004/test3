@@ -139,8 +139,8 @@ export default function Home() {
         </div>
         <div className={`${theme === 'light' ? styles.cssBoxLight:styles.cssBoxDark}`} style={{backgroundColor:'wheat'}}>
           <div style={{display:'flex',flexDirection:'column'}}>
-            <h2 className={`text-center text-${theme === "light" ? 'black' : 'white'} my-2`} style={{fontSize:'50px'}}>CSS</h2>
-            <p className={`text-center text-${theme === "light" ? 'black' : 'white'} my-2`} style={{fontSize:'17px',fontWeight:'bold',width:'80%',margin:'auto'}}>Html is the standard markup language for documents designed to be displayed in a web browser. It can be assisted by technologies such as Cascading Style Sheets (CSS) and scripting languages such as JavaScript.</p>
+            <h2 className={`text-center text-black my-2`} style={{fontSize:'50px'}}>CSS</h2>
+            <p className={`text-center text-black my-2`} style={{fontSize:'17px',fontWeight:'bold',width:'80%',margin:'auto'}}>Html is the standard markup language for documents designed to be displayed in a web browser. It can be assisted by technologies such as Cascading Style Sheets (CSS) and scripting languages such as JavaScript.</p>
             <input type="button" className={`btn btn-success`} style={{width:'300px',margin:'5px auto',padding:'10px',borderRadius:'25px'}} value="Learn Html" />
             <input type="button" className={`btn btn-primary`} style={{width:'300px',margin:'5px auto',padding:'10px',borderRadius:'25px'}} value="Watch Videos" />
             <input type="button" className={`btn btn-danger`} style={{width:'300px',margin:'5px auto',padding:'10px',borderRadius:'25px'}} value="Learn Html" />
@@ -155,8 +155,8 @@ export default function Home() {
         </div>
         <div className={`${theme === 'light' ? styles.jsBoxLight:styles.jsBoxDark}`}>
           <div style={{display:'flex',flexDirection:'column'}}>
-            <h2 className={`text-center text-black my-2`} style={{fontSize:'50px'}}>JAVASCRIPT</h2>
-            <p className={`text-center text-black my-2`} style={{fontSize:'17px',fontWeight:'bold',width:'80%',margin:'auto'}}>Html is the standard markup language for documents designed to be displayed in a web browser. It can be assisted by technologies such as Cascading Style Sheets (CSS) and scripting languages such as JavaScript.</p>
+            <h2 className={`text-center text-${theme === "light" ? 'black' : 'white'} my-2`} style={{fontSize:'50px'}}>JAVASCRIPT</h2>
+            <p className={`text-center text-${theme === "light" ? 'black' : 'white'} my-2`} style={{fontSize:'17px',fontWeight:'bold',width:'80%',margin:'auto'}}>Html is the standard markup language for documents designed to be displayed in a web browser. It can be assisted by technologies such as Cascading Style Sheets (CSS) and scripting languages such as JavaScript.</p>
             <input type="button" className={`btn btn-success`} style={{width:'300px',margin:'5px auto',padding:'10px',borderRadius:'25px'}} value="Learn Html" />
             <input type="button" className={`btn btn-primary`} style={{width:'300px',margin:'5px auto',padding:'10px',borderRadius:'25px'}} value="Watch Videos" />
             <input type="button" className={`btn btn-danger`} style={{width:'300px',margin:'5px auto',padding:'10px',borderRadius:'25px'}} value="Learn Html" />
