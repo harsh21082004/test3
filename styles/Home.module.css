@@ -240,9 +240,17 @@
     flex-direction: column;
   }
 
+  .htmlBoxDark input,.htmlBoxLight input,.cssBoxDark input,.cssBoxLight input,.jsBoxLight input,.jsBoxDark input,.htmlSyntaxDark input,.htmlSyntaxLight input,.cssSyntaxDark input,.cssSyntaxLight input,.jsSyntaxLight input,.jsSyntaxDark input{
+    max-width: 150px !important;
+  }
+
+  .htmlBoxDark h2,.htmlBoxLight h2,.cssBoxDark h2,.cssBoxLight h2,.jsBoxLight h2,.jsBoxDark h2{
+    font-size: 30px !important;
+  }
+
   .htmlBoxLight div,.htmlBoxDark div,.cssBoxLight div,.cssBoxDark div,.jsBoxLight div,.jsBoxDark div{
     width: 100%;
-    margin: 10px;
+    margin: auto;
   }  
 }
   
